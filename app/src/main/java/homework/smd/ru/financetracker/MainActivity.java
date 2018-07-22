@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +20,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import homework.smd.ru.financetracker.fragments.AboutFragment;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -68,7 +71,27 @@ public class MainActivity extends AppCompatActivity
 
 	@Override
 	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
 		drawer.closeDrawer(GravityCompat.START);
+		final Fragment fragment;
+
+		switch (item.getItemId()) {
+			case R.id.nav_about:
+				fragment = AboutFragment.newInstance();
+				break;
+
+			default:
+				return false;
+		}
+
+		final FragmentManager manager = getSupportFragmentManager();
+		manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		manager
+				.beginTransaction()
+				.replace(R.id.container, fragment)
+				.addToBackStack(null)
+				.commit();
+
 		return true;
 	}
 }
