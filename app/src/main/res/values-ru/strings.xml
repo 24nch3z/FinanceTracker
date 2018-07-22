@@ -10,4 +10,10 @@
     <string name="nav_about">О приложении</string>
 
     <string name="content_unavailable">Контент временно недоступен</string>
+
+    <string name="settings_name_hint">Имя</string>
+    <string name="settings_email_hint">Почта</string>
+    <string name="settings_btn_apply">Применить изменения</string>
+    <string name="too_short_name">Слишком короткое имя</string>
+    <string name="too_short_email">Неправильная почта</string>
 </resources>

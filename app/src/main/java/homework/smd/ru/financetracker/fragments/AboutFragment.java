@@ -2,16 +2,13 @@ package homework.smd.ru.financetracker.fragments;
 
 
 import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.text.HtmlCompat;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
