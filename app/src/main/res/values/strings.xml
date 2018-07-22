@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FinTracker</string>
+    <string name="app_full_name">Finance Tracker</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Trubnikov Dmitriy</string>
+    <string name="nav_header_subtitle">trubnikovdv@mail.ru</string>
+    <string name="nav_header_desc">Finance Tracker</string>
+
+    <string name="nav_main">Tracker</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_about">About</string>
+</resources>

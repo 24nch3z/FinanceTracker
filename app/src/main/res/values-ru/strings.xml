@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ФинТрекер</string>
+    <string name="app_full_name">Трекер финансов</string>
+    <string name="nav_header_title">Дмитрий Трубников</string>
+    <string name="nav_header_desc">Трекер финансов</string>
+
+    <string name="nav_main">Трекер</string>
+    <string name="nav_settings">Настройки</string>
+    <string name="nav_about">О приложении</string>
+</resources>
