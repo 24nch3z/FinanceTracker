@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import homework.smd.ru.financetracker.fragments.AboutFragment;
+import homework.smd.ru.financetracker.fragments.MainFragment;
 import homework.smd.ru.financetracker.fragments.SettingsFragment;
 import homework.smd.ru.financetracker.modules.Configuration;
 
@@ -46,10 +47,10 @@ public class MainActivity extends AppCompatActivity
 		toggle.syncState();
 
 		navigationView.setNavigationItemSelectedListener(this);
-		updateUserInfo(configuration.getName(), configuration.getEmail());
 
-		if (getSupportActionBar() != null) {
-			getSupportActionBar().setTitle(R.string.app_full_name);
+		if (configuration.isFirstTime()) {
+			updateUserInfo(configuration.getName(), configuration.getEmail());
+			onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_main_page));
 		}
 	}
 
@@ -81,14 +82,19 @@ public class MainActivity extends AppCompatActivity
 		final int titleID;
 
 		switch (item.getItemId()) {
-			case R.id.nav_about:
-				fragment = AboutFragment.newInstance();
-				titleID = R.string.nav_about;
+			case R.id.nav_main_page:
+				fragment = MainFragment.newInstance();
+				titleID = R.string.app_full_name;
 				break;
 
 			case R.id.nav_settings:
 				fragment = SettingsFragment.newInstance();
 				titleID = R.string.nav_settings;
+				break;
+
+			case R.id.nav_about:
+				fragment = AboutFragment.newInstance();
+				titleID = R.string.nav_about;
 				break;
 
 			default:
@@ -118,4 +124,5 @@ public class MainActivity extends AppCompatActivity
 				.findViewById(R.id.nav_header_email)).setText(email);
 		drawer.openDrawer(GravityCompat.START);
 	}
+
 }

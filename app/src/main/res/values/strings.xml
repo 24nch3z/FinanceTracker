@@ -3,8 +3,6 @@
     <string name="app_full_name">Finance Tracker</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Trubnikov Dmitriy</string>
-    <string name="nav_header_subtitle">trubnikovdv@mail.ru</string>
     <string name="nav_header_desc">Finance Tracker</string>
 
     <string name="nav_main">Tracker</string>
@@ -13,12 +11,19 @@
 
     <string name="content_unavailable">Content is temporarily unavailable</string>
 
+    <!--SettingFragment-->
     <string name="settings_name_hint">Name</string>
     <string name="settings_email_hint">Email</string>
     <string name="settings_btn_apply">Apply changes</string>
     <string name="too_short_name">Too short name</string>
     <string name="too_short_email">Invalid email</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--MainFragment-->
+    <string name="dollar_sign">$</string>
+    <string name="ruble_sign">P</string>
+    <string name="balance">Balance:</string>
+    <string name="dollar_rate">Dollar rate:</string>
+    <string name="usd">USD</string>
+    <string name="rub">RUB</string>
+
 </resources>
