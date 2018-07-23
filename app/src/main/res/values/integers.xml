@@ -1,0 +1,4 @@
+<resources>
+    <integer name="max_name_length">50</integer>
+    <integer name="max_email_length">70</integer>
+</resources>
