@@ -43,7 +43,7 @@ dependencies {
     implementation group: 'com.google.dagger', name: 'dagger-android', version: '2.15'
     annotationProcessor group: 'com.google.dagger', name: 'dagger-compiler', version: '2.15'
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply plugin: 'kotlin-android'

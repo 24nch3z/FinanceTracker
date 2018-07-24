@@ -1,5 +1,6 @@
 package homework.smd.ru.financetracker.modules
 
+
 enum class OperationType {
     BUY,
     SELL
@@ -9,23 +10,23 @@ enum class Currency {
     RUBLE
 }
 data class Operation(
-        val sum: Float,
+        val sum: Double,
         val type: OperationType,
         val currency: Currency
 )
+
 
 fun Collection<Operation>.total(
         dollarRatio: Float,
         currency: Currency = Currency.RUBLE
 ): Operation {
 
-    var amountInRuble = 0.0f
-    this.forEach({
+    var amountInRuble = this.sumByDouble {
         var sum = it.sum
         if (it.currency == Currency.DOLLAR) sum *= dollarRatio
         if (it.type == OperationType.BUY) sum *= -1
-        amountInRuble += sum
-    })
+        sum
+    }
 
     val type: OperationType
     if (amountInRuble < 0) {
