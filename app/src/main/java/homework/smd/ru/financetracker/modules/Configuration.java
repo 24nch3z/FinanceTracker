@@ -27,30 +27,30 @@ public class Configuration {
 
 	public void setName(@Nullable final String name) {
 		userPreferences
-				.edit()
-				.putString(USER_NAME, name)
-				.apply();
+			.edit()
+			.putString(USER_NAME, name)
+			.apply();
 	}
 
 	public void setEmail(@Nullable final String email) {
 		userPreferences
-				.edit()
-				.putString(USER_EMAIL, email)
-				.apply();
+			.edit()
+			.putString(USER_EMAIL, email)
+			.apply();
 	}
 
 	public void setRuble(final boolean isRUB) {
 		userPreferences
-				.edit()
-				.putBoolean(IS_RUB, isRUB)
-				.apply();
+			.edit()
+			.putBoolean(IS_RUB, isRUB)
+			.apply();
 	}
 
 	public void setBalanceVisible(final boolean isVisible) {
 		userPreferences
-				.edit()
-				.putBoolean(IS_VISIBLE, isVisible)
-				.apply();
+			.edit()
+			.putBoolean(IS_VISIBLE, isVisible)
+			.apply();
 	}
 
 	@NonNull

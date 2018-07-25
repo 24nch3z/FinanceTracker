@@ -18,12 +18,14 @@ import java.io.InputStreamReader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import homework.smd.ru.financetracker.R;
 
 public class AboutFragment extends Fragment {
 
 	private static final String TEXT_CONTENT = "about.txt";
 
+	private Unbinder unbinder;
 	@BindView(R.id.content_about) TextView contentView;
 
 	public AboutFragment() { }
@@ -38,7 +40,7 @@ public class AboutFragment extends Fragment {
 	                         ViewGroup container,
 	                         Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_about, container, false);
-		ButterKnife.bind(this, view);
+		unbinder = ButterKnife.bind(this, view);
 
 		final String content = loadContentFromAssets(view.getContext().getAssets());
 		contentView.setText(HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_COMPACT));
@@ -47,13 +49,19 @@ public class AboutFragment extends Fragment {
 		return view;
 	}
 
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		unbinder.unbind();
+	}
+
 	private String loadContentFromAssets(@NonNull AssetManager manager) {
 
 		final StringBuilder builder = new StringBuilder();
 
 		try(final InputStream inputStream = manager.open(TEXT_CONTENT)) {
 			final BufferedReader reader =
-					new BufferedReader(new InputStreamReader(inputStream));
+				new BufferedReader(new InputStreamReader(inputStream));
 
 			while (true) {
 				final String line = reader.readLine();
@@ -67,5 +75,4 @@ public class AboutFragment extends Fragment {
 
 		return builder.toString();
 	}
-
 }

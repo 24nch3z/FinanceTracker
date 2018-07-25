@@ -18,17 +18,19 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import homework.smd.ru.financetracker.fragments.AboutFragment;
 import homework.smd.ru.financetracker.fragments.MainFragment;
 import homework.smd.ru.financetracker.fragments.SettingsFragment;
 import homework.smd.ru.financetracker.modules.Configuration;
 
 public class MainActivity extends AppCompatActivity
-		implements SettingsFragment.NavigationController,
-		NavigationView.OnNavigationItemSelectedListener {
+	implements SettingsFragment.NavigationController,
+	NavigationView.OnNavigationItemSelectedListener {
 
 	@Inject public Configuration configuration;
 
+	private Unbinder unbinder;
 	@BindView(R.id.nav_view) NavigationView navigationView;
 	@BindView(R.id.drawer_layout) DrawerLayout drawer;
 	@BindView(R.id.toolbar) Toolbar toolbar;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		App.getComponent().inject(this);
-		ButterKnife.bind(this);
+		unbinder = ButterKnife.bind(this);
 
 		setSupportActionBar(toolbar);
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -75,6 +77,12 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unbinder.unbind();
+	}
+
+	@Override
 	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
 		drawer.closeDrawer(GravityCompat.START);
@@ -104,10 +112,10 @@ public class MainActivity extends AppCompatActivity
 		final FragmentManager manager = getSupportFragmentManager();
 		manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		manager
-				.beginTransaction()
-				.replace(R.id.container, fragment)
-				.addToBackStack(null)
-				.commit();
+			.beginTransaction()
+			.replace(R.id.container, fragment)
+			.addToBackStack(null)
+			.commit();
 
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setTitle(titleID);
@@ -119,9 +127,9 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	public void updateUserInfo(@NonNull String name, @NonNull String email) {
 		((TextView) navigationView.getHeaderView(0)
-				.findViewById(R.id.nav_header_name)).setText(name);
+			.findViewById(R.id.nav_header_name)).setText(name);
 		((TextView) navigationView.getHeaderView(0)
-				.findViewById(R.id.nav_header_email)).setText(email);
+			.findViewById(R.id.nav_header_email)).setText(email);
 		drawer.openDrawer(GravityCompat.START);
 	}
 

@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.modules.Configuration;
@@ -26,6 +27,7 @@ public class MainFragment extends Fragment {
 
 	@Inject Configuration configuration;
 
+	private Unbinder unbinder;
 	@BindView(R.id.visibility_switcher) ImageSwitcher imageSwitcher;
 	@BindView(R.id.currency_switcher) Switch currencySwitcher;
 	@BindView(R.id.dollar_rate) TextView dollarRateView;
@@ -44,22 +46,29 @@ public class MainFragment extends Fragment {
 		final View view = inflater.inflate(R.layout.fragment_main, container, false);
 
 		App.getComponent().inject(this);
-		ButterKnife.bind(this, view);
+		unbinder = ButterKnife.bind(this, view);
 		updateBalance();
 
 		// Set dollar rate
 		dollarRateView.setText(String.format(
-				Locale.getDefault(),
-				getString(R.string.dollar_rate) + " %10.2f",
-				configuration.getDollarRatio()
+			Locale.getDefault(),
+			getString(R.string.dollar_rate) + " %10.2f",
+			configuration.getDollarRatio()
 		));
 		if (!configuration.isBalanceVisible()) imageSwitcher.showNext();
 
 		return view;
 	}
 
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		unbinder.unbind();
+	}
+
+
 	@OnCheckedChanged(R.id.currency_switcher)
-	public void onCurrencyChange(Switch currencySwitcher, boolean isRuble) {
+	public void onCurrencyChange(boolean isRuble) {
 		configuration.setRuble(isRuble);
 		updateBalance();
 	}
@@ -93,7 +102,7 @@ public class MainFragment extends Fragment {
 		if (isVisible) {
 			// Show balance in the correct currency
 			balanceView.setText(String.format(
-					Locale.getDefault(), "%,.2f " + moneySign, balance));
+				Locale.getDefault(), "%,.2f " + moneySign, balance));
 		} else {
 			// Hide balance
 			balanceView.setText("* * * * * ");
