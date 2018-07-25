@@ -85,14 +85,12 @@ public class SettingsFragment extends Fragment {
 			return;
 		}
 
-
 		// Hide keyboard
 		final InputMethodManager imm = (InputMethodManager)
 				view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (imm != null) {
 			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 		}
-
 
 		// Update user info in preference
 		configuration.setName(name);
