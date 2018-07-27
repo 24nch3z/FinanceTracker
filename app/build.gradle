@@ -16,10 +16,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias        "${System.env.'ANDROID_KEY_ALIAS'}"
-            keyPassword     "${System.env.'ANDROID_KEY_PASS'}"
-            storePassword   "${System.env.'ANDROID_KEY_PASS'}"
-            storeFile       file("${System.env.'ANDROID_KEY_STORES'}")
+            keyAlias "${System.env.'ANDROID_KEY_ALIAS'}"
+            keyPassword "${System.env.'ANDROID_KEY_PASS'}"
+            storePassword "${System.env.'ANDROID_KEY_PASS'}"
+            storeFile file("${System.env.'ANDROID_KEY_STORES'}")
         }
     }
 

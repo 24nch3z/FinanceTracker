@@ -3,6 +3,7 @@ package homework.smd.ru.financetracker.injections;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import homework.smd.ru.financetracker.AbstractMainActivity;
 import homework.smd.ru.financetracker.MainActivity;
 import homework.smd.ru.financetracker.fragments.MainFragment;
 import homework.smd.ru.financetracker.fragments.SettingsFragment;
@@ -14,7 +15,7 @@ public interface AppComponent {
 
 	void inject(SettingsFragment settingsFragment);
 
-	void inject(MainActivity mainActivity);
+	void inject(AbstractMainActivity mainActivity);
 
 	void inject(MainFragment mainFragment);
 }
