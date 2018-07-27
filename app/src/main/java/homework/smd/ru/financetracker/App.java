@@ -20,8 +20,7 @@ public class App extends Application {
 
 		// DI by Dagger
 		component = DaggerAppComponent.builder()
-//				.appModule(new AppModule(this))
-				.configModule(new ConfigModule(this))
-				.build();
+			.configModule(new ConfigModule(this))
+			.build();
 	}
 }

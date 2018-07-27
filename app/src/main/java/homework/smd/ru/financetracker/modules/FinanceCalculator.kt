@@ -1,31 +1,32 @@
 package homework.smd.ru.financetracker.modules
 
+
 enum class OperationType {
     BUY,
     SELL
 }
 enum class Currency {
-    DOLLAR,
-    RUBLE
+    USD,
+    RUB
 }
 data class Operation(
-        val sum: Float,
+        val sum: Double,
         val type: OperationType,
         val currency: Currency
 )
 
+
 fun Collection<Operation>.total(
         dollarRatio: Float,
-        currency: Currency = Currency.RUBLE
+        currency: Currency = Currency.RUB
 ): Operation {
 
-    var amountInRuble = 0.0f
-    this.forEach({
+    var amountInRuble = this.sumByDouble {
         var sum = it.sum
-        if (it.currency == Currency.DOLLAR) sum *= dollarRatio
+        if (it.currency == Currency.USD) sum *= dollarRatio
         if (it.type == OperationType.BUY) sum *= -1
-        amountInRuble += sum
-    })
+        sum
+    }
 
     val type: OperationType
     if (amountInRuble < 0) {
@@ -35,7 +36,7 @@ fun Collection<Operation>.total(
         type = OperationType.SELL
     }
 
-    if (currency == Currency.DOLLAR) amountInRuble /= dollarRatio
+    if (currency == Currency.USD) amountInRuble /= dollarRatio
 
     return Operation(amountInRuble, type, currency)
 }

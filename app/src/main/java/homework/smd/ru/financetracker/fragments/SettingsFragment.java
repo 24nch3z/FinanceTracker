@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.modules.Configuration;
@@ -29,6 +30,7 @@ public class SettingsFragment extends Fragment {
 
 	@Inject public Configuration configuration;
 
+	private Unbinder unbinder;
 	@BindView(R.id.settings_name) TextInputEditText editName;
 	@BindView(R.id.settings_email) TextInputEditText editEmail;
 	@Nullable private NavigationController navigationController;
@@ -55,7 +57,7 @@ public class SettingsFragment extends Fragment {
 
 		view = inflater.inflate(R.layout.fragment_settings, container, false);
 		App.getComponent().inject(this);
-		ButterKnife.bind(this, view);
+		unbinder = ButterKnife.bind(this, view);
 
 		// Set current value of user configuration
 		editName.setText(configuration.getName());
@@ -85,14 +87,12 @@ public class SettingsFragment extends Fragment {
 			return;
 		}
 
-
 		// Hide keyboard
 		final InputMethodManager imm = (InputMethodManager)
-				view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+			view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (imm != null) {
 			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 		}
-
 
 		// Update user info in preference
 		configuration.setName(name);
@@ -108,6 +108,12 @@ public class SettingsFragment extends Fragment {
 	public void onDetach() {
 		super.onDetach();
 		navigationController = null;
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		unbinder.unbind();
 	}
 
 	public interface NavigationController {

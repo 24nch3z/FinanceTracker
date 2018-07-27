@@ -1,8 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
     <string name="app_name">FinTracker</string>
     <string name="app_full_name">Finance Tracker</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Open navigation drawer</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Close navigation drawer</string>
     <string name="nav_header_desc">Finance Tracker</string>
 
     <string name="nav_main">Tracker</string>
@@ -19,11 +20,11 @@
     <string name="too_short_email">Invalid email</string>
 
     <!--MainFragment-->
-    <string name="dollar_sign">$</string>
-    <string name="ruble_sign">P</string>
+    <string name="dollar_sign" tools:ignore="MissingTranslation">$</string>
+    <string name="ruble_sign" tools:ignore="MissingTranslation">P</string>
     <string name="balance">Balance:</string>
     <string name="dollar_rate">Dollar rate:</string>
-    <string name="usd">USD</string>
-    <string name="rub">RUB</string>
+    <string name="usd" tools:ignore="MissingTranslation">USD</string>
+    <string name="rub" tools:ignore="MissingTranslation">RUB</string>
 
 </resources>

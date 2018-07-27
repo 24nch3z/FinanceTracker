@@ -17,6 +17,4 @@ public interface AppComponent {
 	void inject(MainActivity mainActivity);
 
 	void inject(MainFragment mainFragment);
-
-	void inject(Operation operation);
 }

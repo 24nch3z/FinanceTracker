@@ -13,8 +13,8 @@ public class Configuration {
 	private final static String USER_NAME = "user_name";
 	private final static String USER_EMAIL = "user_email";
 	private final static String USER_BALANCE = "user_balance";
-	private final static String DOLLAR_RATE = "dollar_rate";
-	private final static String IS_RUBLE = "is_ruble";
+	private final static String USD_RATE = "usd_rate";
+	private final static String IS_RUB = "is_rub";
 	private final static String IS_VISIBLE = "is_visible";
 
 	private final SharedPreferences userPreferences;
@@ -27,30 +27,30 @@ public class Configuration {
 
 	public void setName(@Nullable final String name) {
 		userPreferences
-				.edit()
-				.putString(USER_NAME, name)
-				.apply();
+			.edit()
+			.putString(USER_NAME, name)
+			.apply();
 	}
 
 	public void setEmail(@Nullable final String email) {
 		userPreferences
-				.edit()
-				.putString(USER_EMAIL, email)
-				.apply();
+			.edit()
+			.putString(USER_EMAIL, email)
+			.apply();
 	}
 
-	public void setRuble(final boolean isRuble) {
+	public void setRuble(final boolean isRUB) {
 		userPreferences
-				.edit()
-				.putBoolean(IS_RUBLE, isRuble)
-				.apply();
+			.edit()
+			.putBoolean(IS_RUB, isRUB)
+			.apply();
 	}
 
 	public void setBalanceVisible(final boolean isVisible) {
 		userPreferences
-				.edit()
-				.putBoolean(IS_VISIBLE, isVisible)
-				.apply();
+			.edit()
+			.putBoolean(IS_VISIBLE, isVisible)
+			.apply();
 	}
 
 	@NonNull
@@ -68,7 +68,7 @@ public class Configuration {
 	}
 
 	public float getDollarRatio() {
-		return userPreferences.getFloat(DOLLAR_RATE, 63.52f);
+		return userPreferences.getFloat(USD_RATE, 63.52f);
 	}
 
 	public boolean isBalanceVisible() {
@@ -76,7 +76,7 @@ public class Configuration {
 	}
 
 	public boolean isRuble() {
-		return userPreferences.getBoolean(IS_RUBLE, true);
+		return userPreferences.getBoolean(IS_RUB, true);
 	}
 
 
