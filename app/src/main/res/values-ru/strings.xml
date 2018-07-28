@@ -5,19 +5,15 @@
     <string name="nav_header_desc">Трекер финансов</string>
 
     <string name="nav_main">Трекер</string>
-    <string name="nav_settings">Настройки</string>
-    <string name="nav_about">О приложении</string>
+    <string name="opt_settings">Настройки</string>
+    <string name="opt_about">О приложении</string>
 
     <string name="content_unavailable">Контент временно недоступен</string>
 
     <!--SettingFragment-->
-    <string name="settings_name_hint">Имя</string>
-    <string name="settings_email_hint">Почта</string>
-    <string name="settings_btn_apply">Применить изменения</string>
-    <string name="too_short_name">Слишком короткое имя</string>
-    <string name="too_short_email">Неправильная почта</string>
+    <string name="settings_currency">Валюта:</string>
 
-    <!--MainFragment-->
+    <!--View-->
     <string name="balance">Баланс:</string>
     <string name="dollar_rate">Курс доллара:</string>
 

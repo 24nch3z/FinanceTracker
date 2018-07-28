@@ -2,62 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/fragment_margin"
     android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_text_input"
-        app:counterEnabled="true"
-        app:counterMaxLength="@integer/max_name_length">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/settings_name"
-            android:layout_width="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/settings_name_hint"
-            android:inputType="textShortMessage|textCapWords"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:maxLength="@integer/max_name_length"
+            android:text="@string/dollar_rate"
+            android:layout_gravity="start|center_vertical"
+            android:textSize="@dimen/balance_text_size"
+            android:textColor="@color/primary_text"
             />
-    </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_text_input"
-        app:counterEnabled="true"
-        app:counterMaxLength="@integer/max_email_length">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/settings_email"
-            android:layout_width="match_parent"
+        <Switch
+            android:id="@+id/currency_switcher"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/settings_email_hint"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:maxLength="@integer/max_email_length"
-            />
-    </android.support.design.widget.TextInputLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/settings_apply_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:textOn="@string/rub"
+            android:textOff="@string/usd"
             android:layout_gravity="end|center_vertical"
-            android:layout_marginTop="@dimen/fragment_margin"
-            android:padding="@dimen/colored_button_padding"
-            android:text="@string/settings_btn_apply"
-            android:textStyle="bold"
-            style="@style/Widget.AppCompat.Button.Colored"
             />
-    </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>
