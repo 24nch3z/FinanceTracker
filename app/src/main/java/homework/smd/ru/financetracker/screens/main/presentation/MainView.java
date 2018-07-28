@@ -78,7 +78,7 @@ public class MainView extends Fragment implements MainContract.View {
 
 	@Override
 	public void setAdapter(RecyclerView.Adapter adapter) {
-		recycler.setVisibility(View.VISIBLE);
 		recycler.setAdapter(adapter);
+		recycler.setVisibility(View.VISIBLE);
 	}
 }

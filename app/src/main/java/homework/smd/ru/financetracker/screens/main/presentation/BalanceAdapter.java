@@ -49,7 +49,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceH
 		}
 	}
 
-	public BalanceAdapter(@NonNull List<BalanceModel> dataset) {
+	BalanceAdapter(@NonNull List<BalanceModel> dataset) {
 		this.dataset = dataset;
 	}
 
@@ -61,12 +61,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceH
 			.inflate(R.layout.balance_holder, parent, false);
 		// Wrap card in holder
 		final BalanceHolder holder = new BalanceHolder(cardView);
-		holder.itemView.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-
-			}
-		});
+		holder.itemView.setOnClickListener(view -> { });
 		return holder;
 	}
 

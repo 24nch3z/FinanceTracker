@@ -2,9 +2,9 @@ package homework.smd.ru.financetracker.screens.main.domain;
 
 public class BalanceModel {
 
+	private String stringSum = "";
 	private String balanceName;
 	private boolean isVisible;
-	private String stringSum;
 	private float sum;
 
 	public BalanceModel(String balanceName, boolean isVisible, float sum) {

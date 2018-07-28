@@ -23,8 +23,8 @@
     <string name="usd" tools:ignore="MissingTranslation">USD</string>
     <string name="eur" tools:ignore="MissingTranslation">EUR</string>
     <string name="rub" tools:ignore="MissingTranslation">RUB</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home" tools:ignore="MissingTranslation">Home</string>
+    <string name="title_dashboard" tools:ignore="MissingTranslation">Dashboard</string>
+    <string name="title_notifications" tools:ignore="MissingTranslation">Notifications</string>
 
 </resources>
