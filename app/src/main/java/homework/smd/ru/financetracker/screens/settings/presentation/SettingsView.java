@@ -14,19 +14,19 @@ import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 
-public class View extends Fragment implements Contract.View {
+public class SettingsView extends Fragment implements SettingsContract.View {
 
-	private Contract.Presenter presenter;
+	private SettingsContract.Presenter presenter;
 	private Unbinder unbinder;
 
 	@BindView(R.id.currency_switcher) Switch currencySwitcher;
 
 
-	public View() { }
+	public SettingsView() { }
 
 	public static Fragment newSettingInstance() {
 		// TODO injections via Dagger?
-		return new View();
+		return new SettingsView();
 	}
 
 
@@ -39,14 +39,14 @@ public class View extends Fragment implements Contract.View {
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 
-		presenter = new Presenter();
-		presenter.onCreateView(this);
+		presenter = new SettingsPresenter();
+		presenter.attachView(this);
 		return view;
 	}
 
 	@Override
 	public void onDestroyView() {
-		presenter.onDestroyView();
+		presenter.detachView();
 		unbinder.unbind();
 		super.onDestroyView();
 	}

@@ -14,18 +14,18 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.R;
 
-public class View extends Fragment implements Contract.View {
+public class InfoView extends Fragment implements InfoContract.View {
 
-	private Contract.Presenter presenter;
+	private InfoContract.Presenter presenter;
 
 	private Unbinder unbinder;
 	@BindView(R.id.content_about) TextView contentView;
 
-	public View() { }
+	public InfoView() { }
 
 	@NonNull
-	public static View newAboutInstance() {
-		return new View();
+	public static InfoView newAboutInstance() {
+		return new InfoView();
 	}
 
 	@Override
@@ -35,14 +35,14 @@ public class View extends Fragment implements Contract.View {
 		final android.view.View view = inflater.inflate(R.layout.fragment_about, container, false);
 		unbinder = ButterKnife.bind(this, view);
 		contentView.setTextSize(getResources().getDimension(R.dimen.text_size));
-		presenter = new Presenter();
-		presenter.onCreateView(this);
+		presenter = new InfoPresenter();
+		presenter.attachView(this);
 		return view;
 	}
 
 	@Override
 	public void onDestroyView() {
-		presenter.onDestroyView();
+		presenter.detachView();
 		unbinder.unbind();
 		super.onDestroyView();
 	}

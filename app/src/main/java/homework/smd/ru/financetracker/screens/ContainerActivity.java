@@ -19,6 +19,9 @@ import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.modules.Configuration;
+import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
+import homework.smd.ru.financetracker.screens.main.presentation.MainView;
+import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
 
 public class ContainerActivity extends AppCompatActivity
 	implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -34,7 +37,7 @@ public class ContainerActivity extends AppCompatActivity
 	@CallSuper
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_abstract_main);
+		setContentView(R.layout.container_main);
 
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this);
@@ -64,12 +67,12 @@ public class ContainerActivity extends AppCompatActivity
 
 		switch (item.getItemId()) {
 			case R.id.opt_settings:
-				fragment = homework.smd.ru.financetracker.screens.settings.presentation.View.newSettingInstance();
+				fragment = SettingsView.newSettingInstance();
 				titleID = R.string.opt_settings;
 				break;
 
 			case R.id.opt_about:
-				fragment = homework.smd.ru.financetracker.screens.information.presentation.View.newAboutInstance();
+				fragment = InfoView.newAboutInstance();
 				titleID = R.string.opt_about;
 				break;
 
@@ -104,17 +107,17 @@ public class ContainerActivity extends AppCompatActivity
 
 		switch (item.getItemId()) {
 			case R.id.navigation_home:
-				fragment = homework.smd.ru.financetracker.screens.main.presentation.View.newMainInstance();
+				fragment = MainView.newMainInstance();
 				titleID = R.string.app_full_name;
 				break;
 
 			case R.id.navigation_dashboard:
-				fragment = homework.smd.ru.financetracker.screens.settings.presentation.View.newSettingInstance();
+				fragment = SettingsView.newSettingInstance();
 				titleID = R.string.opt_settings;
 				break;
 
 			case R.id.navigation_notifications:
-				fragment = homework.smd.ru.financetracker.screens.information.presentation.View.newAboutInstance();
+				fragment = InfoView.newAboutInstance();
 				titleID = R.string.opt_about;
 				break;
 

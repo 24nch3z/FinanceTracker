@@ -3,7 +3,7 @@ package homework.smd.ru.financetracker;
 import android.app.Application;
 
 import homework.smd.ru.financetracker.injections.AppComponent;
-import homework.smd.ru.financetracker.injections.ConfigModule;
+import homework.smd.ru.financetracker.injections.AppModule;
 import homework.smd.ru.financetracker.injections.DaggerAppComponent;
 
 public class App extends Application {
@@ -20,7 +20,7 @@ public class App extends Application {
 
 		// DI by Dagger
 		component = DaggerAppComponent.builder()
-			.configModule(new ConfigModule(this))
+			.appModule(new AppModule(this))
 			.build();
 	}
 }

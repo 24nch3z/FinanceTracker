@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="CurrencyView">
+        <attr name="exampleString" format="string" />
+        <attr name="currency" format="string"/>
+        <attr name="rate" format="float" />
+    </declare-styleable>
+</resources>

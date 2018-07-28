@@ -2,7 +2,7 @@ package homework.smd.ru.financetracker.screens.information.presentation;
 
 import android.support.annotation.StringRes;
 
-class Contract {
+class InfoContract {
 
 	interface View {
 		void setHtmlContent(final String text);
@@ -10,7 +10,7 @@ class Contract {
 	}
 
 	interface Presenter {
-		void onCreateView(final View view);
-		void onDestroyView();
+		void attachView(final View view);
+		void detachView();
 	}
 }

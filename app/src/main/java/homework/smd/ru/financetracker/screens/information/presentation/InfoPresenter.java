@@ -11,19 +11,19 @@ import java.io.InputStreamReader;
 
 import homework.smd.ru.financetracker.R;
 
-public class Presenter implements Contract.Presenter {
+public class InfoPresenter implements InfoContract.Presenter {
 
 	private static final String TEXT_CONTENT = "about.txt";
-	@Nullable private Contract.View view;
+	@Nullable private InfoContract.View view;
 
 	@Override
-	public void onCreateView(Contract.View view) {
+	public void attachView(InfoContract.View view) {
 		this.view = view;
 		view.setHtmlContent("<h1>Hello, MVP!</h1>");
 	}
 
 	@Override
-	public void onDestroyView() {
+	public void detachView() {
 		view = null;
 	}
 

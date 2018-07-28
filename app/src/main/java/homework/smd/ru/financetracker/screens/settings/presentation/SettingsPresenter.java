@@ -2,18 +2,18 @@ package homework.smd.ru.financetracker.screens.settings.presentation;
 
 import android.support.annotation.Nullable;
 
-public class Presenter implements Contract.Presenter {
+public class SettingsPresenter implements SettingsContract.Presenter {
 
-	@Nullable private Contract.View view;
+	@Nullable private SettingsContract.View view;
 
 	@Override
-	public void onCreateView(Contract.View view) {
+	public void attachView(SettingsContract.View view) {
 		this.view = view;
 		view.changeCurrency(true);
 	}
 
 	@Override
-	public void onDestroyView() {
+	public void detachView() {
 		this.view = null;
 	}
 

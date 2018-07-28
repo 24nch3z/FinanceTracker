@@ -4,15 +4,19 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import homework.smd.ru.financetracker.screens.ContainerActivity;
-import homework.smd.ru.financetracker.screens.main.presentation.View;
+import homework.smd.ru.financetracker.screens.main.presentation.MainPresenter;
+import homework.smd.ru.financetracker.screens.main.presentation.MainView;
+import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
 
 @Component(modules = { AppModule.class, ConfigModule.class })
 @Singleton
 public interface AppComponent {
 
-	void inject(homework.smd.ru.financetracker.screens.settings.presentation.View settingsFragment);
+	void inject(SettingsView settingsFragment);
 
 	void inject(ContainerActivity activity);
 
-	void inject(View mainFragment);
+	void inject(MainView mainFragment);
+
+	void inject(MainPresenter presenter);
 }

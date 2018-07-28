@@ -1,14 +1,14 @@
 package homework.smd.ru.financetracker.screens.settings.presentation;
 
-class Contract {
+class SettingsContract {
 
 	interface View {
 		void changeCurrency(boolean isRub);
 	}
 
 	interface Presenter {
-		void onCreateView(View view);
-		void onDestroyView();
+		void attachView(View view);
+		void detachView();
 		void onChangeCurrency(boolean isRub);
 	}
 }

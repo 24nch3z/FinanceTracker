@@ -6,5 +6,5 @@ app/build
 app/google-services.json
 todo.list
 app/keystores
-build/*
+build
 app/src/androidTest/*

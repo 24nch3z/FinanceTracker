@@ -13,7 +13,7 @@
     <!--SettingFragment-->
     <string name="settings_currency">Валюта:</string>
 
-    <!--View-->
+    <!--MainView-->
     <string name="balance">Баланс:</string>
     <string name="dollar_rate">Курс доллара:</string>
 
