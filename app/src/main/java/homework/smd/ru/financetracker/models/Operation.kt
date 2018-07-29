@@ -6,7 +6,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Operation(
         val sum: Double,
-        val type: OperationType,
         val currency: Currency
 ) : Parcelable
 
@@ -16,21 +15,14 @@ fun Collection<Operation>.total(
 ): Operation {
 
     var amountInRuble = this.sumByDouble {
-        var sum = it.sum
-        if (it.currency == Currency.USD) sum *= dollarRatio
-        if (it.type == OperationType.BUY) sum *= -1
-        sum
-    }
-
-    val type: OperationType
-    if (amountInRuble < 0) {
-        type = OperationType.BUY
-        amountInRuble = -amountInRuble
-    } else {
-        type = OperationType.SELL
+        if (it.currency == Currency.USD) {
+            it.sum * dollarRatio
+        } else {
+            it.sum
+        }
     }
 
     if (currency == Currency.USD) amountInRuble /= dollarRatio
 
-    return Operation(amountInRuble, type, currency)
+    return Operation(amountInRuble, currency)
 }
