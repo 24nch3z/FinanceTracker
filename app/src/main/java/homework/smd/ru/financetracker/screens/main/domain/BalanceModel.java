@@ -7,10 +7,14 @@ public class BalanceModel {
 	private boolean isVisible;
 	private float sum;
 
-	public BalanceModel(String balanceName, boolean isVisible, float sum) {
+	BalanceModel(String balanceName, boolean isVisible, float sum) {
 		this.balanceName = balanceName;
 		this.isVisible = isVisible;
 		this.sum = sum;
+	}
+
+	public void changeVisibility() {
+		isVisible = !isVisible;
 	}
 
 	public String getBalanceName() {

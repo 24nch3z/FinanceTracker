@@ -19,7 +19,7 @@
     <string name="dollar_sign" tools:ignore="MissingTranslation">$</string>
     <string name="ruble_sign" tools:ignore="MissingTranslation">Р</string>
     <string name="balance">Balance:</string>
-    <string name="dollar_rate">Dollar rate:</string>
+    <string name="currency">Currency:</string>
     <string name="usd" tools:ignore="MissingTranslation">USD</string>
     <string name="eur" tools:ignore="MissingTranslation">EUR</string>
     <string name="rub" tools:ignore="MissingTranslation">RUB</string>

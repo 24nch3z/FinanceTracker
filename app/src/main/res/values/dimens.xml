@@ -19,4 +19,5 @@
     <dimen name="balance_eye_size">35dp</dimen>
 
     <dimen name="corner_radius">5dp</dimen>
+    <dimen name="bot_nav_bar_height">60dp</dimen>
 </resources>

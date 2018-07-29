@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dollar_rate"
+            android:text="@string/currency"
             android:layout_gravity="start|center_vertical"
             android:textSize="@dimen/balance_text_size"
             android:textColor="@color/primary_text"

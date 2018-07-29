@@ -1,9 +1,9 @@
 package homework.smd.ru.financetracker
 
-import homework.smd.ru.financetracker.modules.Currency
-import homework.smd.ru.financetracker.modules.Operation
-import homework.smd.ru.financetracker.modules.OperationType
-import homework.smd.ru.financetracker.modules.total
+import homework.smd.ru.financetracker.models.Currency
+import homework.smd.ru.financetracker.models.Operation
+import homework.smd.ru.financetracker.models.OperationType
+import homework.smd.ru.financetracker.models.total
 import org.junit.Assert
 import org.junit.Test
 

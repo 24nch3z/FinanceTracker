@@ -2,6 +2,7 @@ package homework.smd.ru.financetracker.screens.main.presentation;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,7 +18,9 @@ import homework.smd.ru.financetracker.screens.main.domain.BalanceModel;
 
 public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceHolder> {
 
-	private final List<BalanceModel> dataset;
+	@NonNull private final List<BalanceModel> dataset;
+	@Nullable private OnContentClick onImageClickListener;
+	@Nullable private OnContentClick onCardClickListener;
 
 	static class BalanceHolder extends RecyclerView.ViewHolder {
 
@@ -58,10 +61,19 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceH
 	public BalanceHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
 		// Inflate card
 		final CardView cardView = (CardView) LayoutInflater.from(parent.getContext())
-			.inflate(R.layout.balance_holder, parent, false);
+			.inflate(R.layout.holder_balance, parent, false);
 		// Wrap card in holder
 		final BalanceHolder holder = new BalanceHolder(cardView);
-		holder.itemView.setOnClickListener(view -> { });
+		holder.itemView.setOnClickListener(view -> {
+			if (onCardClickListener != null) {
+				onCardClickListener.onClick(holder.getAdapterPosition());
+			}
+		});
+		holder.balanceVisibility.setOnClickListener(view -> {
+			if (onImageClickListener != null) {
+				onImageClickListener.onClick(holder.getAdapterPosition());
+			}
+		});
 		return holder;
 	}
 
@@ -73,5 +85,18 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceH
 	@Override
 	public int getItemCount() {
 		return dataset.size();
+	}
+
+
+	public void setOnImageClickListener(@Nullable OnContentClick listener) {
+		this.onImageClickListener = listener;
+	}
+
+	public void setOnCardClickListener(@Nullable OnContentClick listener) {
+		this.onCardClickListener = listener;
+	}
+
+	interface OnContentClick {
+		void onClick(final int position);
 	}
 }

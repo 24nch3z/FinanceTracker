@@ -15,6 +15,6 @@
 
     <!--MainView-->
     <string name="balance">Баланс:</string>
-    <string name="dollar_rate">Курс доллара:</string>
+    <string name="currency">Валюта:</string>
 
 </resources>

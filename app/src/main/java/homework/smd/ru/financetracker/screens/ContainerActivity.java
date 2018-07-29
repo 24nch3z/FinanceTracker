@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.modules.Configuration;
+import homework.smd.ru.financetracker.datalayer.Configuration;
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;
 import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
@@ -26,9 +26,9 @@ import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView
 public class ContainerActivity extends AppCompatActivity
 	implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+	public static boolean isFirstTime = true;
 	@Inject public Configuration configuration;
 
-	private Unbinder unbinder;
 	@BindView(R.id.navigation) BottomNavigationView bottomNavigation;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 
@@ -40,17 +40,22 @@ public class ContainerActivity extends AppCompatActivity
 		setContentView(R.layout.container_main);
 
 		App.getComponent().inject(this);
-		unbinder = ButterKnife.bind(this);
+		ButterKnife.bind(this);
 
 		setSupportActionBar(toolbar);
 		bottomNavigation.setOnNavigationItemSelectedListener(this);
+
+		if (isFirstTime) {
+			onNavigationItemSelected(
+				bottomNavigation.getMenu().findItem(R.id.navigation_main));
+			isFirstTime = false;
+		}
 	}
 
 	@Override
 	@CallSuper
 	protected void onDestroy() {
 		super.onDestroy();
-		unbinder.unbind();
 	}
 
 	@Override
@@ -100,13 +105,13 @@ public class ContainerActivity extends AppCompatActivity
 	@Override
 	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-		if (bottomNavigation.getSelectedItemId() == item.getItemId()) return true;
+		if (bottomNavigation.getSelectedItemId() == item.getItemId() && !isFirstTime) return true;
 
 		final Fragment fragment;
 		final int titleID;
 
 		switch (item.getItemId()) {
-			case R.id.navigation_home:
+			case R.id.navigation_main:
 				fragment = MainView.newMainInstance();
 				titleID = R.string.app_full_name;
 				break;

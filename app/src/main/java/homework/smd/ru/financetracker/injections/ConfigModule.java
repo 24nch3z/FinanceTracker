@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import homework.smd.ru.financetracker.modules.Configuration;
+import homework.smd.ru.financetracker.datalayer.Configuration;
 
 @Module
 public class ConfigModule {

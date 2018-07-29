@@ -1,6 +1,8 @@
 package homework.smd.ru.financetracker.screens.main.presentation;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,19 +20,22 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.modules.Configuration;
+import homework.smd.ru.financetracker.datalayer.Configuration;
 
 public class MainView extends Fragment implements MainContract.View {
 
 	@Inject Configuration configuration;
 
 	private MainContract.Presenter presenter;
+	private Handler mainHandler = new Handler(Looper.getMainLooper());
 
 	private Unbinder unbinder;
 	@BindView(R.id.usd_rate) TextView rateUSD;
 	@BindView(R.id.eur_rate) TextView rateEUR;
 	@BindView(R.id.main_progress) ProgressBar progress;
 	@BindView(R.id.recycler_main_view) RecyclerView recycler;
+
+
 	public MainView() { }
 
 	public static Fragment newMainInstance() {
@@ -63,22 +68,24 @@ public class MainView extends Fragment implements MainContract.View {
 
 	@Override
 	public void updateRateUSD(String rateUSD) {
-		this.rateUSD.setText(rateUSD);
+		mainHandler.post(() -> this.rateUSD.setText(rateUSD));
 	}
 
 	@Override
 	public void updateRateEUR(String rateEUR) {
-		this.rateEUR.setText(rateEUR);
+		mainHandler.post(() -> this.rateEUR.setText(rateEUR));
 	}
 
 	@Override
 	public void hideProgress() {
-		progress.setVisibility(View.GONE);
+		mainHandler.post(() -> progress.setVisibility(View.GONE));
 	}
 
 	@Override
 	public void setAdapter(RecyclerView.Adapter adapter) {
-		recycler.setAdapter(adapter);
-		recycler.setVisibility(View.VISIBLE);
+		mainHandler.post(() -> {
+			recycler.setAdapter(adapter);
+			recycler.setVisibility(View.VISIBLE);
+		});
 	}
 }

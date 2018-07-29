@@ -1,4 +1,4 @@
-package homework.smd.ru.financetracker.modules
+package homework.smd.ru.financetracker.models
 
 
 enum class OperationType {
@@ -7,14 +7,20 @@ enum class OperationType {
 }
 enum class Currency {
     USD,
-    RUB
+    RUB,
+    EUR
 }
+
 data class Operation(
         val sum: Double,
         val type: OperationType,
         val currency: Currency
 )
-
+data class CurrencyRate(
+        val currency: Currency,
+        val rate: Float,
+        val isGrow: Boolean
+)
 
 fun Collection<Operation>.total(
         dollarRatio: Float,
