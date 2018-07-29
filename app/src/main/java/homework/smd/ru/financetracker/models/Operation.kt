@@ -1,26 +1,14 @@
 package homework.smd.ru.financetracker.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-enum class OperationType {
-    BUY,
-    SELL
-}
-enum class Currency {
-    USD,
-    RUB,
-    EUR
-}
-
+@Parcelize
 data class Operation(
         val sum: Double,
         val type: OperationType,
         val currency: Currency
-)
-data class CurrencyRate(
-        val currency: Currency,
-        val rate: Float,
-        val isGrow: Boolean
-)
+) : Parcelable
 
 fun Collection<Operation>.total(
         dollarRatio: Float,

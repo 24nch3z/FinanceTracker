@@ -1,6 +1,6 @@
 package homework.smd.ru.financetracker.screens.settings.presentation;
 
-class SettingsContract {
+interface SettingsContract {
 
 	interface View {
 		void changeCurrency(boolean isRub);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
 
@@ -25,17 +26,16 @@ public class SettingsView extends Fragment implements SettingsContract.View {
 	public SettingsView() { }
 
 	public static Fragment newSettingInstance() {
-		// TODO injections via Dagger?
 		return new SettingsView();
 	}
 
 
 	@Override
-	public android.view.View onCreateView(@NonNull LayoutInflater inflater,
-	                                      ViewGroup container,
-	                                      Bundle savedInstanceState) {
+	public View onCreateView(@NonNull LayoutInflater inflater,
+	                         ViewGroup container,
+	                         Bundle savedInstanceState) {
 
-		final android.view.View view = inflater.inflate(R.layout.fragment_settings, container, false);
+		final View view = inflater.inflate(R.layout.fragment_settings, container, false);
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 

@@ -7,6 +7,7 @@
     <string name="nav_header_desc">Finance Tracker</string>
 
     <string name="nav_main">Tracker</string>
+    <string name="nav_detail">Detail</string>
     <string name="opt_settings">Settings</string>
     <string name="opt_about">About</string>
 

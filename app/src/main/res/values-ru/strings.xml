@@ -5,6 +5,7 @@
     <string name="nav_header_desc">Трекер финансов</string>
 
     <string name="nav_main">Трекер</string>
+    <string name="nav_detail">Детализация</string>
     <string name="opt_settings">Настройки</string>
     <string name="opt_about">О приложении</string>
 

@@ -46,6 +46,10 @@ android {
     buildToolsVersion '28.0.1'
 }
 
+androidExtensions {
+    experimental = true
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$support_version"
@@ -69,6 +73,10 @@ dependencies {
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:2.1.9"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
 
     // Firebase
     implementation 'com.google.firebase:firebase-core:16.0.1'

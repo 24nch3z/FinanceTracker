@@ -14,11 +14,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.screens.main.domain.BalanceModel;
+import homework.smd.ru.financetracker.models.Balance;
 
 public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceHolder> {
 
-	@NonNull private final List<BalanceModel> dataset;
+	@NonNull private final List<Balance> dataset;
 	@Nullable private OnContentClick onImageClickListener;
 	@Nullable private OnContentClick onCardClickListener;
 
@@ -41,7 +41,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceH
 			}
 		}
 
-		private void updateContent(@NonNull BalanceModel model) {
+		private void updateContent(@NonNull Balance model) {
 			balanceName.setText(model.getBalanceName());
 			balanceCount.setText(model.getStringSum());
 			if (model.isVisible()) {
@@ -52,7 +52,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceH
 		}
 	}
 
-	BalanceAdapter(@NonNull List<BalanceModel> dataset) {
+	BalanceAdapter(@NonNull List<Balance> dataset) {
 		this.dataset = dataset;
 	}
 

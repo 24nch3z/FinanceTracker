@@ -15,10 +15,10 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.Configuration;
+import homework.smd.ru.financetracker.screens.detail.presentation.TabPager;
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;
 import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
@@ -116,9 +116,9 @@ public class ContainerActivity extends AppCompatActivity
 				titleID = R.string.app_full_name;
 				break;
 
-			case R.id.navigation_dashboard:
-				fragment = SettingsView.newSettingInstance();
-				titleID = R.string.opt_settings;
+			case R.id.navigation_detail:
+				fragment = TabPager.newDetailInstance();
+				titleID = R.string.nav_detail;
 				break;
 
 			case R.id.navigation_notifications:
