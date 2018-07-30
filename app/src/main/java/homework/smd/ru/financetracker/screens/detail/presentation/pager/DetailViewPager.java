@@ -26,10 +26,10 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 	private Unbinder unbinder;
 	private DetailContract.Presenter presenter;
 
-	public static Fragment newDetailInstance() {
+	public static Fragment newInstance() {
 		return new DetailViewPager();
 	}
-	public static Fragment newDetailInstance(final int tabPosition) {
+	public static Fragment newInstance(final int tabPosition) {
 		final Fragment fragment = new DetailViewPager();
 		final Bundle bundle = new Bundle();
 

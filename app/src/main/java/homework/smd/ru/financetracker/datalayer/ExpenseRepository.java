@@ -15,5 +15,5 @@ public interface ExpenseRepository {
 
 	@NonNull Flowable<List<Balance>> getBalances();
 
-	void addOperation(@NonNull final Operation operation, @NonNull final Expense expense);
+	void addOperation(@NonNull final Operation operation);
 }

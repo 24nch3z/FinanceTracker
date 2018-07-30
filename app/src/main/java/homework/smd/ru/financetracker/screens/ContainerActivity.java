@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
+import homework.smd.ru.financetracker.screens.addoperation.presentation.OperationView;
 import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailViewPager;
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;
@@ -114,13 +115,18 @@ public class ContainerActivity extends AppCompatActivity
 
 		switch (item.getItemId()) {
 			case R.id.navigation_main:
-				fragment = MainView.newMainInstance();
+				fragment = MainView.newInstance();
 				titleID = R.string.app_full_name;
 				break;
 
 			case R.id.navigation_detail:
-				fragment = DetailViewPager.newDetailInstance();
+				fragment = DetailViewPager.newInstance();
 				titleID = R.string.nav_detail;
+				break;
+
+			case R.id.temp_add:
+				fragment = OperationView.newInstance();
+				titleID = R.string.add_op;
 				break;
 
 			default:

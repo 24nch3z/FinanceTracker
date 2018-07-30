@@ -64,9 +64,7 @@ public class ExpenseRepositoryStub implements ExpenseRepository {
 	}
 
 	@Override
-	public void addOperation(@NonNull Operation operation, @NonNull Expense expense) {
-
-	}
+	public void addOperation(@NonNull Operation operation) { }
 
 
 	private final static String[] types = { "Еда", "Коммунальные платежи", "Транспорт" };

@@ -40,7 +40,7 @@ public class MainView extends Fragment implements MainContract.View {
 
 	public MainView() { }
 
-	public static Fragment newMainInstance() {
+	public static Fragment newInstance() {
 		return new MainView();
 	}
 
@@ -103,7 +103,7 @@ public class MainView extends Fragment implements MainContract.View {
 	public void navigationToDetail(int tabPosition) {
 		// TODO попробовать что за чечерони такое
 		final FragmentManager manager = getFragmentManager();
-		final Fragment fragment = DetailViewPager.newDetailInstance(tabPosition);
+		final Fragment fragment = DetailViewPager.newInstance(tabPosition);
 		final int titleID = R.string.nav_detail;
 
 		if (manager == null) return;

@@ -1,6 +1,5 @@
 package homework.smd.ru.financetracker.screens.detail.presentation;
 
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.util.Log;
@@ -12,7 +11,6 @@ import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractor;
 import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractorStub;
-import homework.smd.ru.financetracker.screens.detail.presentation.DetailContract;
 import homework.smd.ru.financetracker.screens.detail.presentation.pager.TabPageAdapter;
 import homework.smd.ru.financetracker.screens.detail.presentation.tabs.DetailViewTab;
 import homework.smd.ru.financetracker.screens.detail.presentation.tabs.OperationRecyclerAdapter;

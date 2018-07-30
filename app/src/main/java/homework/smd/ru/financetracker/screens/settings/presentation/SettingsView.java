@@ -12,7 +12,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.Unbinder;
-import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 
 public class SettingsView extends Fragment implements SettingsContract.View {
@@ -36,7 +35,6 @@ public class SettingsView extends Fragment implements SettingsContract.View {
 	                         Bundle savedInstanceState) {
 
 		final View view = inflater.inflate(R.layout.fragment_settings, container, false);
-		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 
 		presenter = new SettingsPresenter();

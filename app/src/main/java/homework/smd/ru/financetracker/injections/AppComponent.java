@@ -3,7 +3,6 @@ package homework.smd.ru.financetracker.injections;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import homework.smd.ru.financetracker.datalayer.CurrencyRepository;
 import homework.smd.ru.financetracker.screens.ContainerActivity;
 import homework.smd.ru.financetracker.screens.main.presentation.MainPresenter;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;

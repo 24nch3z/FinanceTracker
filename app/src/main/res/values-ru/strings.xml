@@ -19,4 +19,20 @@
     <string name="currency">Валюта:</string>
     <string name="title_main">Главная</string>
     <string name="title_operations">Расходы</string>
+    <string name="hint_operation_sum">Сумма:</string>
+    <string name="hint_operation_category">Введите новую категорию:</string>
+
+    <!--Add Operation-->
+    <string name="plus_sum">Заработал</string>
+    <string name="minus_sum">Потратил</string>
+    <string-array name="default_categories">
+        <item>Еда</item>
+        <item>Коммуналка</item>
+        <item>Одежда</item>
+        <item>Другое</item>
+    </string-array>
+    <string name="created_op">Операция добавлена</string>
+    <string name="add_op">Добавить операцию</string>
+
+
 </resources>

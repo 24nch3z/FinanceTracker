@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_operations" />
 
+    <item
+        android:id="@+id/temp_add"
+        android:icon="@drawable/ic_add_circle_black_24dp"
+        android:title="@string/add_op" />
+
 </menu>
