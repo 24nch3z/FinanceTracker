@@ -3,20 +3,23 @@ package homework.smd.ru.financetracker.injections;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import homework.smd.ru.financetracker.MainActivity;
-import homework.smd.ru.financetracker.fragments.MainFragment;
-import homework.smd.ru.financetracker.fragments.SettingsFragment;
-import homework.smd.ru.financetracker.modules.Operation;
+import homework.smd.ru.financetracker.screens.ContainerActivity;
+import homework.smd.ru.financetracker.screens.main.presentation.MainPresenter;
+import homework.smd.ru.financetracker.screens.main.presentation.MainView;
+import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
 
-@Component(modules = { AppModule.class, ConfigModule.class })
+@Component(modules = {
+	AppModule.class,
+	ConfigModule.class
+})
 @Singleton
 public interface AppComponent {
 
-	void inject(SettingsFragment settingsFragment);
+	void inject(SettingsView settingsFragment);
 
-	void inject(MainActivity mainActivity);
+	void inject(ContainerActivity activity);
 
-	void inject(MainFragment mainFragment);
+	void inject(MainView mainFragment);
 
-	void inject(Operation operation);
+	void inject(MainPresenter presenter);
 }

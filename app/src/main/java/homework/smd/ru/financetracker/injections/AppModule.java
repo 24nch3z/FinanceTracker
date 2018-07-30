@@ -1,6 +1,7 @@
 package homework.smd.ru.financetracker.injections;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 
 import javax.inject.Singleton;
@@ -21,5 +22,11 @@ public class AppModule {
 	@Singleton
 	public Context getContext() {
 		return context;
+	}
+
+	@Provides
+	@Singleton
+	public Handler getMainHandler() {
+		return new Handler(context.getMainLooper());
 	}
 }

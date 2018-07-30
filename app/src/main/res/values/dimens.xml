@@ -3,19 +3,17 @@
     <dimen name="small_margin">8dp</dimen>
     <dimen name="small_padding">4dp</dimen>
     <dimen name="big_margin">48dp</dimen>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="nav_header_vertical_spacing">8dp</dimen>
-    <dimen name="nav_header_height">128dp</dimen>
     <dimen name="standard_padding">8dp</dimen>
+    <dimen name="big_padding">24dp</dimen>
 
-    <dimen name="text_size">6sp</dimen>
     <dimen name="setting_size">20sp</dimen>
-    <dimen name="margin_text_input">4dp</dimen>
-    <dimen name="colored_button_padding">16dp</dimen>
+    <dimen name="card_money_size">20sp</dimen>
+    <dimen name="card_text_size">18sp</dimen>
     <dimen name="rate_text_size">22sp</dimen>
     <dimen name="balance_text_size">25sp</dimen>
     <dimen name="balance_size">30sp</dimen>
     <dimen name="balance_eye_size">35dp</dimen>
 
+    <dimen name="corner_radius">5dp</dimen>
+    <dimen name="bot_nav_bar_height">60dp</dimen>
 </resources>

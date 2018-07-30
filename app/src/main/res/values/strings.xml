@@ -1,29 +1,41 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
     <string name="app_name">FinTracker</string>
     <string name="app_full_name">Finance Tracker</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_desc">Finance Tracker</string>
 
     <string name="nav_main">Tracker</string>
-    <string name="nav_settings">Settings</string>
-    <string name="nav_about">About</string>
+    <string name="nav_detail">Detail</string>
+    <string name="opt_settings">Settings</string>
+    <string name="opt_about">About</string>
 
     <string name="content_unavailable">Content is temporarily unavailable</string>
 
     <!--SettingFragment-->
-    <string name="settings_name_hint">Name</string>
-    <string name="settings_email_hint">Email</string>
-    <string name="settings_btn_apply">Apply changes</string>
-    <string name="too_short_name">Too short name</string>
-    <string name="too_short_email">Invalid email</string>
+    <string name="settings_currency">Currency:</string>
 
-    <!--MainFragment-->
-    <string name="dollar_sign">$</string>
-    <string name="ruble_sign">P</string>
+    <!--MainView-->
+    <string name="dollar_sign" tools:ignore="MissingTranslation">$</string>
+    <string name="ruble_sign" tools:ignore="MissingTranslation">Р</string>
     <string name="balance">Balance:</string>
-    <string name="dollar_rate">Dollar rate:</string>
-    <string name="usd">USD</string>
-    <string name="rub">RUB</string>
+    <string name="currency">Currency:</string>
+    <string name="usd" tools:ignore="MissingTranslation">USD</string>
+    <string name="eur" tools:ignore="MissingTranslation">EUR</string>
+    <string name="rub" tools:ignore="MissingTranslation">RUB</string>
+    <string name="title_main">Main</string>
+    <string name="title_operations">Expenses</string>
+    <string name="hint_operation_sum">Sum:</string>
+    <string name="hint_operation_category">Input new category:</string>
+
+    <!--Add Operation-->
+    <string name="minus_sum">Spent</string>
+    <string name="plus_sum">Earn</string>
+    <string-array name="default_categories">
+        <item>Food</item>
+        <item>Utility payments</item>
+        <item>Clothes</item>
+        <item>Other</item>
+    </string-array>
+    <string name="created_op">Operation is added</string>
+    <string name="add_op">Add expense</string>
 
 </resources>

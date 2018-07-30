@@ -5,20 +5,34 @@
     <string name="nav_header_desc">Трекер финансов</string>
 
     <string name="nav_main">Трекер</string>
-    <string name="nav_settings">Настройки</string>
-    <string name="nav_about">О приложении</string>
+    <string name="nav_detail">Детализация</string>
+    <string name="opt_settings">Настройки</string>
+    <string name="opt_about">О приложении</string>
 
     <string name="content_unavailable">Контент временно недоступен</string>
 
     <!--SettingFragment-->
-    <string name="settings_name_hint">Имя</string>
-    <string name="settings_email_hint">Почта</string>
-    <string name="settings_btn_apply">Применить изменения</string>
-    <string name="too_short_name">Слишком короткое имя</string>
-    <string name="too_short_email">Неправильная почта</string>
+    <string name="settings_currency">Валюта:</string>
 
-    <!--MainFragment-->
+    <!--MainView-->
     <string name="balance">Баланс:</string>
-    <string name="dollar_rate">Курс доллара:</string>
+    <string name="currency">Валюта:</string>
+    <string name="title_main">Главная</string>
+    <string name="title_operations">Расходы</string>
+    <string name="hint_operation_sum">Сумма:</string>
+    <string name="hint_operation_category">Введите новую категорию:</string>
+
+    <!--Add Operation-->
+    <string name="plus_sum">Заработал</string>
+    <string name="minus_sum">Потратил</string>
+    <string-array name="default_categories">
+        <item>Еда</item>
+        <item>Коммуналка</item>
+        <item>Одежда</item>
+        <item>Другое</item>
+    </string-array>
+    <string name="created_op">Операция добавлена</string>
+    <string name="add_op">Добавить расход</string>
+
 
 </resources>
