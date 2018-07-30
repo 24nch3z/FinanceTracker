@@ -32,7 +32,7 @@
         <item>Другое</item>
     </string-array>
     <string name="created_op">Операция добавлена</string>
-    <string name="add_op">Добавить операцию</string>
+    <string name="add_op">Добавить расход</string>
 
 
 </resources>
