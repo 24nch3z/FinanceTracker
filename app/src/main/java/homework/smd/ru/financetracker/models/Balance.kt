@@ -6,7 +6,7 @@ data class Balance(
         var sum: Float
 ) {
     var stringSum: String = ""
-    
+
     fun changeVisibility() {
         isVisible = !isVisible
     }

@@ -11,3 +11,6 @@ enum class Currency {
 fun moneyFormat(sum: Float): String {
     return String.format(Locale.getDefault(), "%,.2f", sum)
 }
+fun moneyFormat(sum: Double): String {
+    return String.format(Locale.getDefault(), "%+,.2f", sum)
+}

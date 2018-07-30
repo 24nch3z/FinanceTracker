@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.Configuration;
-import homework.smd.ru.financetracker.screens.detail.presentation.TabPager;
+import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailViewPager;
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;
 import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
@@ -26,7 +26,7 @@ import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView
 public class ContainerActivity extends AppCompatActivity
 	implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-	public static boolean isFirstTime = true;
+	protected static boolean isFirstTime = true;
 	@Inject public Configuration configuration;
 
 	@BindView(R.id.navigation) BottomNavigationView bottomNavigation;
@@ -117,13 +117,8 @@ public class ContainerActivity extends AppCompatActivity
 				break;
 
 			case R.id.navigation_detail:
-				fragment = TabPager.newDetailInstance();
+				fragment = DetailViewPager.newDetailInstance();
 				titleID = R.string.nav_detail;
-				break;
-
-			case R.id.navigation_notifications:
-				fragment = InfoView.newAboutInstance();
-				titleID = R.string.opt_about;
 				break;
 
 			default:

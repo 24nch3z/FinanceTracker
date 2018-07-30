@@ -6,7 +6,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Operation(
         val sum: Double,
-        val currency: Currency
+        val currency: Currency,
+        var type: String?
 ) : Parcelable
 
 fun Collection<Operation>.total(
@@ -24,5 +25,5 @@ fun Collection<Operation>.total(
 
     if (currency == Currency.USD) amountInRuble /= dollarRatio
 
-    return Operation(amountInRuble, currency)
+    return Operation(amountInRuble, currency, null)
 }

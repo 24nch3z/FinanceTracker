@@ -24,6 +24,7 @@
             app:subtitleTextColor="@color/primary_light"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             />
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.constraint.ConstraintLayout

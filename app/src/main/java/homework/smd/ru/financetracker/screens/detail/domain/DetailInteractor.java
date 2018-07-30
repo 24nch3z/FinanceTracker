@@ -1,10 +1,9 @@
 package homework.smd.ru.financetracker.screens.detail.domain;
 
-import java.util.List;
-
 import homework.smd.ru.financetracker.models.Costs;
+import io.reactivex.Flowable;
 
 public interface DetailInteractor {
 
-	List<Costs> getCosts();
+	Flowable<Costs> getCosts();
 }

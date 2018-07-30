@@ -2,9 +2,6 @@
 
     <string name="app_name">FinTracker</string>
     <string name="app_full_name">Finance Tracker</string>
-    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Open navigation drawer</string>
-    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Close navigation drawer</string>
-    <string name="nav_header_desc">Finance Tracker</string>
 
     <string name="nav_main">Tracker</string>
     <string name="nav_detail">Detail</string>
@@ -26,6 +23,5 @@
     <string name="rub" tools:ignore="MissingTranslation">RUB</string>
     <string name="title_home" tools:ignore="MissingTranslation">Home</string>
     <string name="title_dashboard" tools:ignore="MissingTranslation">Dashboard</string>
-    <string name="title_notifications" tools:ignore="MissingTranslation">Notifications</string>
 
 </resources>

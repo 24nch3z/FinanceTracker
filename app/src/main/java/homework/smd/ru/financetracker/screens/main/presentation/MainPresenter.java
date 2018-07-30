@@ -11,6 +11,7 @@ import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.models.Balance;
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.CurrencyRate;
+import homework.smd.ru.financetracker.models.UtilsKt;
 import homework.smd.ru.financetracker.screens.main.domain.MainInteractorImpl;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -22,7 +23,7 @@ public class MainPresenter implements MainContract.Presenter {
 
 	@Nullable private MainContract.View view;
 	@NonNull private final List<Balance> dataset = new ArrayList<>();
-	@NonNull private BalanceAdapter adapter = new BalanceAdapter(dataset);
+	@NonNull private BalanceRecycleAdapter adapter = new BalanceRecycleAdapter(dataset);
 	@NonNull private MainInteractorImpl interactor = new MainInteractorImpl();
 
 	private Currency currency;
@@ -88,9 +89,7 @@ public class MainPresenter implements MainContract.Presenter {
 
 		if (model.isVisible()) {
 			// Show balance in correct currency
-			model.setStringSum(String.format(
-				Locale.getDefault(), "%,.2f " + moneySign, sum
-			));
+			model.setStringSum(UtilsKt.moneyFormat(sum) + " " + moneySign);
 		} else {
 			// Hide balance
 			model.setStringSum("* * * * * *");
@@ -118,7 +117,7 @@ public class MainPresenter implements MainContract.Presenter {
 		}
 	}
 
-	private class OnChangeVisibility implements BalanceAdapter.OnContentClick {
+	private class OnChangeVisibility implements BalanceRecycleAdapter.OnContentClick {
 		@Override
 		public void onClick(int position) {
 			final Balance balance = dataset.get(position);
@@ -129,7 +128,7 @@ public class MainPresenter implements MainContract.Presenter {
 		}
 	}
 
-	private class OnHolderClick implements BalanceAdapter.OnContentClick {
+	private class OnHolderClick implements BalanceRecycleAdapter.OnContentClick {
 		@Override
 		public void onClick(int position) {
 

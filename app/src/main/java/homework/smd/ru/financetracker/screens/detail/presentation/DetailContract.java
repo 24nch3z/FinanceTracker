@@ -1,25 +1,32 @@
 package homework.smd.ru.financetracker.screens.detail.presentation;
 
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 
-interface DetailContract {
+import homework.smd.ru.financetracker.models.Costs;
+import homework.smd.ru.financetracker.screens.detail.presentation.pager.TabPageAdapter;
 
-	interface ViewTabPager {
-		void setupAdapter(@NonNull final FragmentPagerAdapter adapter);
+public interface DetailContract {
+
+	interface ViewPager {
+		TabPageAdapter getAdapter();
 		TabLayout getLayout();
 	}
 
-	interface ViewTab {
-
+	interface PresenterPager {
+		void attachView(ViewPager pager);
+		void detachView();
 	}
 
-	interface Presenter {
-		void attachPager(ViewTabPager pager);
-		void detachPager();
 
-		void attachTab(int position);
-		void detachTab(int position);
+	interface PresenterTab {
+		void attachView(ViewTab tab);
+		void detachView();
+	}
+
+	abstract class ViewTab extends Fragment {
+		public abstract void setAdapter(RecyclerView.Adapter adapter);
+		public abstract Costs getCosts();
 	}
 }

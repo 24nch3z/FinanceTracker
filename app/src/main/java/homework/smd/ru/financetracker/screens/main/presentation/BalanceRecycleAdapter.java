@@ -16,7 +16,7 @@ import java.util.List;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.models.Balance;
 
-public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceHolder> {
+public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAdapter.BalanceHolder> {
 
 	@NonNull private final List<Balance> dataset;
 	@Nullable private OnContentClick onImageClickListener;
@@ -52,7 +52,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceH
 		}
 	}
 
-	BalanceAdapter(@NonNull List<Balance> dataset) {
+	BalanceRecycleAdapter(@NonNull List<Balance> dataset) {
 		this.dataset = dataset;
 	}
 
