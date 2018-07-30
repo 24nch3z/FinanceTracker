@@ -26,7 +26,9 @@ import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView
 public class ContainerActivity extends AppCompatActivity
 	implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-	protected static boolean isFirstTime = true;
+	private static boolean isFirstTime = true;
+	private static long backPressedTime = 0L;
+
 	@Inject public Configuration configuration;
 
 	@BindView(R.id.navigation) BottomNavigationView bottomNavigation;
@@ -137,5 +139,20 @@ public class ContainerActivity extends AppCompatActivity
 		}
 
 		return true;
+	}
+
+	@Override
+	public void onBackPressed() {
+		// If stack is not empty
+		if (getSupportFragmentManager().getBackStackEntryCount() != 0) {
+			super.onBackPressed();
+		}
+
+		// Double click for exit from application
+		long timeForExit = 500L;
+		if (System.currentTimeMillis() - backPressedTime < timeForExit) {
+			super.onBackPressed();
+		}
+		backPressedTime = System.currentTimeMillis();
 	}
 }

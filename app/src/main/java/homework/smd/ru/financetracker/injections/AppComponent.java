@@ -11,8 +11,7 @@ import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView
 
 @Component(modules = {
 	AppModule.class,
-	ConfigModule.class,
-	NetworkCurrencyModule.class
+	ConfigModule.class
 })
 @Singleton
 public interface AppComponent {
@@ -24,6 +23,4 @@ public interface AppComponent {
 	void inject(MainView mainFragment);
 
 	void inject(MainPresenter presenter);
-
-	void inject(CurrencyRepository repository);
 }

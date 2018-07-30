@@ -1,7 +1,9 @@
 package homework.smd.ru.financetracker.screens.detail.presentation;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 
 import homework.smd.ru.financetracker.models.Operation;
@@ -13,6 +15,7 @@ public interface DetailContract {
 	interface ViewPager {
 		TabPageAdapter getAdapter();
 		TabLayout getLayout();
+		android.support.v4.view.ViewPager getPager();
 	}
 
 	abstract class ViewTab extends Fragment {
@@ -26,5 +29,6 @@ public interface DetailContract {
 		void onTabChanged(int position);
 
 		void addNewOperation(final Operation operation);
+		void setOpenTabPosition(int tabPosition);
 	}
 }

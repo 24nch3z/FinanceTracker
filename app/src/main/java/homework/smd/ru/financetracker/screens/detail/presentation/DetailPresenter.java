@@ -1,5 +1,6 @@
-package homework.smd.ru.financetracker.screens.detail.presentation.pager;
+package homework.smd.ru.financetracker.screens.detail.presentation;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.util.Log;
@@ -12,6 +13,7 @@ import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractor;
 import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractorStub;
 import homework.smd.ru.financetracker.screens.detail.presentation.DetailContract;
+import homework.smd.ru.financetracker.screens.detail.presentation.pager.TabPageAdapter;
 import homework.smd.ru.financetracker.screens.detail.presentation.tabs.DetailViewTab;
 import homework.smd.ru.financetracker.screens.detail.presentation.tabs.OperationRecyclerAdapter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -30,7 +32,8 @@ public class DetailPresenter implements DetailContract.Presenter {
 
 	@Nullable private DetailContract.ViewPager viewPager;
 	@Nullable private TabPageAdapter pageAdapter;
-	private int currentTabPosition;
+	private int currentTabPosition = 0;
+	private String currentTabName = "";
 
 
 	@Override
@@ -61,7 +64,9 @@ public class DetailPresenter implements DetailContract.Presenter {
 							this.viewPager.getLayout().setTabMode(TabLayout.MODE_FIXED);
 						}
 					}
-					onTabChanged(0);
+					if (this.viewPager != null) {
+						this.viewPager.getPager().setCurrentItem(currentTabPosition);
+					}
 				}
 			);
 		cd.add(disposable);
@@ -77,15 +82,20 @@ public class DetailPresenter implements DetailContract.Presenter {
 
 	@Override
 	public void onTabChanged(int position) {
-		currentTabPosition = position;
 		final OperationRecyclerAdapter recycler = viewTabs.get(position).getRecycler();
 		final List<Operation> dataset = costs.get(position).getOperations();
 		recycler.updateDataset(dataset);
 		recycler.notifyDataSetChanged();
+		currentTabPosition = position;
 	}
 
 	@Override
 	public void addNewOperation(Operation operation) {
 
+	}
+
+	@Override
+	public void setOpenTabPosition(int tabPosition) {
+		currentTabPosition = tabPosition;
 	}
 }

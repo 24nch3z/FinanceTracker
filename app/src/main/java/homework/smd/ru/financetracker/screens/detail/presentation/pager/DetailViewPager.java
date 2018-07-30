@@ -15,21 +15,33 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.screens.detail.presentation.DetailContract;
+import homework.smd.ru.financetracker.screens.detail.presentation.DetailPresenter;
 
 public class DetailViewPager extends Fragment implements DetailContract.ViewPager {
+
+	public static final String TAB_POSITION = "TAB_POSITION";
 
 	public DetailViewPager() { }
 
 	private Unbinder unbinder;
 	private DetailContract.Presenter presenter;
+
 	public static Fragment newDetailInstance() {
 		return new DetailViewPager();
+	}
+	public static Fragment newDetailInstance(final int tabPosition) {
+		final Fragment fragment = new DetailViewPager();
+		final Bundle bundle = new Bundle();
+
+		bundle.putInt(TAB_POSITION, tabPosition);
+		fragment.setArguments(bundle);
+
+		return fragment;
 	}
 
 
 	private TabPageAdapter adapter;
-	@BindView(R.id.tab_pager)
-	android.support.v4.view.ViewPager pager;
+	@BindView(R.id.tab_pager) ViewPager pager;
 	@BindView(R.id.tab_layout) TabLayout tabLayout;
 
 	@Override
@@ -44,17 +56,24 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 		pager.setAdapter(adapter);
 		tabLayout.setupWithViewPager(pager);
 
+		initPresenter();
+		return view;
+	}
+
+	private void initPresenter() {
 		presenter = new DetailPresenter();
 		presenter.attachView(this);
 
+		if (getArguments() != null) {
+			int tabPosition = getArguments().getInt(TAB_POSITION, 0);
+			presenter.setOpenTabPosition(tabPosition);
+		}
 		pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
 			public void onPageSelected(int position) {
 				presenter.onTabChanged(position);
 			}
 		});
-
-		return view;
 	}
 
 
@@ -68,6 +87,11 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 	@Override
 	public TabPageAdapter getAdapter() {
 		return adapter;
+	}
+
+	@Override
+	public ViewPager getPager() {
+		return pager;
 	}
 
 	@Override

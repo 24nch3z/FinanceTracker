@@ -130,7 +130,9 @@ public class MainPresenter implements MainContract.Presenter {
 	private class OnHolderClick implements BalanceRecycleAdapter.OnContentClick {
 		@Override
 		public void onClick(int position) {
-
+			if (view != null) {
+				view.navigationToDetail(position);
+			}
 		}
 	}
 }
