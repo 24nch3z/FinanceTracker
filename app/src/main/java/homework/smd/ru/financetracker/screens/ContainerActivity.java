@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.datalayer.Configuration;
+import homework.smd.ru.financetracker.datalayer.data.Configuration;
 import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailViewPager;
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;

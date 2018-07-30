@@ -1,8 +1,6 @@
 package homework.smd.ru.financetracker.screens.main.presentation;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,14 +18,13 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.datalayer.Configuration;
+import homework.smd.ru.financetracker.datalayer.data.Configuration;
 
 public class MainView extends Fragment implements MainContract.View {
 
 	@Inject Configuration configuration;
 
 	private MainContract.Presenter presenter;
-	private Handler mainHandler = new Handler(Looper.getMainLooper());
 
 	private Unbinder unbinder;
 	@BindView(R.id.usd_rate) TextView rateUSD;
@@ -44,8 +41,8 @@ public class MainView extends Fragment implements MainContract.View {
 
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater,
-	                                      ViewGroup container,
-	                                      Bundle savedInstanceState) {
+	                         ViewGroup container,
+	                         Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_main, container, false);
 
 		App.getComponent().inject(this);
@@ -68,24 +65,22 @@ public class MainView extends Fragment implements MainContract.View {
 
 	@Override
 	public void updateRateUSD(String rateUSD) {
-		mainHandler.post(() -> this.rateUSD.setText(rateUSD));
+		this.rateUSD.setText(rateUSD);
 	}
 
 	@Override
 	public void updateRateEUR(String rateEUR) {
-		mainHandler.post(() -> this.rateEUR.setText(rateEUR));
+		this.rateEUR.setText(rateEUR);
 	}
 
 	@Override
 	public void hideProgress() {
-		mainHandler.post(() -> progress.setVisibility(View.GONE));
+		progress.setVisibility(View.GONE);
 	}
 
 	@Override
 	public void setAdapter(RecyclerView.Adapter adapter) {
-		mainHandler.post(() -> {
-			recycler.setAdapter(adapter);
-			recycler.setVisibility(View.VISIBLE);
-		});
+		recycler.setAdapter(adapter);
+		recycler.setVisibility(View.VISIBLE);
 	}
 }

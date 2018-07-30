@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 	public DetailViewPager() { }
 
 	private Unbinder unbinder;
-	private DetailContract.PresenterPager presenter;
+	private DetailContract.Presenter presenter;
 	public static Fragment newDetailInstance() {
 		return new DetailViewPager();
 	}
@@ -45,6 +46,14 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 
 		presenter = new DetailPresenter();
 		presenter.attachView(this);
+
+		pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+			@Override
+			public void onPageSelected(int position) {
+				presenter.onTabChanged(position);
+			}
+		});
+
 		return view;
 	}
 

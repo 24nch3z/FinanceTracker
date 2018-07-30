@@ -13,7 +13,4 @@ public interface MainInteractor {
 	@NonNull Flowable<CurrencyRate> getCurrencyRates();
 
 	@NonNull Flowable<CurrencyRate> getSystemCurrencyRate();
-
-
-	void updateBalance(final Balance balance);
 }

@@ -17,5 +17,6 @@
     <!--MainView-->
     <string name="balance">Баланс:</string>
     <string name="currency">Валюта:</string>
-
+    <string name="title_main">Главная</string>
+    <string name="title_operations">Расходы</string>
 </resources>

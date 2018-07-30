@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.List;
 
 import homework.smd.ru.financetracker.R;
@@ -19,7 +20,7 @@ public class OperationRecyclerAdapter extends
 	RecyclerView.Adapter<OperationRecyclerAdapter.OperationHolder> {
 
 	@NonNull
-	private final List<Operation> dataset;
+	private List<Operation> dataset;
 
 	static class OperationHolder extends RecyclerView.ViewHolder {
 
@@ -45,12 +46,12 @@ public class OperationRecyclerAdapter extends
 				operationSum.setTextColor(green);
 			}
 			operationSum.setText(UtilsKt.moneyFormat(operation.getSum()));
-			operationName.setText(operation.getType());
+			operationName.setText(operation.getCategory());
 		}
 	}
 
-	OperationRecyclerAdapter(@NonNull List<Operation> dataset) {
-		this.dataset = dataset;
+	OperationRecyclerAdapter() {
+		this.dataset = Collections.emptyList();
 	}
 
 	@NonNull
@@ -71,5 +72,9 @@ public class OperationRecyclerAdapter extends
 	@Override
 	public int getItemCount() {
 		return dataset.size();
+	}
+
+	public void updateDataset(@NonNull final List<Operation> dataset) {
+		this.dataset = dataset;
 	}
 }

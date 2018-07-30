@@ -105,14 +105,10 @@ public class MainPresenter implements MainContract.Presenter {
 			}
 			if (MainPresenter.this.view == null) return;
 			if (rate.getCurrency() == Currency.EUR) {
-				MainPresenter.this.view.updateRateEUR(String.format(
-					Locale.getDefault(), "%.2f", rate.getRate()
-				));
+				MainPresenter.this.view.updateRateEUR(UtilsKt.moneyFormat(rate.getRate()));
 			}
 			if (rate.getCurrency() == Currency.USD) {
-				MainPresenter.this.view.updateRateUSD(String.format(
-					Locale.getDefault(), "%.2f", rate.getRate()
-				));
+				MainPresenter.this.view.updateRateUSD(UtilsKt.moneyFormat(rate.getRate()));
 			}
 		}
 	}
@@ -124,7 +120,6 @@ public class MainPresenter implements MainContract.Presenter {
 			balance.changeVisibility();
 			processBalance(balance);
 			adapter.notifyItemChanged(position);
-			interactor.updateBalance(balance);
 		}
 	}
 

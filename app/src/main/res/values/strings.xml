@@ -21,7 +21,7 @@
     <string name="usd" tools:ignore="MissingTranslation">USD</string>
     <string name="eur" tools:ignore="MissingTranslation">EUR</string>
     <string name="rub" tools:ignore="MissingTranslation">RUB</string>
-    <string name="title_home" tools:ignore="MissingTranslation">Home</string>
-    <string name="title_dashboard" tools:ignore="MissingTranslation">Dashboard</string>
+    <string name="title_main">Main</string>
+    <string name="title_operations">Expenses</string>
 
 </resources>

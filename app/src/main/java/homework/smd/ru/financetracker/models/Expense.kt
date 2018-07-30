@@ -4,7 +4,8 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Costs(
+data class Expense(
         val title: String,
-        val operations: List<Operation>
+        val operations: List<Operation>,
+        val balance: Balance
 ) : Parcelable

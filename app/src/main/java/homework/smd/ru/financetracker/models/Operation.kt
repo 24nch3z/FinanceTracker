@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Operation(
         val sum: Double,
         val currency: Currency,
-        var type: String?
+        var category: String?
 ) : Parcelable
 
 fun Collection<Operation>.total(
