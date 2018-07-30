@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.models.Balance;
@@ -66,7 +65,10 @@ public class MainPresenter implements MainContract.Presenter {
 		disposable = interactor
 			.getCurrencyRates()
 			.observeOn(AndroidSchedulers.mainThread())
-			.subscribe(new OnUpdateCurrencyRates());
+			.subscribe(
+				new OnUpdateCurrencyRates(),
+				err -> { if (this.view != null) this.view.hideCurrencies(); }
+			);
 		cd.add(disposable);
 	}
 
@@ -100,6 +102,7 @@ public class MainPresenter implements MainContract.Presenter {
 	private class OnUpdateCurrencyRates implements Consumer<CurrencyRate> {
 		@Override
 		public void accept(CurrencyRate rate) {
+			if (MainPresenter.this.view == null) return;
 			if (MainPresenter.this.currency == rate.getCurrency()) {
 				MainPresenter.this.rate = rate.getRate();
 			}
@@ -110,6 +113,7 @@ public class MainPresenter implements MainContract.Presenter {
 			if (rate.getCurrency() == Currency.USD) {
 				MainPresenter.this.view.updateRateUSD(UtilsKt.moneyFormat(rate.getRate()));
 			}
+			MainPresenter.this.view.showCurrencies();
 		}
 	}
 

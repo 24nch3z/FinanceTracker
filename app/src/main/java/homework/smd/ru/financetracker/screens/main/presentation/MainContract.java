@@ -9,6 +9,8 @@ interface MainContract {
 		void updateRateEUR(final String rateEUR);
 		void setAdapter(RecyclerView.Adapter adapter);
 		void hideProgress();
+		void hideCurrencies();
+		void showCurrencies();
 	}
 
 	interface Presenter {

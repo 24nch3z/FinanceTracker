@@ -1,4 +1,4 @@
-package homework.smd.ru.financetracker.datalayer.data;
+package homework.smd.ru.financetracker.datalayer.data.sharedpreferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;

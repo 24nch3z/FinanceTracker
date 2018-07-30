@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.datalayer.data.Configuration;
+import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
 
 public class MainView extends Fragment implements MainContract.View {
 
@@ -30,6 +30,7 @@ public class MainView extends Fragment implements MainContract.View {
 	@BindView(R.id.usd_rate) TextView rateUSD;
 	@BindView(R.id.eur_rate) TextView rateEUR;
 	@BindView(R.id.main_progress) ProgressBar progress;
+	@BindView(R.id.currencies_block) ViewGroup currencies;
 	@BindView(R.id.recycler_main_view) RecyclerView recycler;
 
 
@@ -82,5 +83,15 @@ public class MainView extends Fragment implements MainContract.View {
 	public void setAdapter(RecyclerView.Adapter adapter) {
 		recycler.setAdapter(adapter);
 		recycler.setVisibility(View.VISIBLE);
+	}
+
+	@Override
+	public void hideCurrencies() {
+		currencies.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void showCurrencies() {
+		currencies.setVisibility(View.VISIBLE);
 	}
 }
