@@ -1,6 +1,5 @@
 package homework.smd.ru.financetracker.screens.addoperation.presentation;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,7 +7,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +25,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailViewPager;
 
 public class OperationView extends Fragment implements OperationContract.View {
 

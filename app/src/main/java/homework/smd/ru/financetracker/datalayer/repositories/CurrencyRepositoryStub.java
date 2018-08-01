@@ -8,6 +8,7 @@ import homework.smd.ru.financetracker.datalayer.CurrencyRepository;
 import homework.smd.ru.financetracker.datalayer.data.network.CurrencyAPI;
 import homework.smd.ru.financetracker.datalayer.data.network.CurrencyService;
 import homework.smd.ru.financetracker.models.Currency;
+import homework.smd.ru.financetracker.models.CurrencyModelAPI;
 import homework.smd.ru.financetracker.models.CurrencyRate;
 import io.reactivex.Flowable;
 import io.reactivex.schedulers.Schedulers;
@@ -27,14 +28,13 @@ public class CurrencyRepositoryStub implements CurrencyRepository {
 
 	@NonNull
 	@Override
-	public Flowable<String> getCurrencyRates() {
-		final Flowable<Object> usd = currencyService.updateCurrency("USD_RUB", "y");
-		final Flowable<Object> eur = currencyService.updateCurrency("EUR_RUB", "y");
+	public Flowable<CurrencyModelAPI> getCurrencyRates() {
+		final Flowable<CurrencyModelAPI> usd = currencyService.updateCurrency("USD_RUB");
+		final Flowable<CurrencyModelAPI> eur = currencyService.updateCurrency("EUR_RUB");
 
 		// TODO save to cache
 		return Flowable
 			.merge(usd, eur)
-			.map(Object::toString)
 			.subscribeOn(Schedulers.io());
 	}
 

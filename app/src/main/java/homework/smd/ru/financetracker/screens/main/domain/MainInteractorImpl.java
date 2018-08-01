@@ -7,8 +7,8 @@ import homework.smd.ru.financetracker.datalayer.ExpenseRepository;
 import homework.smd.ru.financetracker.datalayer.repositories.CurrencyRepositoryStub;
 import homework.smd.ru.financetracker.datalayer.repositories.ExpenseRepositoryStub;
 import homework.smd.ru.financetracker.models.Balance;
+import homework.smd.ru.financetracker.models.CurrencyModelAPI;
 import homework.smd.ru.financetracker.models.CurrencyRate;
-import homework.smd.ru.financetracker.models.UtilsKt;
 import io.reactivex.Flowable;
 
 public class MainInteractorImpl implements MainInteractor {
@@ -29,7 +29,7 @@ public class MainInteractorImpl implements MainInteractor {
 	public Flowable<CurrencyRate> getCurrencyRates() {
 		return currencyRepository
 			.getCurrencyRates()
-			.map(UtilsKt::getCurrency)
+			.map(CurrencyModelAPI::convertToCurrencyRate)
 			.filter(rate -> rate != null);
 	}
 
