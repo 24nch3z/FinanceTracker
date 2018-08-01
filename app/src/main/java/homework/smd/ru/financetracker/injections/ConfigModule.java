@@ -20,7 +20,7 @@ public class ConfigModule {
 
 	@Provides
 	@Singleton
-	public Configuration getConfiguration() {
+	public Configuration provideConfiguration() {
 		return configuration;
 	}
 }

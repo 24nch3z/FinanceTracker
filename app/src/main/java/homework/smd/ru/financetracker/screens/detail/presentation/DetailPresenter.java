@@ -10,7 +10,6 @@ import java.util.List;
 import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractor;
-import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractorStub;
 import homework.smd.ru.financetracker.screens.detail.presentation.pager.TabPageAdapter;
 import homework.smd.ru.financetracker.screens.detail.presentation.tabs.DetailViewTab;
 import homework.smd.ru.financetracker.screens.detail.presentation.tabs.OperationRecyclerAdapter;
@@ -22,17 +21,19 @@ public class DetailPresenter implements DetailContract.Presenter {
 
 	private final static int MAX_FIXED_TABS = 4;
 
-	private CompositeDisposable cd = new CompositeDisposable();
-	private DetailInteractor interactor = new DetailInteractorStub();
-
+	private final CompositeDisposable cd = new CompositeDisposable();
 	private final List<DetailContract.ViewTab> viewTabs = new ArrayList<>();
 	private final List<Expense> costs = new ArrayList<>();
+	private final DetailInteractor interactor;
 
 	@Nullable private DetailContract.ViewPager viewPager;
 	@Nullable private TabPageAdapter pageAdapter;
 	private int currentTabPosition = 0;
-	private String currentTabName = "";
 
+
+	public DetailPresenter(DetailInteractor interactor) {
+		this.interactor = interactor;
+	}
 
 	@Override
 	public void attachView(DetailContract.ViewPager pager) {
@@ -85,11 +86,6 @@ public class DetailPresenter implements DetailContract.Presenter {
 		recycler.updateDataset(dataset);
 		recycler.notifyDataSetChanged();
 		currentTabPosition = position;
-	}
-
-	@Override
-	public void addNewOperation(Operation operation) {
-
 	}
 
 	@Override

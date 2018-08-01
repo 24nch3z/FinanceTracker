@@ -27,8 +27,7 @@ import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailVi
 public class MainView extends Fragment implements MainContract.View {
 
 	@Inject Configuration configuration;
-
-	private MainContract.Presenter presenter;
+	@Inject MainContract.Presenter presenter;
 
 	private Unbinder unbinder;
 	@BindView(R.id.usd_rate) TextView rateUSD;
@@ -49,14 +48,12 @@ public class MainView extends Fragment implements MainContract.View {
 	                         ViewGroup container,
 	                         Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_main, container, false);
-
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 
 		recycler.setLayoutManager(new LinearLayoutManager(
 			getContext(), LinearLayoutManager.VERTICAL, false));
 
-		presenter = new MainPresenter();
 		presenter.attachView(this);
 		return view;
 	}

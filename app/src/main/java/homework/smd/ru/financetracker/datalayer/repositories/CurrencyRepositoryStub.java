@@ -11,7 +11,6 @@ import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.CurrencyModelAPI;
 import homework.smd.ru.financetracker.models.CurrencyRate;
 import io.reactivex.Flowable;
-import io.reactivex.schedulers.Schedulers;
 
 public class CurrencyRepositoryStub implements CurrencyRepository {
 
@@ -34,8 +33,7 @@ public class CurrencyRepositoryStub implements CurrencyRepository {
 
 		// TODO save to cache
 		return Flowable
-			.merge(usd, eur)
-			.subscribeOn(Schedulers.io());
+			.merge(usd, eur);
 	}
 
 	@NonNull

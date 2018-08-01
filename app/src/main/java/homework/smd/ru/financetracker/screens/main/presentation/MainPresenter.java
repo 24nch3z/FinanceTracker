@@ -6,12 +6,11 @@ import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.models.Balance;
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.CurrencyRate;
 import homework.smd.ru.financetracker.models.UtilsKt;
-import homework.smd.ru.financetracker.screens.main.domain.MainInteractorImpl;
+import homework.smd.ru.financetracker.screens.main.domain.MainInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -23,14 +22,14 @@ public class MainPresenter implements MainContract.Presenter {
 	@Nullable private MainContract.View view;
 	@NonNull private final List<Balance> dataset = new ArrayList<>();
 	@NonNull private BalanceRecycleAdapter adapter = new BalanceRecycleAdapter(dataset);
-	@NonNull private MainInteractorImpl interactor = new MainInteractorImpl();
 
+	private final MainInteractor interactor;
 	private Currency currency;
 	private float rate;
 	private CompositeDisposable cd = new CompositeDisposable();
 
-	MainPresenter() {
-		App.getComponent().inject(this);
+	public MainPresenter(MainInteractor interactor) {
+		this.interactor = interactor;
 
 		adapter.setOnCardClickListener(new OnHolderClick());
 		adapter.setOnImageClickListener(new OnChangeVisibility());

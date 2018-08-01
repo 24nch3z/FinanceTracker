@@ -2,7 +2,7 @@ package homework.smd.ru.financetracker.screens.information.presentation;
 
 import android.support.annotation.StringRes;
 
-interface InfoContract {
+public interface InfoContract {
 
 	interface View {
 		void setHtmlContent(final String text);

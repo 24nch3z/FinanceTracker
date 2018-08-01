@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "969658474048",
+    "firebase_url": "https://yschool-finance-tracker.firebaseio.com",
+    "project_id": "yschool-finance-tracker",
+    "storage_bucket": "yschool-finance-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969658474048:android:203f2c5df3d02b1e",
+        "android_client_info": {
+          "package_name": "homework.smd.ru.financetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969658474048-kgu6tq7ohf90304guhpofq0qbba4qhuu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZQAGoyZ9gtKPDHfPPQFmmHb0kJWR57NI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

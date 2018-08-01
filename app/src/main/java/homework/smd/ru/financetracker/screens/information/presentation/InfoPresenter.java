@@ -1,5 +1,6 @@
 package homework.smd.ru.financetracker.screens.information.presentation;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,12 +15,19 @@ import homework.smd.ru.financetracker.R;
 public class InfoPresenter implements InfoContract.Presenter {
 
 	private static final String TEXT_CONTENT = "about.txt";
+
 	@Nullable private InfoContract.View view;
+	private final Context context;
+
+
+	public InfoPresenter(Context context) {
+		this.context = context;
+	}
 
 	@Override
 	public void attachView(InfoContract.View view) {
 		this.view = view;
-		view.setHtmlContent("<h1>Hello, MVP!</h1>");
+		loadContentFromAssets(context.getAssets());
 	}
 
 	@Override
@@ -27,7 +35,6 @@ public class InfoPresenter implements InfoContract.Presenter {
 		view = null;
 	}
 
-	@Deprecated
 	private void loadContentFromAssets(@NonNull AssetManager manager) {
 
 		final StringBuilder builder = new StringBuilder();

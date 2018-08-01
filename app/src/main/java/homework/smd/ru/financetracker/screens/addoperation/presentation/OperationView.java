@@ -17,18 +17,20 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.Arrays;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 
 public class OperationView extends Fragment implements OperationContract.View {
 
-	private OperationContract.Presenter presenter;
+	@Inject OperationContract.Presenter presenter;
 	private Unbinder unbinder;
 
 	@BindView(R.id.button_plus_sum) Button buttonPlus;
@@ -47,9 +49,9 @@ public class OperationView extends Fragment implements OperationContract.View {
 	                         Bundle savedInstanceState) {
 
 		final View view = inflater.inflate(R.layout.add_operation, container, false);
+		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 
-		presenter = new OperationPresenter();
 		presenter.attachView(this);
 		return view;
 	}
@@ -104,11 +106,6 @@ public class OperationView extends Fragment implements OperationContract.View {
 			return (String) category;
 		}
 
-	}
-
-	@Override
-	public List<String> getDefaultCategories() {
-		return Arrays.asList(getResources().getStringArray(R.array.default_categories));
 	}
 
 	@Override

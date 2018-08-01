@@ -1,26 +1,35 @@
 package homework.smd.ru.financetracker.screens.addoperation.presentation;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 
+import java.util.Arrays;
 import java.util.List;
 
+import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractor;
-import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractorStub;
 
 public class OperationPresenter implements OperationContract.Presenter {
 
-	private final OperationInteractor interactor = new OperationInteractorStub();
 	@Nullable private OperationContract.View view;
+	private final Context context;
+	private final OperationInteractor interactor;
+
+	public OperationPresenter(Context context, OperationInteractor interactor) {
+		this.context = context;
+		this.interactor = interactor;
+	}
 
 	@Override
 	public void attachView(OperationContract.View view) {
 		this.view = view;
 		view.hideCategory();
-		final List<String> categories = view.getDefaultCategories();
+		final List<String> categories = Arrays.asList(
+			context.getResources().getStringArray(R.array.default_categories));
 		view.setCategories(categories);
 		view.setOnCategoriesClickListener(new OnCategoryClickListener());
 	}

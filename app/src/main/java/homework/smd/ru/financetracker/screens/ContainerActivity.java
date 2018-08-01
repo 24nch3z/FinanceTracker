@@ -146,19 +146,4 @@ public class ContainerActivity extends AppCompatActivity
 
 		return true;
 	}
-
-	@Override
-	public void onBackPressed() {
-		// If stack is not empty
-		if (getSupportFragmentManager().getBackStackEntryCount() != 0) {
-			super.onBackPressed();
-		}
-
-		// Double click for exit from application
-		long timeForExit = 500L;
-		if (System.currentTimeMillis() - backPressedTime < timeForExit) {
-			super.onBackPressed();
-		}
-		backPressedTime = System.currentTimeMillis();
-	}
 }

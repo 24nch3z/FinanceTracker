@@ -9,14 +9,17 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 
 public class InfoView extends Fragment implements InfoContract.View {
 
-	private InfoContract.Presenter presenter;
+	@Inject InfoContract.Presenter presenter;
 
 	private Unbinder unbinder;
 	@BindView(R.id.content_about) TextView contentView;
@@ -33,9 +36,9 @@ public class InfoView extends Fragment implements InfoContract.View {
 	                                      ViewGroup container,
 	                                      Bundle savedInstanceState) {
 		final android.view.View view = inflater.inflate(R.layout.fragment_about, container, false);
+		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 		contentView.setTextSize(getResources().getDimension(R.dimen.card_money_size));
-		presenter = new InfoPresenter();
 		presenter.attachView(this);
 		return view;
 	}

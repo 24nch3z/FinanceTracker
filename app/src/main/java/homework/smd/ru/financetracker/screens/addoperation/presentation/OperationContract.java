@@ -5,7 +5,7 @@ import android.widget.AdapterView;
 
 import java.util.List;
 
-interface OperationContract {
+public interface OperationContract {
 
 	interface View {
 		void hideCategory();
@@ -16,7 +16,6 @@ interface OperationContract {
 
 		float getSum();
 		@Nullable String getCategory();
-		List<String> getDefaultCategories();
 
 		void back();
 	}

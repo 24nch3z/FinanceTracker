@@ -4,7 +4,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
-import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.screens.detail.presentation.pager.TabPageAdapter;
 import homework.smd.ru.financetracker.screens.detail.presentation.tabs.OperationRecyclerAdapter;
 
@@ -26,7 +25,6 @@ public interface DetailContract {
 		void detachView();
 		void onTabChanged(int position);
 
-		void addNewOperation(final Operation operation);
 		void setOpenTabPosition(int tabPosition);
 	}
 }

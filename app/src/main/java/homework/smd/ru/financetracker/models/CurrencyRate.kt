@@ -12,7 +12,7 @@ data class CurrencyModelAPI(
             val fr: Currency,
             val `val`: Float
     )
-    
+
     fun convertToCurrencyRate(): CurrencyRate? {
         val modelAPI: CurrencyAPI = this.results.values.first()
         return when(modelAPI.fr) {

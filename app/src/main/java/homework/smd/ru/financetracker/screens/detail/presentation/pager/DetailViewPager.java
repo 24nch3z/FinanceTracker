@@ -10,21 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.screens.detail.presentation.DetailContract;
-import homework.smd.ru.financetracker.screens.detail.presentation.DetailPresenter;
 
 public class DetailViewPager extends Fragment implements DetailContract.ViewPager {
 
 	public static final String TAB_POSITION = "TAB_POSITION";
-
-	public DetailViewPager() { }
-
-	private Unbinder unbinder;
-	private DetailContract.Presenter presenter;
 
 	public static Fragment newInstance() {
 		return new DetailViewPager();
@@ -40,9 +37,15 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 	}
 
 
+	private Unbinder unbinder;
+	@Inject public DetailContract.Presenter presenter;
+
 	private TabPageAdapter adapter;
 	@BindView(R.id.tab_pager) ViewPager pager;
 	@BindView(R.id.tab_layout) TabLayout tabLayout;
+
+
+	public DetailViewPager() { }
 
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,6 +53,7 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 	                         @Nullable Bundle savedInstanceState) {
 
 		final View view = inflater.inflate(R.layout.fragment_detail_tablayout, container, false);
+		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 
 		adapter = new TabPageAdapter(getFragmentManager());
@@ -61,7 +65,6 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 	}
 
 	private void initPresenter() {
-		presenter = new DetailPresenter();
 		presenter.attachView(this);
 
 		if (getArguments() != null) {
