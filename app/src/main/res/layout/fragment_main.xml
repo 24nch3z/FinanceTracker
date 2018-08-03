@@ -14,56 +14,61 @@
         android:id="@+id/currencies_block"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false"
-        android:padding="@dimen/small_padding"
         android:layout_marginBottom="@dimen/fragment_margin"
-        android:background="@drawable/currency_border">
+        android:background="@drawable/currency_border"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/small_padding">
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/fragment_margin"
                 android:text="@string/usd"
-                android:textSize="@dimen/rate_text_size"
                 android:textColor="@color/divider"
+                android:textSize="@dimen/rate_text_size"
                 />
+
             <TextView
                 android:id="@+id/usd_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rate_text_size"
                 android:textColor="@color/primary"
+                android:textSize="@dimen/rate_text_size"
                 />
         </LinearLayout>
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/fragment_margin"
                 android:text="@string/eur"
-                android:textSize="@dimen/rate_text_size"
                 android:textColor="@color/divider"
+                android:textSize="@dimen/rate_text_size"
                 />
+
             <TextView
                 android:id="@+id/eur_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rate_text_size"
                 android:textColor="@color/primary"
+                android:textSize="@dimen/rate_text_size"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -80,6 +85,5 @@
         android:id="@+id/recycler_main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/bot_nav_bar_height"
         />
 </LinearLayout>

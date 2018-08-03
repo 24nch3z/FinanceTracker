@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,11 +33,11 @@ public class OperationView extends Fragment implements OperationContract.View {
 	@Inject OperationContract.Presenter presenter;
 	private Unbinder unbinder;
 
-	@BindView(R.id.button_plus_sum) Button buttonPlus;
 	@BindView(R.id.edit_sum) TextInputEditText editSum;
 	@BindView(R.id.category_spinner) Spinner spinnerCategory;
 	@BindView(R.id.edit_category) TextInputEditText editCategory;
 	@BindView(R.id.category_input) TextInputLayout inputCategory;
+	@BindView(R.id.radio_group_type) RadioGroup radioGroupType;
 
 	public static OperationView newInstance() {
 		return new OperationView();
@@ -77,7 +77,7 @@ public class OperationView extends Fragment implements OperationContract.View {
 	public void setCategories(List<String> categories) {
 		if (getContext() == null) return;
 		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
-			getContext(), android.R.layout.simple_spinner_item, categories);
+			getContext(), android.R.layout.simple_list_item_1, categories);
 		spinnerCategory.setAdapter(arrayAdapter);
 	}
 
@@ -105,7 +105,11 @@ public class OperationView extends Fragment implements OperationContract.View {
 		} else {
 			return (String) category;
 		}
+	}
 
+	@Override
+	public int getCheckedRadioButtonId() {
+		return radioGroupType.getCheckedRadioButtonId();
 	}
 
 	@Override
@@ -125,13 +129,8 @@ public class OperationView extends Fragment implements OperationContract.View {
 		}
 	}
 
-	@OnClick(R.id.button_plus_sum)
-	void onPlusButtonClick() {
-		presenter.createOperation(true);
-	}
-
-	@OnClick(R.id.button_minus_sum)
-	void onMinusButtonClick() {
-		presenter.createOperation(false);
+	@OnClick(R.id.buttonSave)
+	void onClickSave(View v) {
+		presenter.createOperation();
 	}
 }

@@ -40,13 +40,17 @@ public class OperationPresenter implements OperationContract.Presenter {
 	}
 
 	@Override
-	public void createOperation(boolean isPlus) {
+	public void createOperation() {
 		if (view == null) return;
 
 		final String category = view.getCategory();
 		float sum = view.getSum();
 		if (sum == 0 || category == null) return;
-		if (!isPlus) sum *= -1;
+
+		int checkedRadioButtonTypeId = view.getCheckedRadioButtonId();
+		if (checkedRadioButtonTypeId == R.id.radio_button_cost) {
+			sum *= -1;
+		}
 
 		final Operation operation = new Operation(sum, Currency.RUB, category);
 		interactor.addOperation(operation);

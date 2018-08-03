@@ -16,6 +16,7 @@ public interface OperationContract {
 
 		float getSum();
 		@Nullable String getCategory();
+		int getCheckedRadioButtonId();
 
 		void back();
 	}
@@ -23,6 +24,6 @@ public interface OperationContract {
 	interface Presenter {
 		void attachView(View view);
 		void detachView();
-		void createOperation(boolean isPlus);
+		void createOperation();
 	}
 }
