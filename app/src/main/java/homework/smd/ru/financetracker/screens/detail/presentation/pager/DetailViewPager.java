@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,13 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 	public static Fragment newInstance() {
 		return new DetailViewPager();
 	}
-	public static Fragment newInstance(final int tabPosition) {
+	public static Fragment newInstance(final Object tabPosition) {
 		final Fragment fragment = new DetailViewPager();
 		final Bundle bundle = new Bundle();
 
-		bundle.putInt(TAB_POSITION, tabPosition);
+		if (tabPosition != null) {
+			bundle.putInt(TAB_POSITION, (int) tabPosition);
+		}
 		fragment.setArguments(bundle);
 
 		return fragment;

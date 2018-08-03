@@ -22,6 +22,7 @@ import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
+import homework.smd.ru.financetracker.screens.Screens;
 import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailViewPager;
 
 public class MainView extends Fragment implements MainContract.View {
@@ -98,18 +99,8 @@ public class MainView extends Fragment implements MainContract.View {
 
 	@Override
 	public void navigationToDetail(int tabPosition) {
-		// TODO попробовать что за чечерони такое
-		final FragmentManager manager = getFragmentManager();
-		final Fragment fragment = DetailViewPager.newInstance(tabPosition);
 		final int titleID = R.string.nav_detail;
-
-		if (manager == null) return;
-
-		manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-		manager
-			.beginTransaction()
-			.replace(R.id.container, fragment)
-			.commit();
+		App.instance.getRouter().newRootScreen(Screens.SCREEN_DETAIL, tabPosition);
 
 		final Activity activity = getActivity();
 		if (activity == null) return;
