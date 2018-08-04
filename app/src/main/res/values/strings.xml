@@ -26,7 +26,7 @@
     <string name="hint_operation_sum">Sum:</string>
     <string name="hint_operation_category">Input new category:</string>
 
-    <!--Add Operation-->
+    <!--Add OperationEntity-->
     <string name="minus_sum">Spent</string>
     <string name="plus_sum">Earn</string>
     <string-array name="default_categories">
@@ -36,6 +36,6 @@
         <item>Other</item>
     </string-array>
     <string name="created_op">Operation is added</string>
-    <string name="add_op">Add expense</string>
+    <string name="add_op">Operation</string>
 
 </resources>

@@ -12,9 +12,11 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
+import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.models.UtilsKt;
+import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractor;
 
 public class OperationRecyclerAdapter extends
 	RecyclerView.Adapter<OperationRecyclerAdapter.OperationHolder> {
@@ -50,7 +52,7 @@ public class OperationRecyclerAdapter extends
 		}
 	}
 
-	OperationRecyclerAdapter() {
+	public OperationRecyclerAdapter() {
 		this.dataset = Collections.emptyList();
 	}
 

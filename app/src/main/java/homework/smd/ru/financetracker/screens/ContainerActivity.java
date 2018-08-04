@@ -5,7 +5,6 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -74,6 +73,8 @@ public class ContainerActivity extends AppCompatActivity
 	public boolean onOptionsItemSelected(MenuItem item) {
 		final int titleID;
 
+		// TODO: Теперь, когда я в настройках или в эбаут, не могу переключиться на навигэйшн
+		// TODO: с navigateTo проблема, если я несколько раз открою настройки или about, то все в стэке останутся
 		switch (item.getItemId()) {
 			case R.id.opt_settings:
 				App.instance.getRouter().navigateTo(Screens.SCREEN_SETTINGS);
@@ -150,7 +151,6 @@ public class ContainerActivity extends AppCompatActivity
 		}
 
 		setToolbarTitle(titleID);
-
 		return true;
 	}
 

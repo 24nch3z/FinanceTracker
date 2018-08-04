@@ -7,6 +7,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractor;
@@ -47,11 +48,9 @@ public class DetailPresenter implements DetailContract.Presenter {
 			.subscribe(
 				(cost) -> {
 					costs.add(cost);
-					viewTabs.add(DetailViewTab.getDetailPageInstance());
+					viewTabs.add(DetailViewTab.getDetailPageInstance(cost.getId()));
 					titles.add(cost.getTitle());
-				},
-				(err) -> Log.e(getClass().getName(), err.getMessage(), err),
-				() -> {
+
 					if (pageAdapter != null) {
 						pageAdapter.updateTabs(viewTabs);
 						pageAdapter.updateTitles(titles);
@@ -66,7 +65,8 @@ public class DetailPresenter implements DetailContract.Presenter {
 					if (this.viewPager != null) {
 						this.viewPager.getPager().setCurrentItem(currentTabPosition);
 					}
-				}
+				},
+				(err) -> Log.e(getClass().getName(), err.getMessage(), err)
 			);
 		cd.add(disposable);
 	}
@@ -77,15 +77,6 @@ public class DetailPresenter implements DetailContract.Presenter {
 		viewTabs.clear();
 		pageAdapter = null;
 		cd.clear();
-	}
-
-	@Override
-	public void onTabChanged(int position) {
-		final OperationRecyclerAdapter recycler = viewTabs.get(position).getRecycler();
-		final List<Operation> dataset = costs.get(position).getOperations();
-		recycler.updateDataset(dataset);
-		recycler.notifyDataSetChanged();
-		currentTabPosition = position;
 	}
 
 	@Override

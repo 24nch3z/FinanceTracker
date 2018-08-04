@@ -21,6 +21,7 @@ public class TabPageAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int position) {
+		DetailContract.ViewTab fr = fragments.get(position);
 		return fragments.get(position);
 	}
 

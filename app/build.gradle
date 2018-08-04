@@ -90,4 +90,11 @@ dependencies {
 
     // Cicerone
     implementation "ru.terrakok.cicerone:cicerone:3.0.0"
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
+    // RX + Room
+    implementation "android.arch.persistence.room:rxjava2:1.0.0"
 }

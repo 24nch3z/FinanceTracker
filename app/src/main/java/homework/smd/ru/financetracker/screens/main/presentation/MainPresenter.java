@@ -6,9 +6,9 @@ import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import homework.smd.ru.financetracker.models.Balance;
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.CurrencyRate;
+import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.models.UtilsKt;
 import homework.smd.ru.financetracker.screens.main.domain.MainInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MainPresenter implements MainContract.Presenter {
 
 	@Nullable private MainContract.View view;
-	@NonNull private final List<Balance> dataset = new ArrayList<>();
+	@NonNull private final List<Expense> dataset = new ArrayList<>();
 	@NonNull private BalanceRecycleAdapter adapter = new BalanceRecycleAdapter(dataset);
 
 	private final MainInteractor interactor;
@@ -50,12 +50,12 @@ public class MainPresenter implements MainContract.Presenter {
 		this.view.setAdapter(adapter);
 
 		Disposable disposable = interactor
-			.getUserBalances()
+			.getUserExpenses()
 			.observeOn(Schedulers.computation())
 			.map(this::processBalance)
 			.observeOn(AndroidSchedulers.mainThread())
-			.subscribe(balance -> {
-				dataset.add(balance);
+			.subscribe(expense -> {
+				dataset.add(expense);
 				adapter.notifyItemInserted(dataset.size() - 1);
 				if (this.view != null) this.view.hideProgress();
 			});
@@ -77,7 +77,7 @@ public class MainPresenter implements MainContract.Presenter {
 		cd.clear();
 	}
 
-	private Balance processBalance(@NonNull final Balance model) {
+	private Expense processBalance(@NonNull final Expense model) {
 
 		float sum = model.getSum();
 		String moneySign;
@@ -90,10 +90,12 @@ public class MainPresenter implements MainContract.Presenter {
 
 		if (model.isVisible()) {
 			// Show balance in correct currency
-			model.setStringSum(UtilsKt.moneyFormat(sum) + " " + moneySign);
+			// TODO: update
+//			model.setStringSum(UtilsKt.moneyFormat(sum) + " " + moneySign);
 		} else {
 			// Hide balance
-			model.setStringSum("* * * * * *");
+			//			// TODO: update
+//			model.setStringSum("* * * * * *");
 		}
 		return model;
 	}
@@ -119,8 +121,9 @@ public class MainPresenter implements MainContract.Presenter {
 	private class OnChangeVisibility implements BalanceRecycleAdapter.OnContentClick {
 		@Override
 		public void onClick(int position) {
-			final Balance balance = dataset.get(position);
-			balance.changeVisibility();
+			final Expense balance = dataset.get(position);
+			// TODO: Обновить
+//			balance.changeVisibility();
 			processBalance(balance);
 			adapter.notifyItemChanged(position);
 		}

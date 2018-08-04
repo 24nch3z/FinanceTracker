@@ -27,6 +27,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
+import homework.smd.ru.financetracker.models.Expense;
 
 public class OperationView extends Fragment implements OperationContract.View {
 
@@ -35,6 +36,7 @@ public class OperationView extends Fragment implements OperationContract.View {
 
 	@BindView(R.id.edit_sum) TextInputEditText editSum;
 	@BindView(R.id.category_spinner) Spinner spinnerCategory;
+	@BindView(R.id.expense_spinner) Spinner spinnerExpense;
 	@BindView(R.id.edit_category) TextInputEditText editCategory;
 	@BindView(R.id.category_input) TextInputLayout inputCategory;
 	@BindView(R.id.radio_group_type) RadioGroup radioGroupType;
@@ -115,6 +117,19 @@ public class OperationView extends Fragment implements OperationContract.View {
 	@Override
 	public void setOnCategoriesClickListener(AdapterView.OnItemSelectedListener listener) {
 		spinnerCategory.setOnItemSelectedListener(listener);
+	}
+
+	@Override
+	public void setExpense(List<Expense> expenses) {
+		if (getContext() == null) return;
+		final ExpenseAdapter arrayAdapter = new ExpenseAdapter(
+			getContext(), android.R.layout.simple_list_item_1, expenses);
+		spinnerExpense.setAdapter(arrayAdapter);
+	}
+
+	@Override
+	public Expense getExpense() {
+		return (Expense) spinnerExpense.getSelectedItem();
 	}
 
 	@Override

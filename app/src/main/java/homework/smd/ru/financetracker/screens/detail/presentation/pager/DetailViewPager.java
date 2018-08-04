@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 	public static Fragment newInstance() {
 		return new DetailViewPager();
 	}
+
 	public static Fragment newInstance(final Object tabPosition) {
 		final Fragment fragment = new DetailViewPager();
 		final Bundle bundle = new Bundle();
@@ -39,11 +39,11 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 		return fragment;
 	}
 
-
 	private Unbinder unbinder;
+	private TabPageAdapter adapter;
+
 	@Inject public DetailContract.Presenter presenter;
 
-	private TabPageAdapter adapter;
 	@BindView(R.id.tab_pager) ViewPager pager;
 	@BindView(R.id.tab_layout) TabLayout tabLayout;
 
@@ -59,7 +59,7 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 
-		adapter = new TabPageAdapter(getFragmentManager());
+		adapter = new TabPageAdapter(getChildFragmentManager());
 		pager.setAdapter(adapter);
 		tabLayout.setupWithViewPager(pager);
 
@@ -74,12 +74,6 @@ public class DetailViewPager extends Fragment implements DetailContract.ViewPage
 			int tabPosition = getArguments().getInt(TAB_POSITION, 0);
 			presenter.setOpenTabPosition(tabPosition);
 		}
-		pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-			@Override
-			public void onPageSelected(int position) {
-				presenter.onTabChanged(position);
-			}
-		});
 	}
 
 
