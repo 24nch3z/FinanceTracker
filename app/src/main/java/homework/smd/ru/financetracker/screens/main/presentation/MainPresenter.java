@@ -45,20 +45,23 @@ public class MainPresenter implements MainContract.Presenter {
 
 	@Override
 	public void attachView(@NonNull MainContract.View view) {
-
 		this.view = view;
 		this.view.setAdapter(adapter);
 
 		Disposable disposable = interactor
 			.getUserExpenses()
 			.observeOn(Schedulers.computation())
-			.map(this::processBalance)
 			.observeOn(AndroidSchedulers.mainThread())
-			.subscribe(expense -> {
-				dataset.add(expense);
-				adapter.notifyItemInserted(dataset.size() - 1);
+			.subscribe(expenses -> {
+				dataset.clear();
+				for (Expense expense : expenses) {
+					Expense exp = processBalance(expense);
+					dataset.add(exp);
+				}
+				adapter.notifyDataSetChanged();
 				if (this.view != null) this.view.hideProgress();
 			});
+
 		cd.add(disposable);
 
 		disposable = interactor
@@ -78,7 +81,6 @@ public class MainPresenter implements MainContract.Presenter {
 	}
 
 	private Expense processBalance(@NonNull final Expense model) {
-
 		float sum = model.getSum();
 		String moneySign;
 		if (currency == Currency.USD) {
@@ -90,12 +92,10 @@ public class MainPresenter implements MainContract.Presenter {
 
 		if (model.isVisible()) {
 			// Show balance in correct currency
-			// TODO: update
-//			model.setStringSum(UtilsKt.moneyFormat(sum) + " " + moneySign);
+			model.setStringSum(UtilsKt.moneyFormat(sum) + " " + moneySign);
 		} else {
 			// Hide balance
-			//			// TODO: update
-//			model.setStringSum("* * * * * *");
+			model.setStringSum("* * * * * *");
 		}
 		return model;
 	}
@@ -121,10 +121,10 @@ public class MainPresenter implements MainContract.Presenter {
 	private class OnChangeVisibility implements BalanceRecycleAdapter.OnContentClick {
 		@Override
 		public void onClick(int position) {
-			final Expense balance = dataset.get(position);
-			// TODO: Обновить
-//			balance.changeVisibility();
-			processBalance(balance);
+			final Expense expense = dataset.get(position);
+			expense.isVisible = !expense.isVisible;
+			interactor.updateExpense(expense);
+			processBalance(expense);
 			adapter.notifyItemChanged(position);
 		}
 	}

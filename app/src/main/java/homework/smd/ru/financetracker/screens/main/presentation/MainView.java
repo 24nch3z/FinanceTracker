@@ -35,7 +35,6 @@ public class MainView extends Fragment implements MainContract.View {
 	@BindView(R.id.currencies_block) ViewGroup currencies;
 	@BindView(R.id.recycler_main_view) RecyclerView recycler;
 
-
 	public MainView() { }
 
 	public static Fragment newInstance() {

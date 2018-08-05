@@ -1,23 +1,16 @@
 package homework.smd.ru.financetracker.models
 
 import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-//@Parcelize
-//class Operation(
-//        val sum: Double,
-//        val currency: Currency,
-//        var category: String?
-//) : Parcelable
+import android.arch.persistence.room.TypeConverters
+import homework.smd.ru.financetracker.database.Converters
 
 @Entity
+@TypeConverters(Converters::class)
 class Operation {
     @PrimaryKey(autoGenerate = true) var id: Int = 0;
     var sum: Double = 0.0;
-    @Ignore var currency: Currency = Currency.USD;
+    var currency: Currency = Currency.USD;
     var category: String? = "";
     var expenseId: Int = 1;
 

@@ -54,19 +54,10 @@ public class ExpenseRepositoryStub implements ExpenseRepository {
 		return Flowable.just(expenses);
 	}
 
-//	@NonNull
-//	@Override
-//	public Flowable<List<Balance>> getBalances() {
-//		return Flowable.just(Arrays.asList(
-//			expenses.get(0).getBalance(),
-//			expenses.get(1).getBalance(),
-//			expenses.get(2).getBalance()
-//		));
-//	}
-
 	@Override
-	public void addOperation(@NonNull Operation operation, final int expanseId) { }
+	public void updateExpense(Expense expense) {
 
+	}
 
 	private final static String[] types = { "Еда", "Коммунальные платежи", "Транспорт" };
 	private final static Random random = new Random(System.currentTimeMillis());

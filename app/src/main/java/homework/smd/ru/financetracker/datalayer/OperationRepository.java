@@ -9,7 +9,8 @@ import io.reactivex.Flowable;
 
 public interface OperationRepository {
 
-	@NonNull Flowable<List<Operation>> getOperations(int expanseId);
+	@NonNull
+	Flowable<List<Operation>> getOperations(int expanseId);
 
 	void addOperation(Operation operation);
 }

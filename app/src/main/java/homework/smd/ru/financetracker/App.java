@@ -11,7 +11,6 @@ import com.crashlytics.android.Crashlytics;
 import java.util.concurrent.Executors;
 
 import homework.smd.ru.financetracker.database.AppDatabase;
-import homework.smd.ru.financetracker.database.converter.ExpenseConverter;
 import homework.smd.ru.financetracker.injections.AppComponent;
 import homework.smd.ru.financetracker.injections.AppModule;
 import homework.smd.ru.financetracker.injections.ConfigModule;

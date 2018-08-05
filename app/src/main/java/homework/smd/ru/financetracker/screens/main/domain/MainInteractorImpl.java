@@ -2,6 +2,8 @@ package homework.smd.ru.financetracker.screens.main.domain;
 
 import android.support.annotation.NonNull;
 
+import java.util.List;
+
 import homework.smd.ru.financetracker.datalayer.CurrencyRepository;
 import homework.smd.ru.financetracker.datalayer.ExpenseRepository;
 import homework.smd.ru.financetracker.datalayer.repositories.CurrencyRepositoryStub;
@@ -18,10 +20,9 @@ public class MainInteractorImpl implements MainInteractor {
 
 	@NonNull
 	@Override
-	public Flowable<Expense> getUserExpenses() {
+	public Flowable<List<Expense>> getUserExpenses() {
 		return expenseRepository
-			.getExpenses()
-			.flatMap(Flowable::fromIterable);
+			.getExpenses();
 	}
 
 	@NonNull
@@ -38,5 +39,10 @@ public class MainInteractorImpl implements MainInteractor {
 	public Flowable<CurrencyRate> getSystemCurrencyRate() {
 		return currencyRepository
 			.getSystemCurrencyRate();
+	}
+
+	@Override
+	public void updateExpense(Expense expense) {
+		expenseRepository.updateExpense(expense);
 	}
 }

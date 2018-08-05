@@ -1,6 +1,7 @@
 package homework.smd.ru.financetracker.models;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "expense")
@@ -14,6 +15,9 @@ public class Expense {
 	public boolean isVisible;
 
 	public float sum;
+
+	@Ignore
+	public String stringSum;
 
 	public Expense(int id, String title, boolean isVisible, float sum) {
 		this.id = id;
@@ -55,6 +59,10 @@ public class Expense {
 	}
 
 	public String getStringSum() {
-		return String.valueOf(sum);
+		return stringSum;
+	}
+
+	public void setStringSum(String stringSum) {
+		this.stringSum = stringSum;
 	}
 }

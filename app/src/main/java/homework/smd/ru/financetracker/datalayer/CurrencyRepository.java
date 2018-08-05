@@ -8,7 +8,9 @@ import io.reactivex.Flowable;
 
 public interface CurrencyRepository {
 
-	@NonNull Flowable<CurrencyModelAPI> getCurrencyRates();
+	@NonNull
+	Flowable<CurrencyModelAPI> getCurrencyRates();
 
-	@NonNull Flowable<CurrencyRate> getSystemCurrencyRate();
+	@NonNull
+	Flowable<CurrencyRate> getSystemCurrencyRate();
 }
