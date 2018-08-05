@@ -17,6 +17,9 @@ public interface ExpenseDao {
 	@Query("SELECT * FROM expense")
 	Flowable<List<Expense>> getExpenses();
 
+	@Query("UPDATE expense SET sum = :balance WHERE id = :expenseId")
+	void updateBalance(int expenseId, float balance);
+
 	@Insert
 	void insert(Expense expense);
 

@@ -1,5 +1,6 @@
 package homework.smd.ru.financetracker.datalayer.repositories;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 
 import java.util.List;
@@ -25,8 +26,19 @@ public class OperationRepositoryDataBase implements OperationRepository {
 			.getOperationsByExpense(expanseId);
 	}
 
+	@SuppressLint("CheckResult")
 	@Override
 	public void addOperation(Operation operation) {
 		db.operationDao().insert(operation);
+
+		int expenseId = operation.getExpenseId();
+		db.operationDao().getOperationsByExpense(expenseId)
+			.subscribe(operations -> {
+				float sum = 0;
+				for (Operation o : operations) {
+					sum += o.getSum();
+				}
+				db.expenseDao().updateBalance(expenseId, sum);
+			});
 	}
 }
