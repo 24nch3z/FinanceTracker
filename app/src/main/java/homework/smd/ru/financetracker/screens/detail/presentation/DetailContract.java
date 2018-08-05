@@ -15,7 +15,6 @@ public interface DetailContract {
 		android.support.v4.view.ViewPager getPager();
 	}
 
-	// TODO: Почистить
 	abstract class ViewTab extends Fragment {}
 
 	interface Presenter {

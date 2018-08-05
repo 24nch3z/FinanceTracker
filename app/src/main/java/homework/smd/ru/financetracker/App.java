@@ -11,6 +11,7 @@ import com.crashlytics.android.Crashlytics;
 import java.util.concurrent.Executors;
 
 import homework.smd.ru.financetracker.database.AppDatabase;
+import homework.smd.ru.financetracker.database.InitialData;
 import homework.smd.ru.financetracker.injections.AppComponent;
 import homework.smd.ru.financetracker.injections.AppModule;
 import homework.smd.ru.financetracker.injections.ConfigModule;
@@ -67,30 +68,8 @@ public class App extends Application {
 		public void onCreate (SupportSQLiteDatabase db) {
 			super.onCreate(db);
 			Executors.newSingleThreadScheduledExecutor().execute(() -> {
-				// TODO: Вынести отсюда
-
-				instance.database.expenseDao().insert(
-					new Expense(1, "Наличка", true, 1000)
-				);
-				instance.database.expenseDao().insert(
-					new Expense(2, "Карта сберыча", false, 5000)
-				);
-				instance.database.expenseDao().insert(
-					new Expense(3, "Любовница", true, 500000)
-				);
-
-				instance.database.operationDao().insert(
-					new Operation(-199, Currency.USD, "Рыбка", 1)
-				);
-				instance.database.operationDao().insert(
-					new Operation(5000, Currency.USD, "Рекит", 2)
-				);
-				instance.database.operationDao().insert(
-					new Operation(300, Currency.USD, "Кино", 2)
-				);
-				instance.database.operationDao().insert(
-					new Operation(50000, Currency.USD, "Алмазы", 3)
-				);
+				InitialData initial = new InitialData();
+				initial.run(instance.database);
 			});
 		}
 	};
