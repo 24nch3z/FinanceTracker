@@ -8,7 +8,7 @@ import io.reactivex.Flowable;
 
 public interface DetailInteractor {
 
-	Flowable<Expense> getCosts();
+	Flowable<List<Expense>> getCosts();
 
 	Flowable<List<Operation>> getOperations(int expenseId);
 }

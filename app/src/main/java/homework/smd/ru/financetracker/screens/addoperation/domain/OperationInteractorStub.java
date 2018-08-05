@@ -1,6 +1,7 @@
 package homework.smd.ru.financetracker.screens.addoperation.domain;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import homework.smd.ru.financetracker.datalayer.ExpenseRepository;
 import homework.smd.ru.financetracker.datalayer.OperationRepository;
@@ -8,6 +9,7 @@ import homework.smd.ru.financetracker.datalayer.repositories.ExpenseRepositoryDa
 import homework.smd.ru.financetracker.datalayer.repositories.OperationRepositoryDataBase;
 import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.models.Operation;
+import homework.smd.ru.financetracker.models.Period;
 import io.reactivex.Flowable;
 
 public class OperationInteractorStub implements OperationInteractor {
@@ -16,8 +18,8 @@ public class OperationInteractorStub implements OperationInteractor {
 	private final OperationRepository operationRepository = new OperationRepositoryDataBase();
 
 	@Override
-	public void addOperation(@NonNull Operation operation) {
-		operationRepository.addOperation(operation);
+	public void addOperation(@NonNull Operation operation, @Nullable Period period) {
+		operationRepository.addOperation(operation, period);
 	}
 
 	@NonNull

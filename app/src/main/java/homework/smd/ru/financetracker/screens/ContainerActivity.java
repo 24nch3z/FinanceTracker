@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
+import homework.smd.ru.financetracker.models.PeriodicOperationsUpdater;
 import homework.smd.ru.financetracker.screens.addoperation.presentation.OperationView;
 import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailViewPager;
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
@@ -30,10 +31,13 @@ import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 public class ContainerActivity extends AppCompatActivity
 	implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-	@Inject public Configuration configuration;
+	@Inject
+	public Configuration configuration;
 
-	@BindView(R.id.navigation) BottomNavigationView bottomNavigation;
-	@BindView(R.id.toolbar) Toolbar toolbar;
+	@BindView(R.id.navigation)
+	BottomNavigationView bottomNavigation;
+	@BindView(R.id.toolbar)
+	Toolbar toolbar;
 
 	@Override
 	@CallSuper
@@ -52,6 +56,7 @@ public class ContainerActivity extends AppCompatActivity
 		}
 
 		setStatusBarColor();
+		new PeriodicOperationsUpdater().run();
 	}
 
 	void setStatusBarColor() {
@@ -133,6 +138,7 @@ public class ContainerActivity extends AppCompatActivity
 			finish();
 		}
 	};
+
 	@Override
 	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 		if (bottomNavigation.getSelectedItemId() == item.getItemId()) return true;

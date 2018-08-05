@@ -11,24 +11,35 @@ public interface OperationContract {
 
 	interface View {
 		void hideCategory();
+
 		void showCategory();
 
 		void setCategories(List<String> categories);
+
 		void setOnCategoriesClickListener(AdapterView.OnItemSelectedListener listener);
 
 		void setExpense(List<Expense> expenses);
+
 		Expense getExpense();
 
 		float getSum();
+
 		@Nullable String getCategory();
+
 		int getCheckedRadioButtonId();
 
 		void back();
+
+		boolean getIsPeriod();
+
+		int getPeriodDays();
 	}
 
 	interface Presenter {
 		void attachView(View view);
+
 		void detachView();
+
 		void createOperation();
 	}
 }

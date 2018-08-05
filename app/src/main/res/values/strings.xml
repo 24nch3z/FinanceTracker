@@ -29,6 +29,8 @@
     <!--Add OperationEntity-->
     <string name="minus_sum">Spent</string>
     <string name="plus_sum">Earn</string>
+    <string name="period_checkbox">Period</string>
+    <string name="period_title">Days count</string>
     <string-array name="default_categories">
         <item>Food</item>
         <item>Utility payments</item>

@@ -25,6 +25,8 @@
     <!--Add OperationEntity-->
     <string name="plus_sum">Заработал</string>
     <string name="minus_sum">Потратил</string>
+    <string name="period_checkbox">Период</string>
+    <string name="period_title">Количество дней</string>
     <string-array name="default_categories">
         <item>Еда</item>
         <item>Коммуналка</item>

@@ -46,10 +46,15 @@ public class DetailPresenter implements DetailContract.Presenter {
 			.onBackpressureBuffer()
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(
-				(cost) -> {
-					costs.add(cost);
-					viewTabs.add(DetailViewTab.getDetailPageInstance(cost.getId()));
-					titles.add(cost.getTitle());
+				(costs) -> {
+					this.costs.clear();
+					this.costs.addAll(costs);
+					viewTabs.clear();
+
+					for (Expense expense : costs) {
+						viewTabs.add(DetailViewTab.getDetailPageInstance(expense.getId()));
+						titles.add(expense.getTitle());
+					}
 
 					if (pageAdapter != null) {
 						pageAdapter.updateTabs(viewTabs);

@@ -16,9 +16,6 @@ import homework.smd.ru.financetracker.injections.AppComponent;
 import homework.smd.ru.financetracker.injections.AppModule;
 import homework.smd.ru.financetracker.injections.ConfigModule;
 import homework.smd.ru.financetracker.injections.DaggerAppComponent;
-import homework.smd.ru.financetracker.models.Currency;
-import homework.smd.ru.financetracker.models.Expense;
-import homework.smd.ru.financetracker.models.Operation;
 import io.fabric.sdk.android.Fabric;
 import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.NavigatorHolder;
@@ -64,8 +61,8 @@ public class App extends Application {
 			.build();
 	}
 
-	RoomDatabase.Callback rdc = new RoomDatabase.Callback(){
-		public void onCreate (SupportSQLiteDatabase db) {
+	RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
+		public void onCreate(SupportSQLiteDatabase db) {
 			super.onCreate(db);
 			Executors.newSingleThreadScheduledExecutor().execute(() -> {
 				InitialData initial = new InitialData();

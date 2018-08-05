@@ -16,10 +16,9 @@ public class DetailInteractorStub implements DetailInteractor {
 	private final OperationRepository operationRepository = new OperationRepositoryDataBase();
 
 	@Override
-	public Flowable<Expense> getCosts() {
+	public Flowable<List<Expense>> getCosts() {
 		return expenseRepository
-			.getExpenses()
-			.flatMap(Flowable::fromIterable);
+			.getExpenses();
 	}
 
 	@Override

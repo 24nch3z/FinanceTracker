@@ -10,6 +10,7 @@ import java.util.List;
 
 import homework.smd.ru.financetracker.models.Operation;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 @Dao
 public interface OperationDao {
@@ -20,8 +21,11 @@ public interface OperationDao {
 	@Query("SELECT * FROM operation WHERE expenseId = :expenseEntityId")
 	Flowable<List<Operation>> getOperationsByExpense(int expenseEntityId);
 
+	@Query("SELECT * FROM operation WHERE id = :id")
+	Single<List<Operation>> getOperationsById(long id);
+
 	@Insert
-	void insert(Operation operation);
+	long insert(Operation operation);
 
 	@Update
 	void update(Operation operation);

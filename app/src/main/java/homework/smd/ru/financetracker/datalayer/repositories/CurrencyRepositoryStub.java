@@ -17,9 +17,9 @@ public class CurrencyRepositoryStub implements CurrencyRepository {
 	@Inject CurrencyService currencyService;
 
 	private final CurrencyRate usd =
-		new CurrencyRate(Currency.USD, 68.56f);
+		new CurrencyRate(Currency.USD, 63.34f);
 	private final CurrencyRate eur =
-		new CurrencyRate(Currency.EUR, 82.91f);
+		new CurrencyRate(Currency.EUR, 73.37f);
 
 	public CurrencyRepositoryStub() {
 		currencyService = new CurrencyAPI().getCurrencyService();

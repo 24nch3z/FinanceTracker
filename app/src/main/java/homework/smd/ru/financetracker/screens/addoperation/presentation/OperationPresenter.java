@@ -7,12 +7,14 @@ import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.models.Operation;
+import homework.smd.ru.financetracker.models.Period;
 import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -78,8 +80,18 @@ public class OperationPresenter implements OperationContract.Presenter {
 			sum *= -1;
 		}
 
+		boolean isPeriod = view.getIsPeriod();
+		Period period = null;
+		if (isPeriod) {
+			int days = view.getPeriodDays();
+			if (days == 0) return;
+			period = new Period();
+			period.days = days;
+			period.lastOperationDate = new Date();
+		}
+
 		final Operation operation = new Operation(sum, Currency.RUB, category, expense.getId());
-		interactor.addOperation(operation);
+		interactor.addOperation(operation, period);
 		view.back();
 	}
 

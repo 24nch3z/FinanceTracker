@@ -104,6 +104,7 @@ public class MainPresenter implements MainContract.Presenter {
 		@Override
 		public void accept(CurrencyRate rate) {
 			if (MainPresenter.this.view == null) return;
+
 			if (MainPresenter.this.currency == rate.getCurrency()) {
 				MainPresenter.this.rate = rate.getRate();
 			}

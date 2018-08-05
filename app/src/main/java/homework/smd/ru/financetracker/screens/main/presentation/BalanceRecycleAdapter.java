@@ -44,7 +44,7 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 		private void updateContent(@NonNull Expense model) {
 			balanceName.setText(model.getTitle());
 			balanceCount.setText(model.getStringSum());
-			if (model.isVisible()) {
+			if (!model.isVisible()) {
 				balanceVisibility.setImageDrawable(imageInvisible);
 			} else {
 				balanceVisibility.setImageDrawable(imageVisible);

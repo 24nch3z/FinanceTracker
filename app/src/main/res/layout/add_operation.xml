@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="@dimen/fragment_margin"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -65,10 +66,31 @@
             android:outlineSpotShadowColor="@color/accent">
         </Spinner>
 
+        <CheckBox
+            android:id="@+id/period_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/period_checkbox"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/period_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edittext_period"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="3"
+                android:hint="@string/period_title"
+                android:inputType="number"/>
+        </android.support.design.widget.TextInputLayout>
+
         <RadioGroup
             android:id="@+id/radio_group_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_margin"
             android:orientation="horizontal">
 
             <RadioButton
@@ -77,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Заработал"/>
+                android:text="@string/plus_sum"/>
 
             <RadioButton
                 android:id="@+id/radio_button_cost"
@@ -85,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="false"
-                android:text="Потратил"/>
+                android:text="@string/minus_sum"/>
 
         </RadioGroup>
 

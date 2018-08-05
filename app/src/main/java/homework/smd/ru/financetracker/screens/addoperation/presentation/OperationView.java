@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
@@ -40,6 +43,9 @@ public class OperationView extends Fragment implements OperationContract.View {
 	@BindView(R.id.edit_category) TextInputEditText editCategory;
 	@BindView(R.id.category_input) TextInputLayout inputCategory;
 	@BindView(R.id.radio_group_type) RadioGroup radioGroupType;
+	@BindView(R.id.period_checkbox) CheckBox checkBoxPeriod;
+	@BindView(R.id.period_form) TextInputLayout formPeriod;
+	@BindView(R.id.edittext_period) TextInputEditText editTextPeriod;
 
 	public static OperationView newInstance() {
 		return new OperationView();
@@ -55,6 +61,7 @@ public class OperationView extends Fragment implements OperationContract.View {
 		unbinder = ButterKnife.bind(this, view);
 
 		presenter.attachView(this);
+		showHidePeriodForm(checkBoxPeriod.isChecked());
 		return view;
 	}
 
@@ -144,8 +151,34 @@ public class OperationView extends Fragment implements OperationContract.View {
 		}
 	}
 
+	@Override
+	public boolean getIsPeriod() {
+		return checkBoxPeriod.isChecked();
+	}
+
+	@Override
+	public int getPeriodDays() {
+		String str = editTextPeriod.getText().toString();
+
+		try {
+			int days = Integer.parseInt(str);
+			return days;
+		} catch (NumberFormatException e) {
+			return 0;
+		}
+	}
+
+	public void showHidePeriodForm(boolean isVisible) {
+		formPeriod.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+	}
+
 	@OnClick(R.id.buttonSave)
 	void onClickSave(View v) {
 		presenter.createOperation();
+	}
+
+	@OnCheckedChanged(R.id.period_checkbox)
+	void onCheckedChangedPeriod(CompoundButton compoundButton, boolean b) {
+		showHidePeriodForm(b);
 	}
 }
