@@ -7,12 +7,12 @@ import homework.smd.ru.financetracker.database.dao.ExpenseDao;
 import homework.smd.ru.financetracker.database.dao.OperationDao;
 import homework.smd.ru.financetracker.database.dao.PeriodDao;
 import homework.smd.ru.financetracker.models.Period;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.Operation;
 
 @Database(entities = {
 	Operation.class,
-	Expense.class,
+	Wallet.class,
 	Period.class
 }, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

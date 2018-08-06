@@ -7,55 +7,54 @@ import java.util.List;
 import java.util.Random;
 
 import homework.smd.ru.financetracker.datalayer.ExpenseRepository;
-import homework.smd.ru.financetracker.models.Currency;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.Operation;
 import io.reactivex.Flowable;
 
 public class ExpenseRepositoryStub implements ExpenseRepository {
 
-	private List<Expense> expenses = new ArrayList<>();
+	private List<Wallet> expens = new ArrayList<>();
 
 	public ExpenseRepositoryStub() {
-		Expense expense;
+		Wallet wallet;
 		String title;
 
 //		title = "Наличные";
-//		expense = new Expense(
+//		wallet = new Wallet(
 //			title,
 //			generateOperations(),
 //			new Balance(title, true, 42_000f),
 //			1
 //		);
-//		expenses.add(expense);
+//		expens.add(wallet);
 //
 //		title = "Карточка";
-//		expense = new Expense(
+//		wallet = new Wallet(
 //			title,
 //			generateOperations(),
 //			new Balance(title, true, -1_000f),
 //			2
 //		);
-//		expenses.add(expense);
+//		expens.add(wallet);
 //
 //		title = "Оффшоры в Гонконге";
-//		expense = new Expense(
+//		wallet = new Wallet(
 //			title,
 //			generateOperations(),
 //			new Balance(title, false, 100_500f),
 //			3
 //		);
-//		expenses.add(expense);
+//		expens.add(wallet);
 	}
 
 	@NonNull
 	@Override
-	public Flowable<List<Expense>> getExpenses() {
-		return Flowable.just(expenses);
+	public Flowable<List<Wallet>> getExpens() {
+		return Flowable.just(expens);
 	}
 
 	@Override
-	public void updateExpense(Expense expense) {
+	public void updateExpense(Wallet wallet) {
 
 	}
 

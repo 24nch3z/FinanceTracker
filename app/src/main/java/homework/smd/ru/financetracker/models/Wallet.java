@@ -5,8 +5,8 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "expense")
-public class Expense implements Serializable {
+@Entity(tableName = "wallet")
+public class Wallet implements Serializable {
 
 	@PrimaryKey(autoGenerate = true)
 	public int id;
@@ -17,7 +17,7 @@ public class Expense implements Serializable {
 
 	public float sum;
 
-	public Expense(int id, String title, boolean isVisible, float sum) {
+	public Wallet(int id, String title, boolean isVisible, float sum) {
 		this.id = id;
 		this.title = title;
 		this.isVisible = isVisible;

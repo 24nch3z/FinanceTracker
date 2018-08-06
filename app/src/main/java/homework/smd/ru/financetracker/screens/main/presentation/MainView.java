@@ -1,13 +1,10 @@
 package homework.smd.ru.financetracker.screens.main.presentation;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +17,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
-import homework.smd.ru.financetracker.MyLog;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.Screens;
 
 public class MainView extends Fragment implements MainContract.View {
@@ -98,7 +94,7 @@ public class MainView extends Fragment implements MainContract.View {
 	}
 
 	@Override
-	public void navigationToWalletScreen(Expense expense) {
-		App.instance.getRouter().navigateTo(Screens.SCREEN_WALLET, expense);
+	public void navigationToWalletScreen(Wallet wallet) {
+		App.instance.getRouter().navigateTo(Screens.SCREEN_WALLET, wallet);
 	}
 }

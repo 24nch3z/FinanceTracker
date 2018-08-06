@@ -6,7 +6,7 @@ import homework.smd.ru.financetracker.datalayer.ExpenseRepository;
 import homework.smd.ru.financetracker.datalayer.OperationRepository;
 import homework.smd.ru.financetracker.datalayer.repositories.ExpenseRepositoryDataBase;
 import homework.smd.ru.financetracker.datalayer.repositories.OperationRepositoryDataBase;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.Operation;
 import io.reactivex.Flowable;
 
@@ -16,9 +16,9 @@ public class DetailInteractorStub implements DetailInteractor {
 	private final OperationRepository operationRepository = new OperationRepositoryDataBase();
 
 	@Override
-	public Flowable<List<Expense>> getCosts() {
+	public Flowable<List<Wallet>> getCosts() {
 		return expenseRepository
-			.getExpenses();
+			.getExpens();
 	}
 
 	@Override

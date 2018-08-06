@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractorStub;
 
@@ -25,7 +25,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 	private final static int SPAN_COUNT = 2;
 	private final static String WALLET = "WALLET";
 
-	private Expense expense;
+	private Wallet wallet;
 	private Unbinder unbinder;
 	private WalletViewModel viewModel;
 	private WalletPresenter presenter;
@@ -39,7 +39,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 		Bundle bundle = new Bundle();
 
 		if (data != null) {
-			bundle.putSerializable(WALLET, (Expense) data);
+			bundle.putSerializable(WALLET, (Wallet) data);
 		}
 
 		fragment.setArguments(bundle);
@@ -49,7 +49,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		expense = (Expense) getArguments().getSerializable(WALLET);
+		wallet = (Wallet) getArguments().getSerializable(WALLET);
 	}
 
 	@Nullable
@@ -64,7 +64,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 		initViews();
 		viewModel = ViewModelProviders.of(this).get(WalletViewModel.class);
 		interactor = new WalletInteractorStub();
-		presenter = new WalletPresenter(interactor, expense);
+		presenter = new WalletPresenter(interactor, wallet);
 		presenter.setViewModel(viewModel);
 		presenter.attachView(this);
 
@@ -74,7 +74,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 	private void initViews() {
 		recycler.setLayoutManager(new StaggeredGridLayoutManager(
 			SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL));
-		title.setText(expense.getTitle());
+		title.setText(wallet.getTitle());
 	}
 
 	@Override

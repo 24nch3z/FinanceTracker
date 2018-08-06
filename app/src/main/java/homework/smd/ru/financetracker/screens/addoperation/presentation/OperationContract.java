@@ -5,7 +5,7 @@ import android.widget.AdapterView;
 
 import java.util.List;
 
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 
 public interface OperationContract {
 
@@ -18,9 +18,9 @@ public interface OperationContract {
 
 		void setOnCategoriesClickListener(AdapterView.OnItemSelectedListener listener);
 
-		void setExpense(List<Expense> expenses);
+		void setExpense(List<Wallet> expens);
 
-		Expense getExpense();
+		Wallet getExpense();
 
 		float getSum();
 

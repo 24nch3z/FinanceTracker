@@ -8,7 +8,7 @@ import java.util.List;
 
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.CurrencyRate;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.UtilsKt;
 import homework.smd.ru.financetracker.screens.main.domain.MainInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MainPresenter implements MainContract.Presenter {
 
 	@Nullable private MainContract.View view;
-	@NonNull private final List<Expense> dataset = new ArrayList<>();
+	@NonNull private final List<Wallet> dataset = new ArrayList<>();
 	@NonNull private BalanceRecycleAdapter adapter = new BalanceRecycleAdapter(dataset);
 
 	private final MainInteractor interactor;
@@ -100,9 +100,9 @@ public class MainPresenter implements MainContract.Presenter {
 		@Override
 		public void onClick(Object data) {
 			int position = (int) data;
-			final Expense expense = dataset.get(position);
-			expense.isVisible = !expense.isVisible;
-			interactor.updateExpense(expense);
+			final Wallet wallet = dataset.get(position);
+			wallet.isVisible = !wallet.isVisible;
+			interactor.updateExpense(wallet);
 			adapter.notifyItemChanged(position);
 		}
 	}
@@ -110,9 +110,9 @@ public class MainPresenter implements MainContract.Presenter {
 	private class OnHolderClick implements BalanceRecycleAdapter.OnContentClick {
 		@Override
 		public void onClick(Object data) {
-			Expense expense = (Expense) data;
+			Wallet wallet = (Wallet) data;
 			if (view != null) {
-				view.navigationToWalletScreen(expense);
+				view.navigationToWalletScreen(wallet);
 			}
 		}
 	}

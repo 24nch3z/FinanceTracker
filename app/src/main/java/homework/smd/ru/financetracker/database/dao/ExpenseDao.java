@@ -8,24 +8,24 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import io.reactivex.Flowable;
 
 @Dao
 public interface ExpenseDao {
 
-	@Query("SELECT * FROM expense")
-	Flowable<List<Expense>> getExpenses();
+	@Query("SELECT * FROM Wallet")
+	Flowable<List<Wallet>> getExpenses();
 
-	@Query("UPDATE expense SET sum = :balance WHERE id = :expenseId")
+	@Query("UPDATE Wallet SET sum = :balance WHERE id = :expenseId")
 	void updateBalance(int expenseId, float balance);
 
 	@Insert
-	void insert(Expense expense);
+	void insert(Wallet wallet);
 
 	@Update
-	void update(Expense expense);
+	void update(Wallet wallet);
 
 	@Delete
-	void delete(Expense expense);
+	void delete(Wallet wallet);
 }

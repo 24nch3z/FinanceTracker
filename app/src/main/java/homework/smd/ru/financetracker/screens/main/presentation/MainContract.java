@@ -2,7 +2,7 @@ package homework.smd.ru.financetracker.screens.main.presentation;
 
 import android.support.v7.widget.RecyclerView;
 
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 
 
 public interface MainContract {
@@ -15,7 +15,7 @@ public interface MainContract {
 		void hideCurrencies();
 		void showCurrencies();
 
-		void navigationToWalletScreen(final Expense expense);
+		void navigationToWalletScreen(final Wallet wallet);
 	}
 
 	interface Presenter {

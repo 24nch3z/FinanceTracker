@@ -12,7 +12,7 @@ import java.util.List;
 
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.models.Currency;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.models.Period;
 import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractor;
@@ -27,7 +27,7 @@ public class OperationPresenter implements OperationContract.Presenter {
 	private final OperationInteractor interactor;
 	private CompositeDisposable cd = new CompositeDisposable();
 
-	List<Expense> expenseList = new ArrayList<>();
+	List<Wallet> walletList = new ArrayList<>();
 
 	public OperationPresenter(Context context, OperationInteractor interactor) {
 		this.context = context;
@@ -46,8 +46,8 @@ public class OperationPresenter implements OperationContract.Presenter {
 		Disposable disposable = interactor.getUserExpenses()
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(expense -> {
-				expenseList.add(expense);
-				view.setExpense(expenseList);
+				walletList.add(expense);
+				view.setExpense(walletList);
 			});
 		cd.add(disposable);
 	}
@@ -71,9 +71,9 @@ public class OperationPresenter implements OperationContract.Presenter {
 		if (view == null) return;
 
 		final String category = view.getCategory();
-		final Expense expense = view.getExpense();
+		final Wallet wallet = view.getExpense();
 		float sum = view.getSum();
-		if (sum == 0 || category == null || expense == null) return;
+		if (sum == 0 || category == null || wallet == null) return;
 
 		int checkedRadioButtonTypeId = view.getCheckedRadioButtonId();
 		if (checkedRadioButtonTypeId == R.id.radio_button_cost) {
@@ -90,7 +90,7 @@ public class OperationPresenter implements OperationContract.Presenter {
 			period.lastOperationDate = new Date();
 		}
 
-		final Operation operation = new Operation(sum, Currency.RUB, category, expense.getId());
+		final Operation operation = new Operation(sum, Currency.RUB, category, wallet.getId());
 		interactor.addOperation(operation, period);
 		view.back();
 	}

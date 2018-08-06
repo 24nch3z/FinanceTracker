@@ -14,12 +14,12 @@ import android.widget.TextView;
 import java.util.List;
 
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.UtilsKt;
 
 public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAdapter.BalanceHolder> {
 
-	@NonNull private final List<Expense> dataset;
+	@NonNull private final List<Wallet> dataset;
 	@Nullable private OnContentClick onImageClickListener;
 	@Nullable private OnContentClick onCardClickListener;
 
@@ -42,7 +42,7 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 			}
 		}
 
-		private void updateContent(@NonNull Expense model) {
+		private void updateContent(@NonNull Wallet model) {
 			String balance = "";
 			String moneySign = "$"; // TODO Вернуть
 
@@ -59,7 +59,7 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 		}
 	}
 
-	BalanceRecycleAdapter(@NonNull List<Expense> dataset) {
+	BalanceRecycleAdapter(@NonNull List<Wallet> dataset) {
 		this.dataset = dataset;
 	}
 

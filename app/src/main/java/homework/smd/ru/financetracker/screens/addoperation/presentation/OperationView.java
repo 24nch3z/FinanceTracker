@@ -30,7 +30,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 
 public class OperationView extends Fragment implements OperationContract.View {
 
@@ -127,16 +127,16 @@ public class OperationView extends Fragment implements OperationContract.View {
 	}
 
 	@Override
-	public void setExpense(List<Expense> expenses) {
+	public void setExpense(List<Wallet> expens) {
 		if (getContext() == null) return;
 		final ExpenseAdapter arrayAdapter = new ExpenseAdapter(
-			getContext(), android.R.layout.simple_list_item_1, expenses);
+			getContext(), android.R.layout.simple_list_item_1, expens);
 		spinnerExpense.setAdapter(arrayAdapter);
 	}
 
 	@Override
-	public Expense getExpense() {
-		return (Expense) spinnerExpense.getSelectedItem();
+	public Wallet getExpense() {
+		return (Wallet) spinnerExpense.getSelectedItem();
 	}
 
 	@Override

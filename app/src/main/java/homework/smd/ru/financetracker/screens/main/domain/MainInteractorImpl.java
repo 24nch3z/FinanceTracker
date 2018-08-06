@@ -10,7 +10,7 @@ import homework.smd.ru.financetracker.datalayer.repositories.CurrencyRepositoryS
 import homework.smd.ru.financetracker.datalayer.repositories.ExpenseRepositoryDataBase;
 import homework.smd.ru.financetracker.models.CurrencyModelAPI;
 import homework.smd.ru.financetracker.models.CurrencyRate;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import io.reactivex.Flowable;
 
 public class MainInteractorImpl implements MainInteractor {
@@ -20,9 +20,9 @@ public class MainInteractorImpl implements MainInteractor {
 
 	@NonNull
 	@Override
-	public Flowable<List<Expense>> getUserExpenses() {
+	public Flowable<List<Wallet>> getUserExpenses() {
 		return expenseRepository
-			.getExpenses();
+			.getExpens();
 	}
 
 	@NonNull
@@ -42,7 +42,7 @@ public class MainInteractorImpl implements MainInteractor {
 	}
 
 	@Override
-	public void updateExpense(Expense expense) {
-		expenseRepository.updateExpense(expense);
+	public void updateExpense(Wallet wallet) {
+		expenseRepository.updateExpense(wallet);
 	}
 }

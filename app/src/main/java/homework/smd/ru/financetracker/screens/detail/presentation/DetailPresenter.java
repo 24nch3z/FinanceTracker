@@ -7,13 +7,10 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import homework.smd.ru.financetracker.models.Currency;
-import homework.smd.ru.financetracker.models.Expense;
-import homework.smd.ru.financetracker.models.Operation;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractor;
 import homework.smd.ru.financetracker.screens.detail.presentation.pager.TabPageAdapter;
 import homework.smd.ru.financetracker.screens.detail.presentation.tabs.DetailViewTab;
-import homework.smd.ru.financetracker.screens.detail.presentation.tabs.OperationRecyclerAdapter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -24,7 +21,7 @@ public class DetailPresenter implements DetailContract.Presenter {
 
 	private final CompositeDisposable cd = new CompositeDisposable();
 	private final List<DetailContract.ViewTab> viewTabs = new ArrayList<>();
-	private final List<Expense> costs = new ArrayList<>();
+	private final List<Wallet> costs = new ArrayList<>();
 	private final DetailInteractor interactor;
 
 	@Nullable private DetailContract.ViewPager viewPager;
@@ -51,7 +48,7 @@ public class DetailPresenter implements DetailContract.Presenter {
 					this.costs.addAll(costs);
 					viewTabs.clear();
 
-					for (Expense expense : costs) {
+					for (Wallet expense : costs) {
 						viewTabs.add(DetailViewTab.getDetailPageInstance(expense.getId()));
 						titles.add(expense.getTitle());
 					}

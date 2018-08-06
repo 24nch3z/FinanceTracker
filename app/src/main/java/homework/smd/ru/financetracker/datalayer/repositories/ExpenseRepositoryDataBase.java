@@ -7,7 +7,7 @@ import java.util.List;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.database.AppDatabase;
 import homework.smd.ru.financetracker.datalayer.ExpenseRepository;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import io.reactivex.Flowable;
 
 public class ExpenseRepositoryDataBase implements ExpenseRepository {
@@ -20,13 +20,13 @@ public class ExpenseRepositoryDataBase implements ExpenseRepository {
 
 	@NonNull
 	@Override
-	public Flowable<List<Expense>> getExpenses() {
+	public Flowable<List<Wallet>> getExpens() {
 		return db.expenseDao()
 			.getExpenses();
 	}
 
 	@Override
-	public void updateExpense(Expense expense) {
-		db.expenseDao().update(expense);
+	public void updateExpense(Wallet wallet) {
+		db.expenseDao().update(wallet);
 	}
 }

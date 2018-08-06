@@ -4,13 +4,13 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import io.reactivex.Flowable;
 
 public interface ExpenseRepository {
 
 	@NonNull
-	Flowable<List<Expense>> getExpenses();
+	Flowable<List<Wallet>> getExpens();
 
-	void updateExpense(Expense expense);
+	void updateExpense(Wallet wallet);
 }
