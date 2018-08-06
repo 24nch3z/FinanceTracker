@@ -42,13 +42,13 @@ public class OperationRecyclerAdapter extends
 		}
 
 		private void updateContent(@NonNull Operation operation) {
-			if (operation.getSum() < 0) {
+			if (operation.sum < 0) {
 				operationSum.setTextColor(red);
 			} else {
 				operationSum.setTextColor(green);
 			}
-			operationSum.setText(UtilsKt.moneyFormat(operation.getSum()));
-			operationName.setText(operation.getCategory());
+			operationSum.setText(UtilsKt.moneyFormat(operation.sum));
+			operationName.setText(operation.category);
 		}
 	}
 

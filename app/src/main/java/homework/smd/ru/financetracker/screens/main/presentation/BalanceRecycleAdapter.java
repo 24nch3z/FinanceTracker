@@ -15,6 +15,7 @@ import java.util.List;
 
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.UtilsKt;
 
 public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAdapter.BalanceHolder> {
 
@@ -42,13 +43,19 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 		}
 
 		private void updateContent(@NonNull Expense model) {
-			balanceName.setText(model.getTitle());
-			balanceCount.setText(model.getStringSum());
+			String balance = "";
+			String moneySign = "$"; // TODO Вернуть
+
 			if (!model.isVisible()) {
 				balanceVisibility.setImageDrawable(imageInvisible);
+				balance = "* * * * * *";
 			} else {
 				balanceVisibility.setImageDrawable(imageVisible);
+				balance = UtilsKt.moneyFormat(model.sum) + " " + moneySign;
 			}
+
+			balanceName.setText(model.getTitle());
+			balanceCount.setText(balance);
 		}
 	}
 

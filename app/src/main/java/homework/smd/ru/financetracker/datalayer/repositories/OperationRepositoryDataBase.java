@@ -34,12 +34,12 @@ public class OperationRepositoryDataBase implements OperationRepository {
 		long id = db.operationDao().insert(operation);
 
 		// При добавлении новой операции нужно обновить баланс кошелька
-		int expenseId = operation.getExpenseId();
+		int expenseId = operation.expenseId;
 		db.operationDao().getOperationsByExpense(expenseId)
 			.subscribe(operations -> {
 				float sum = 0;
 				for (Operation o : operations) {
-					sum += o.getSum();
+					sum += o.sum;
 				}
 				db.expenseDao().updateBalance(expenseId, sum);
 			});

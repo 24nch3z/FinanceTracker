@@ -54,10 +54,7 @@ public class MainPresenter implements MainContract.Presenter {
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(expenses -> {
 				dataset.clear();
-				for (Expense expense : expenses) {
-					Expense exp = processBalance(expense);
-					dataset.add(exp);
-				}
+				dataset.addAll(expenses);
 				adapter.notifyDataSetChanged();
 				if (this.view != null) this.view.hideProgress();
 			});
@@ -78,26 +75,6 @@ public class MainPresenter implements MainContract.Presenter {
 	public void detachView() {
 		this.view = null;
 		cd.clear();
-	}
-
-	private Expense processBalance(@NonNull final Expense model) {
-		float sum = model.getSum();
-		String moneySign;
-		if (currency == Currency.USD) {
-			sum /= rate;
-			moneySign = "$";
-		} else {
-			moneySign = "P";
-		}
-
-		if (model.isVisible()) {
-			// Show balance in correct currency
-			model.setStringSum(UtilsKt.moneyFormat(sum) + " " + moneySign);
-		} else {
-			// Hide balance
-			model.setStringSum("* * * * * *");
-		}
-		return model;
 	}
 
 	private class OnUpdateCurrencyRates implements Consumer<CurrencyRate> {
@@ -125,7 +102,6 @@ public class MainPresenter implements MainContract.Presenter {
 			final Expense expense = dataset.get(position);
 			expense.isVisible = !expense.isVisible;
 			interactor.updateExpense(expense);
-			processBalance(expense);
 			adapter.notifyItemChanged(position);
 		}
 	}

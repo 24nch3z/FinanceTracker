@@ -30,7 +30,7 @@ public class PeriodicOperationsUpdater {
 									int fullDays = countOfRecords * days;
 
 									while (countOfRecords > 0) {
-										operation.setId(0);
+										operation.id = 0;
 										App.instance.getDatabase().operationDao()
 											.insert(operation);
 										countOfRecords--;
