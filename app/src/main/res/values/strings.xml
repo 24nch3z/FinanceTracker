@@ -40,4 +40,8 @@
     <string name="created_op">Operation is added</string>
     <string name="add_op">Operation</string>
 
+    <!-- Wallet -->
+    <string name="wallet_change">Change wallet</string>
+    <string name="wallet_create_operation">Create operation</string>
+
 </resources>

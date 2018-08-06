@@ -10,32 +10,36 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.R;
+import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractorStub;
 
 public class WalletView extends Fragment implements WalletContract.View {
 
 	private final static int SPAN_COUNT = 2;
-	private final static String EXPENSE_ID = "EXPENSE_ID";
+	private final static String WALLET = "WALLET";
 
-	private WalletPresenter presenter;
-	private int expenseId;
+	private Expense expense;
 	private Unbinder unbinder;
 	private WalletViewModel viewModel;
+	private WalletPresenter presenter;
 	private WalletInteractor interactor;
+
 	@BindView(R.id.recycler_view) RecyclerView recycler;
+	@BindView(R.id.title) TextView title;
 
 	public static WalletView getInstance(Object data) {
 		WalletView fragment = new WalletView();
 		Bundle bundle = new Bundle();
 
 		if (data != null) {
-			bundle.putInt(EXPENSE_ID, (int) data);
+			bundle.putSerializable(WALLET, (Expense) data);
 		}
 
 		fragment.setArguments(bundle);
@@ -45,7 +49,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		expenseId = getArguments().getInt(EXPENSE_ID);
+		expense = (Expense) getArguments().getSerializable(WALLET);
 	}
 
 	@Nullable
@@ -57,10 +61,10 @@ public class WalletView extends Fragment implements WalletContract.View {
 		final View view = inflater.inflate(R.layout.fragment_wallet, container, false);
 		unbinder = ButterKnife.bind(this, view);
 
+		initViews();
 		viewModel = ViewModelProviders.of(this).get(WalletViewModel.class);
 		interactor = new WalletInteractorStub();
-		presenter = new WalletPresenter(interactor, expenseId);
-		initViews();
+		presenter = new WalletPresenter(interactor, expense);
 		presenter.setViewModel(viewModel);
 		presenter.attachView(this);
 
@@ -70,6 +74,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 	private void initViews() {
 		recycler.setLayoutManager(new StaggeredGridLayoutManager(
 			SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL));
+		title.setText(expense.getTitle());
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import homework.smd.ru.financetracker.BasePresenter;
+import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -14,16 +15,16 @@ public class WalletPresenter extends BasePresenter<WalletContract.View> {
 
 	private WalletViewModel viewModel;
 	private WalletInteractor interactor;
-	private int expenseId;
+//	private int expenseId;
+	private Expense expense;
 
 	private List<Operation> operations;
 	private OperationRecyclerAdapter adapter;
 	private final CompositeDisposable cd = new CompositeDisposable();
 
-
-	public WalletPresenter(WalletInteractor interactor, int expenseId) {
+	public WalletPresenter(WalletInteractor interactor, Expense expense) {
 		this.interactor = interactor;
-		this.expenseId = expenseId;
+		this.expense = expense;
 
 		operations = new ArrayList<>();
 		adapter = new OperationRecyclerAdapter();
@@ -41,7 +42,7 @@ public class WalletPresenter extends BasePresenter<WalletContract.View> {
 		view.setAdapter(adapter);
 
 		final Disposable disposable = interactor
-			.getOperations(expenseId)
+			.getOperations(expense.getId())
 			.onBackpressureBuffer()
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe((operations) -> {

@@ -66,16 +66,14 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 	@NonNull
 	@Override
 	public BalanceHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-		// Inflate card
 		final CardView cardView = (CardView) LayoutInflater.from(parent.getContext())
 			.inflate(R.layout.holder_balance, parent, false);
-		// Wrap card in holder
 		final BalanceHolder holder = new BalanceHolder(cardView);
 
 		// TODO: передаю пока только айдишник
 		holder.itemView.setOnClickListener(view -> {
 			if (onCardClickListener != null) {
-				onCardClickListener.onClick(dataset.get(holder.getAdapterPosition()).id);
+				onCardClickListener.onClick(dataset.get(holder.getAdapterPosition()));
 			}
 		});
 
@@ -108,6 +106,6 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 	}
 
 	interface OnContentClick {
-		void onClick(final int position);
+		void onClick(final Object data);
 	}
 }

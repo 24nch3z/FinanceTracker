@@ -1,11 +1,12 @@
 package homework.smd.ru.financetracker.models;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "expense")
-public class Expense {
+public class Expense implements Serializable {
 
 	@PrimaryKey(autoGenerate = true)
 	public int id;
@@ -15,9 +16,6 @@ public class Expense {
 	public boolean isVisible;
 
 	public float sum;
-
-	@Ignore
-	public String stringSum;
 
 	public Expense(int id, String title, boolean isVisible, float sum) {
 		this.id = id;
@@ -56,13 +54,5 @@ public class Expense {
 
 	public void setSum(float sum) {
 		this.sum = sum;
-	}
-
-	public String getStringSum() {
-		return stringSum;
-	}
-
-	public void setStringSum(String stringSum) {
-		this.stringSum = stringSum;
 	}
 }

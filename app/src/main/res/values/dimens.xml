@@ -16,4 +16,6 @@
 
     <dimen name="corner_radius">5dp</dimen>
     <dimen name="bot_nav_bar_height">60dp</dimen>
+
+    <dimen name="wallet_title_size">24sp</dimen>
 </resources>

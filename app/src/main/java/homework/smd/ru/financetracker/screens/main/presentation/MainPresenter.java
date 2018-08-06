@@ -98,7 +98,8 @@ public class MainPresenter implements MainContract.Presenter {
 
 	private class OnChangeVisibility implements BalanceRecycleAdapter.OnContentClick {
 		@Override
-		public void onClick(int position) {
+		public void onClick(Object data) {
+			int position = (int) data;
 			final Expense expense = dataset.get(position);
 			expense.isVisible = !expense.isVisible;
 			interactor.updateExpense(expense);
@@ -108,9 +109,10 @@ public class MainPresenter implements MainContract.Presenter {
 
 	private class OnHolderClick implements BalanceRecycleAdapter.OnContentClick {
 		@Override
-		public void onClick(int position) {
+		public void onClick(Object data) {
+			Expense expense = (Expense) data;
 			if (view != null) {
-				view.navigationToDetail(position);
+				view.navigationToWalletScreen(expense);
 			}
 		}
 	}

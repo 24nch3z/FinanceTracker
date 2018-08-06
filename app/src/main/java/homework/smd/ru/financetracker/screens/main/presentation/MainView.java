@@ -23,6 +23,7 @@ import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.MyLog;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
+import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.screens.Screens;
 
 public class MainView extends Fragment implements MainContract.View {
@@ -97,7 +98,7 @@ public class MainView extends Fragment implements MainContract.View {
 	}
 
 	@Override
-	public void navigationToDetail(int expenseId) {
-		App.instance.getRouter().navigateTo(Screens.SCREEN_WALLET, expenseId);
+	public void navigationToWalletScreen(Expense expense) {
+		App.instance.getRouter().navigateTo(Screens.SCREEN_WALLET, expense);
 	}
 }
