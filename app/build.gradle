@@ -99,4 +99,8 @@ dependencies {
 
     // RX + Room
     implementation "android.arch.persistence.room:rxjava2:1.0.0"
+
+    // ViewModel
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
 }

@@ -71,16 +71,20 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 			.inflate(R.layout.holder_balance, parent, false);
 		// Wrap card in holder
 		final BalanceHolder holder = new BalanceHolder(cardView);
+
+		// TODO: передаю пока только айдишник
 		holder.itemView.setOnClickListener(view -> {
 			if (onCardClickListener != null) {
-				onCardClickListener.onClick(holder.getAdapterPosition());
+				onCardClickListener.onClick(dataset.get(holder.getAdapterPosition()).id);
 			}
 		});
+
 		holder.balanceVisibility.setOnClickListener(view -> {
 			if (onImageClickListener != null) {
 				onImageClickListener.onClick(holder.getAdapterPosition());
 			}
 		});
+
 		return holder;
 	}
 

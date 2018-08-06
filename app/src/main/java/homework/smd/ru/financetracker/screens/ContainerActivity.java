@@ -25,19 +25,17 @@ import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailVi
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;
 import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
+import homework.smd.ru.financetracker.screens.wallet.presentation.WalletView;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
 public class ContainerActivity extends AppCompatActivity
 	implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-	@Inject
-	public Configuration configuration;
+	@Inject public Configuration configuration;
 
-	@BindView(R.id.navigation)
-	BottomNavigationView bottomNavigation;
-	@BindView(R.id.toolbar)
-	Toolbar toolbar;
+	@BindView(R.id.navigation) BottomNavigationView bottomNavigation;
+	@BindView(R.id.toolbar) Toolbar toolbar;
 
 	@Override
 	@CallSuper
@@ -123,6 +121,8 @@ public class ContainerActivity extends AppCompatActivity
 					return SettingsView.newSettingInstance();
 				case Screens.SCREEN_ABOUT:
 					return InfoView.newAboutInstance();
+				case Screens.SCREEN_WALLET:
+					return WalletView.getInstance(data);
 			}
 			return MainView.newInstance();
 		}

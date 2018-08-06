@@ -52,7 +52,7 @@
             app:itemBackground="@color/accent"
             app:itemTextColor="@drawable/bottom_nav_bar_selector"
             app:itemIconTint="@drawable/bottom_nav_bar_selector"
-            />
+            android:visibility="gone"/>
 
     </LinearLayout>
 

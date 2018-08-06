@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
+import homework.smd.ru.financetracker.MyLog;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
 import homework.smd.ru.financetracker.screens.Screens;
@@ -95,21 +97,7 @@ public class MainView extends Fragment implements MainContract.View {
 	}
 
 	@Override
-	public void navigationToDetail(int tabPosition) {
-		final int titleID = R.string.nav_detail;
-		App.instance.getRouter().newRootScreen(Screens.SCREEN_DETAIL, tabPosition);
-
-		final Activity activity = getActivity();
-		if (activity == null) return;
-
-		if (activity.getActionBar() != null) {
-			activity.getActionBar().setTitle(titleID);
-		}
-
-		final BottomNavigationView navigation = activity.findViewById(R.id.navigation);
-		if (navigation != null) {
-			navigation.getMenu().getItem(1).setChecked(true);
-		}
-
+	public void navigationToDetail(int expenseId) {
+		App.instance.getRouter().navigateTo(Screens.SCREEN_WALLET, expenseId);
 	}
 }
