@@ -12,7 +12,7 @@ import homework.smd.ru.financetracker.models.Wallet;
 import io.reactivex.Flowable;
 
 @Dao
-public interface ExpenseDao {
+public interface WalletDao {
 
 	@Query("SELECT * FROM Wallet")
 	Flowable<List<Wallet>> getExpenses();

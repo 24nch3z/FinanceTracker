@@ -36,5 +36,15 @@
     <string name="created_op">Операция добавлена</string>
     <string name="add_op">Операция</string>
 
+    <!-- Wallet -->
+    <string name="wallet_change">Изменить кошелек</string>
+    <string name="wallet_create_operation">Добавить операциЮ</string>
+
+    <!-- Wallet dialog creator -->
+    <string name="wallet_create_dialog_title_create">Создание кошелька</string>
+    <string name="wallet_create_dialog_title_change">Изменение кошелька</string>
+    <string name="wallet_create_dialog_name_hint">Имя кошелька</string>
+    <string name="wallet_create_dialog_name_error">Нужно ввести имя кошелька</string>
+
 
 </resources>

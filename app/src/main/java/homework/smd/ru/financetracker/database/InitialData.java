@@ -7,13 +7,13 @@ import homework.smd.ru.financetracker.models.Operation;
 public class InitialData {
 
 	public void run(AppDatabase database) {
-		database.expenseDao().insert(
+		database.walletDao().insert(
 			new Wallet(1, "Наличка", true, 1000)
 		);
-		database.expenseDao().insert(
+		database.walletDao().insert(
 			new Wallet(2, "Карта сберыча", false, 5000)
 		);
-		database.expenseDao().insert(
+		database.walletDao().insert(
 			new Wallet(3, "Любовница", true, 500000)
 		);
 

@@ -3,7 +3,7 @@ package homework.smd.ru.financetracker.database;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-import homework.smd.ru.financetracker.database.dao.ExpenseDao;
+import homework.smd.ru.financetracker.database.dao.WalletDao;
 import homework.smd.ru.financetracker.database.dao.OperationDao;
 import homework.smd.ru.financetracker.database.dao.PeriodDao;
 import homework.smd.ru.financetracker.models.Period;
@@ -17,6 +17,6 @@ import homework.smd.ru.financetracker.models.Operation;
 }, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 	public abstract OperationDao operationDao();
-	public abstract ExpenseDao expenseDao();
+	public abstract WalletDao walletDao();
 	public abstract PeriodDao periodDao();
 }

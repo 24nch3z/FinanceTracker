@@ -5,17 +5,20 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.R;
+import homework.smd.ru.financetracker.dialogs.WalletCreatorDialog;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractorStub;
@@ -24,6 +27,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 
 	private final static int SPAN_COUNT = 2;
 	private final static String WALLET = "WALLET";
+	private final static String DIALOG_TAG = "WALLET_DIALOG";
 
 	private Wallet wallet;
 	private Unbinder unbinder;
@@ -33,6 +37,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 
 	@BindView(R.id.recycler_view) RecyclerView recycler;
 	@BindView(R.id.title) TextView title;
+	@BindView(R.id.change_wallet) Button buttonChangeWallet;
 
 	public static WalletView getInstance(Object data) {
 		WalletView fragment = new WalletView();
@@ -74,7 +79,15 @@ public class WalletView extends Fragment implements WalletContract.View {
 	private void initViews() {
 		recycler.setLayoutManager(new StaggeredGridLayoutManager(
 			SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL));
+
 		title.setText(wallet.getTitle());
+
+		buttonChangeWallet.setOnClickListener(view -> {
+			// TODO: Возможно тут тоже нужен childFM
+			FragmentManager manager = getFragmentManager();
+			WalletCreatorDialog dialog = WalletCreatorDialog.newInstance(wallet);
+			dialog.show(manager, DIALOG_TAG);
+		});
 	}
 
 	@Override

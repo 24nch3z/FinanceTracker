@@ -41,7 +41,7 @@ public class OperationRepositoryDataBase implements OperationRepository {
 				for (Operation o : operations) {
 					sum += o.sum;
 				}
-				db.expenseDao().updateBalance(expenseId, sum);
+				db.walletDao().updateBalance(expenseId, sum);
 			});
 
 		// При добавлении новой периодичной операции, нужно создавать ещё запись в таблицу

@@ -21,12 +21,12 @@ public class ExpenseRepositoryDataBase implements ExpenseRepository {
 	@NonNull
 	@Override
 	public Flowable<List<Wallet>> getExpens() {
-		return db.expenseDao()
+		return db.walletDao()
 			.getExpenses();
 	}
 
 	@Override
 	public void updateExpense(Wallet wallet) {
-		db.expenseDao().update(wallet);
+		db.walletDao().update(wallet);
 	}
 }

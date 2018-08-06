@@ -26,14 +26,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/changeWallet"
+            android:id="@+id/change_wallet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/wallet_change"/>
 
         <Button
-            android:id="@+id/createOperation"
+            android:id="@+id/create_operation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
