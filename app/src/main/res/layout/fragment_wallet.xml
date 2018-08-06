@@ -38,6 +38,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/wallet_create_operation"/>
+
+        <Button
+            android:id="@+id/remove_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/wallet_remove_wallet"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

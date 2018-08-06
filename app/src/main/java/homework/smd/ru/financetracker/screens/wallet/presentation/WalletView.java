@@ -17,16 +17,18 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.dialogs.WalletCreatorDialog;
 import homework.smd.ru.financetracker.models.Wallet;
+import homework.smd.ru.financetracker.screens.Screens;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractorStub;
 
 public class WalletView extends Fragment implements WalletContract.View {
 
 	private final static int SPAN_COUNT = 2;
-	private final static String WALLET = "WALLET";
+	private final static String ARG_WALLET = "ARG_WALLET";
 	private final static String DIALOG_TAG = "WALLET_DIALOG";
 
 	private Wallet wallet;
@@ -38,15 +40,15 @@ public class WalletView extends Fragment implements WalletContract.View {
 	@BindView(R.id.recycler_view) RecyclerView recycler;
 	@BindView(R.id.title) TextView title;
 	@BindView(R.id.change_wallet) Button buttonChangeWallet;
+	@BindView(R.id.create_operation) Button buttonCreateOperation;
+	@BindView(R.id.remove_wallet) Button buttonRemoveWallet;
 
 	public static WalletView getInstance(Object data) {
 		WalletView fragment = new WalletView();
 		Bundle bundle = new Bundle();
-
 		if (data != null) {
-			bundle.putSerializable(WALLET, (Wallet) data);
+			bundle.putSerializable(ARG_WALLET, (Wallet) data);
 		}
-
 		fragment.setArguments(bundle);
 		return fragment;
 	}
@@ -54,9 +56,11 @@ public class WalletView extends Fragment implements WalletContract.View {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		wallet = (Wallet) getArguments().getSerializable(WALLET);
+		wallet = (Wallet) getArguments().getSerializable(ARG_WALLET);
 	}
 
+	// TODO: Добавить прокрутку длинных имён для кошелька
+	// TODO: На главный экран укарасивать длину имени
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater,
@@ -87,6 +91,14 @@ public class WalletView extends Fragment implements WalletContract.View {
 			FragmentManager manager = getFragmentManager();
 			WalletCreatorDialog dialog = WalletCreatorDialog.newInstance(wallet);
 			dialog.show(manager, DIALOG_TAG);
+		});
+
+		buttonCreateOperation.setOnClickListener(view -> {
+			App.instance.getRouter().navigateTo(Screens.SCREEN_ADD_OPERATION, wallet);
+		});
+
+		buttonRemoveWallet.setOnClickListener(view -> {
+
 		});
 	}
 

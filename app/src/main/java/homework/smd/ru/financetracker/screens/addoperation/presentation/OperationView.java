@@ -34,8 +34,11 @@ import homework.smd.ru.financetracker.models.Wallet;
 
 public class OperationView extends Fragment implements OperationContract.View {
 
+	private final static String ARG_WALLET = "ARG_WALLET";
+
 	@Inject OperationContract.Presenter presenter;
 	private Unbinder unbinder;
+	private Wallet wallet;
 
 	@BindView(R.id.edit_sum) TextInputEditText editSum;
 	@BindView(R.id.category_spinner) Spinner spinnerCategory;
@@ -47,8 +50,20 @@ public class OperationView extends Fragment implements OperationContract.View {
 	@BindView(R.id.period_form) TextInputLayout formPeriod;
 	@BindView(R.id.edittext_period) TextInputEditText editTextPeriod;
 
-	public static OperationView newInstance() {
-		return new OperationView();
+	public static OperationView newInstance(Object data) {
+		OperationView fragment = new OperationView();
+		Bundle bundle = new Bundle();
+		if (data != null) {
+			bundle.putSerializable(ARG_WALLET, (Wallet) data);
+		}
+		fragment.setArguments(bundle);
+		return fragment;
+	}
+
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		wallet = (Wallet) getArguments().getSerializable(ARG_WALLET);
 	}
 
 	@Override
@@ -143,12 +158,13 @@ public class OperationView extends Fragment implements OperationContract.View {
 	public void back() {
 		Toast.makeText(getContext(), R.string.created_op, Toast.LENGTH_SHORT).show();
 
-		if (getActivity() != null) {
-			final BottomNavigationView navigation = getActivity().findViewById(R.id.navigation);
-			if (navigation != null) {
-				navigation.setSelectedItemId(navigation.getMenu().getItem(1).getItemId());
-			}
-		}
+		// TODO: ВЫХОДА НЕТ!!!
+//		if (getActivity() != null) {
+//			final BottomNavigationView navigation = getActivity().findViewById(R.id.navigation);
+//			if (navigation != null) {
+//				navigation.setSelectedItemId(navigation.getMenu().getItem(1).getItemId());
+//			}
+//		}
 	}
 
 	@Override

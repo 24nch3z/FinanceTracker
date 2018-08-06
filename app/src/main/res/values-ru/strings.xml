@@ -38,7 +38,8 @@
 
     <!-- Wallet -->
     <string name="wallet_change">Изменить кошелек</string>
-    <string name="wallet_create_operation">Добавить операциЮ</string>
+    <string name="wallet_create_operation">Добавить операцию</string>
+    <string name="wallet_remove_wallet">Удалить кошелек</string>
 
     <!-- Wallet dialog creator -->
     <string name="wallet_create_dialog_title_create">Создание кошелька</string>

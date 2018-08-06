@@ -115,8 +115,8 @@ public class ContainerActivity extends AppCompatActivity
 					return MainView.newInstance();
 				case Screens.SCREEN_DETAIL:
 					return DetailViewPager.newInstance(data);
-				case Screens.SCREEN_ADD_EXPENSE:
-					return OperationView.newInstance();
+				case Screens.SCREEN_ADD_OPERATION:
+					return OperationView.newInstance(data);
 				case Screens.SCREEN_SETTINGS:
 					return SettingsView.newSettingInstance();
 				case Screens.SCREEN_ABOUT:
@@ -157,7 +157,7 @@ public class ContainerActivity extends AppCompatActivity
 				break;
 
 			case R.id.temp_add:
-				App.instance.getRouter().newRootScreen(Screens.SCREEN_ADD_EXPENSE);
+				App.instance.getRouter().newRootScreen(Screens.SCREEN_ADD_OPERATION);
 				titleID = R.string.add_op;
 				break;
 

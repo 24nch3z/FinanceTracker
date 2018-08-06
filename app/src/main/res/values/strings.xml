@@ -43,6 +43,7 @@
     <!-- Wallet -->
     <string name="wallet_change">Change wallet</string>
     <string name="wallet_create_operation">Add operation</string>
+    <string name="wallet_remove_wallet">Remove wallet</string>
 
     <!-- Wallet dialog creator -->
     <string name="wallet_create_dialog_title_create">Create</string>

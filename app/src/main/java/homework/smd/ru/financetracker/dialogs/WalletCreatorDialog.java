@@ -60,7 +60,7 @@ public class WalletCreatorDialog extends DialogFragment {
 			@Override
 			public void afterTextChanged(Editable editable) {}
 		});
-		
+
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 		builder
