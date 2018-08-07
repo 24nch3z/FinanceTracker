@@ -62,6 +62,10 @@
     <string name="wallet_create_dialog_name_hint">Wallet name</string>
     <string name="wallet_create_dialog_name_error">You must enter the name of the wallet</string>
 
-    <string name="empty_field_error">You must fill in the field</string>
+    <!-- Шаблоны -->
+    <string name="template_list_add">Create template</string>
 
+    <string name="empty_field_error">You must fill in the field</string>
+    <string name="templates">Templates</string>
+    
 </resources>

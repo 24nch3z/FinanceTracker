@@ -9,6 +9,9 @@ import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailVi
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;
 import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
+import homework.smd.ru.financetracker.screens.template.presentation.creator.TemplateCreatorView;
+import homework.smd.ru.financetracker.screens.template.presentation.list.TemplateListView;
+import homework.smd.ru.financetracker.screens.wallet.presentation.WalletView;
 
 @Component(modules = {
 	AppModule.class,
@@ -30,4 +33,10 @@ public interface AppComponent {
 	void inject(DetailViewPager view);
 
 	void inject(InfoView view);
+
+	void inject(WalletView view);
+
+	void inject(TemplateListView view);
+
+	void inject(TemplateCreatorView view);
 }

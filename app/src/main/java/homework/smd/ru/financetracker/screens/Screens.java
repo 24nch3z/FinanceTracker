@@ -7,4 +7,6 @@ public class Screens {
 	public static final String SCREEN_SETTINGS = "SCREEN_SETTINGS";
 	public static final String SCREEN_ABOUT = "SCREEN_ABOUT";
 	public static final String SCREEN_WALLET = "SCREEN_WALLET";
+	public static final String SCREEN_TEMPLATES = "SCREEN_TEMPLATES";
+	public static final String SCREEN_TEMPLATE_CREATOR = "SCREEN_TEMPLATE_CREATOR";
 }

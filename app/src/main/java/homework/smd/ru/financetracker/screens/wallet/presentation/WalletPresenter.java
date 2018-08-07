@@ -20,13 +20,15 @@ public class WalletPresenter extends BasePresenter<WalletContract.View> {
 	private OperationRecyclerAdapter adapter;
 	private final CompositeDisposable cd = new CompositeDisposable();
 
-	public WalletPresenter(WalletInteractor interactor, Wallet wallet) {
+	public WalletPresenter(WalletInteractor interactor) {
 		this.interactor = interactor;
-		this.wallet = wallet;
-
 		operations = new ArrayList<>();
 		adapter = new OperationRecyclerAdapter();
 		adapter.updateDataset(operations);
+	}
+
+	public void setWallet(Wallet wallet) {
+		this.wallet = wallet;
 	}
 
 	@Override

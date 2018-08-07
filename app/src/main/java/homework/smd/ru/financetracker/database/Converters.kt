@@ -9,7 +9,7 @@ import java.util.*
 class Converters {
 
     companion object {
-        const val DATE_FORMAT = "dd/MM/yyyy"
+        const val DATE_FORMAT = "dd.MM.yyyy"
     }
 
     @TypeConverter

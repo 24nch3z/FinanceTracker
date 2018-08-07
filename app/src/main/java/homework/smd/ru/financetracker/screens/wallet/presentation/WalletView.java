@@ -1,7 +1,6 @@
 package homework.smd.ru.financetracker.screens.wallet.presentation;
 
 import android.app.Activity;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,7 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +26,6 @@ import homework.smd.ru.financetracker.dialogs.WalletCreatorDialog;
 import homework.smd.ru.financetracker.dialogs.WalletRemovingDialog;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.Screens;
-import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
-import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractorStub;
 import homework.smd.ru.financetracker.utils.MyToast;
 
 public class WalletView extends Fragment implements WalletContract.View {
@@ -43,8 +41,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 
 	private Wallet wallet;
 	private Unbinder unbinder;
-	private WalletPresenter presenter;
-	private WalletInteractor interactor;
+	@Inject WalletPresenter presenter;
 
 	@BindView(R.id.recycler_view) RecyclerView recycler;
 	@BindView(R.id.title) TextView textViewTitle;
@@ -71,11 +68,11 @@ public class WalletView extends Fragment implements WalletContract.View {
 
 		final View view = inflater.inflate(R.layout.fragment_wallet, container, false);
 		unbinder = ButterKnife.bind(this, view);
+		App.getComponent().inject(this);
 		wallet = (Wallet) getArguments().getSerializable(ARG_WALLET);
 
 		initViews();
-		interactor = new WalletInteractorStub();
-		presenter = new WalletPresenter(interactor, wallet);
+		presenter.setWallet(wallet);
 		presenter.attachView(this);
 
 		return view;

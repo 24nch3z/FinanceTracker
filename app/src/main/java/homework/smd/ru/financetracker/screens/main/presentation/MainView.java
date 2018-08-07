@@ -37,6 +37,7 @@ public class MainView extends Fragment implements MainContract.View {
 	@BindView(R.id.currencies_block) ViewGroup currencies;
 	@BindView(R.id.recycler_main_view) RecyclerView recycler;
 	@BindView(R.id.button_create_wallet) Button buttonCreateWallet;
+	@BindView(R.id.button_templates) Button buttonTemplates;
 
 	public MainView() { }
 
@@ -64,6 +65,10 @@ public class MainView extends Fragment implements MainContract.View {
 			FragmentManager manager = getFragmentManager();
 			WalletCreatorDialog dialog = WalletCreatorDialog.newInstance(null);
 			dialog.show(manager, "");
+		});
+
+		buttonTemplates.setOnClickListener(view -> {
+			App.instance.getRouter().navigateTo(Screens.SCREEN_TEMPLATES);
 		});
 	}
 

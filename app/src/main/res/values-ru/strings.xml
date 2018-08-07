@@ -21,7 +21,7 @@
     <string name="title_operations">Расходы</string>
     <string name="hint_operation_sum">Сумма</string>
     <string name="hint_operation_category">Введите новую категорию</string>
-    <string name="add_new_wallet">Создать новый кошелек</string>
+    <string name="add_new_wallet">Создать кошелек</string>
 
     <!--Add OperationEntity-->
     <string name="plus_sum">Доход</string>
@@ -58,7 +58,10 @@
     <string name="wallet_create_dialog_name_hint">Имя кошелька</string>
     <string name="wallet_create_dialog_name_error">Нужно ввести имя кошелька</string>
 
-    <string name="empty_field_error">Необходимо заполнить поле</string>
+    <!-- Шаблоны -->
+    <string name="template_list_add">Создать шаблон</string>
 
+    <string name="empty_field_error">Необходимо заполнить поле</string>
+    <string name="templates">Шаблоны</string>
 
 </resources>

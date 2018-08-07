@@ -69,11 +69,27 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button_create_wallet"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_new_wallet"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_templates"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/templates"/>
+
+        <Button
+            android:id="@+id/button_create_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/add_new_wallet"/>
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/main_progress"

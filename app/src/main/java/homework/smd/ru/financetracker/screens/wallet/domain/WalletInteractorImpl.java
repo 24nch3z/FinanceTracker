@@ -7,7 +7,7 @@ import homework.smd.ru.financetracker.datalayer.repositories.OperationRepository
 import homework.smd.ru.financetracker.models.Operation;
 import io.reactivex.Flowable;
 
-public class WalletInteractorStub implements WalletInteractor {
+public class WalletInteractorImpl implements WalletInteractor {
 
 	private final OperationRepository operationRepository = new OperationRepositoryDataBase();
 

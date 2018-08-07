@@ -25,6 +25,8 @@ import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailVi
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;
 import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
+import homework.smd.ru.financetracker.screens.template.presentation.creator.TemplateCreatorView;
+import homework.smd.ru.financetracker.screens.template.presentation.list.TemplateListView;
 import homework.smd.ru.financetracker.screens.wallet.presentation.WalletView;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
@@ -120,6 +122,10 @@ public class ContainerActivity extends AppCompatActivity {
 					return InfoView.newAboutInstance();
 				case Screens.SCREEN_WALLET:
 					return WalletView.getInstance(data);
+				case Screens.SCREEN_TEMPLATES:
+					return TemplateListView.newInstance();
+				case Screens.SCREEN_TEMPLATE_CREATOR:
+					return TemplateCreatorView.newInstance(data);
 			}
 			return MainView.newInstance();
 		}

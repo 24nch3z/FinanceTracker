@@ -10,11 +10,11 @@ import homework.smd.ru.financetracker.datalayer.ExpenseRepository;
 import homework.smd.ru.financetracker.models.Wallet;
 import io.reactivex.Flowable;
 
-public class ExpenseRepositoryDataBase implements ExpenseRepository {
+public class ExpenseRepositoryDatabase implements ExpenseRepository {
 
 	private AppDatabase db;
 
-	public ExpenseRepositoryDataBase() {
+	public ExpenseRepositoryDatabase() {
 		db = App.instance.getDatabase();
 	}
 
