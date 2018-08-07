@@ -1,9 +1,9 @@
 package homework.smd.ru.financetracker;
 
-import android.app.Application;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.crashlytics.android.Crashlytics;
@@ -21,7 +21,7 @@ import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
 
-public class App extends Application {
+public class App extends MultiDexApplication {
 
 	public static App instance;
 

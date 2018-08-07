@@ -1,6 +1,7 @@
 package homework.smd.ru.financetracker.models;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 
@@ -8,9 +9,18 @@ import java.util.Date;
 
 import homework.smd.ru.financetracker.database.Converters;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
 // Таблица с данными переодических доходов
-@Entity(tableName = "period")
 @TypeConverters(Converters.class)
+@Entity(
+	tableName = "period",
+	foreignKeys = @ForeignKey(
+		entity = Operation.class,
+		parentColumns = "id",
+		childColumns = "operationId",
+		onDelete = CASCADE)
+)
 public class Period {
 
 	@PrimaryKey(autoGenerate = true)

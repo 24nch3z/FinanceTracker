@@ -28,16 +28,14 @@ public class WalletRemovingDialog extends DialogFragment {
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		return new AlertDialog.Builder(getActivity())
-			.setTitle(getString(R.string.wallet_removing_title))
-			.setMessage(getString(R.string.wallet_removing_message))
+			.setTitle(getResources().getString(R.string.wallet_removing_title))
+			.setMessage(getResources().getString(R.string.wallet_removing_message))
 			.setNeutralButton(android.R.string.cancel, null)
 			.setPositiveButton(android.R.string.ok, this::remove)
 			.create();
 	}
 
 	private void remove(DialogInterface dialogInterface, int i) {
-		// TODO: Нужно сносить все операции удалённого кошелька
-		// TODO: Проверить, можно ли это сделать одним запросом из БД
 		final Wallet wallet = (Wallet) getArguments().getSerializable(WALLET);
 		App.instance.getDatabase().walletDao().delete(wallet);
 		sendResult();
