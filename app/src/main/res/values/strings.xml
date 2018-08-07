@@ -11,7 +11,7 @@
     <string name="content_unavailable">Content is temporarily unavailable</string>
 
     <!--SettingFragment-->
-    <string name="settings_currency">Currency:</string>
+    <string name="settings_currency">Currency</string>
 
     <!--MainView-->
     <string name="dollar_sign" tools:ignore="MissingTranslation">$</string>
@@ -24,7 +24,7 @@
     <string name="title_main">Main</string>
     <string name="title_operations">Expenses</string>
     <string name="hint_operation_sum">Sum:</string>
-    <string name="hint_operation_category">Input new category:</string>
+    <string name="hint_operation_category">Input new category</string>
 
     <!--Add OperationEntity-->
     <string name="minus_sum">Spent</string>
@@ -39,6 +39,8 @@
     </string-array>
     <string name="created_op">Operation is added</string>
     <string name="add_op">Operation</string>
+    <string name="add_operation_category_label">Category</string>
+    <string name="operation_error_empty_sum">You must enter the sum</string>
 
     <!-- Wallet -->
     <string name="wallet_change">Change wallet</string>

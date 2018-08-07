@@ -27,7 +27,23 @@
                 android:singleLine="true"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/card_money_size"/>
+
+            <TextView
+                style="@style/errorText"
+                android:id="@+id/sum_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/operation_error_empty_sum"
+                android:visibility="gone"
+                tools:visibility="visible"/>
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            style="@style/spinnerLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_operation_category_label"/>
 
         <Spinner
             android:id="@+id/category_spinner"
@@ -56,15 +72,6 @@
                 android:textSize="@dimen/card_money_size"
                 />
         </android.support.design.widget.TextInputLayout>
-
-        <Spinner
-            android:id="@+id/expense_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fragment_margin"
-            android:outlineAmbientShadowColor="@color/extra_blue"
-            android:outlineSpotShadowColor="@color/accent">
-        </Spinner>
 
         <CheckBox
             android:id="@+id/period_checkbox"

@@ -3,7 +3,6 @@ package homework.smd.ru.financetracker.screens.addoperation.presentation;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -17,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -27,10 +27,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.models.Wallet;
+import homework.smd.ru.financetracker.screens.Screens;
 
 public class OperationView extends Fragment implements OperationContract.View {
 
@@ -42,13 +44,13 @@ public class OperationView extends Fragment implements OperationContract.View {
 
 	@BindView(R.id.edit_sum) TextInputEditText editSum;
 	@BindView(R.id.category_spinner) Spinner spinnerCategory;
-	@BindView(R.id.expense_spinner) Spinner spinnerExpense;
 	@BindView(R.id.edit_category) TextInputEditText editCategory;
 	@BindView(R.id.category_input) TextInputLayout inputCategory;
 	@BindView(R.id.radio_group_type) RadioGroup radioGroupType;
 	@BindView(R.id.period_checkbox) CheckBox checkBoxPeriod;
 	@BindView(R.id.period_form) TextInputLayout formPeriod;
 	@BindView(R.id.edittext_period) TextInputEditText editTextPeriod;
+	@BindView(R.id.sum_error) TextView textViewSumError;
 
 	public static OperationView newInstance(Object data) {
 		OperationView fragment = new OperationView();
@@ -61,12 +63,6 @@ public class OperationView extends Fragment implements OperationContract.View {
 	}
 
 	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		wallet = (Wallet) getArguments().getSerializable(ARG_WALLET);
-	}
-
-	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater,
 	                         ViewGroup container,
 	                         Bundle savedInstanceState) {
@@ -74,8 +70,10 @@ public class OperationView extends Fragment implements OperationContract.View {
 		final View view = inflater.inflate(R.layout.add_operation, container, false);
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
+		wallet = (Wallet) getArguments().getSerializable(ARG_WALLET);
 
-		presenter.attachView(this);
+		presenter.setWallet(wallet);
+		presenter.attachView(this, getContext());
 		showHidePeriodForm(checkBoxPeriod.isChecked());
 		return view;
 	}
@@ -142,29 +140,9 @@ public class OperationView extends Fragment implements OperationContract.View {
 	}
 
 	@Override
-	public void setExpense(List<Wallet> expens) {
-		if (getContext() == null) return;
-		final ExpenseAdapter arrayAdapter = new ExpenseAdapter(
-			getContext(), android.R.layout.simple_list_item_1, expens);
-		spinnerExpense.setAdapter(arrayAdapter);
-	}
-
-	@Override
-	public Wallet getExpense() {
-		return (Wallet) spinnerExpense.getSelectedItem();
-	}
-
-	@Override
 	public void back() {
 		Toast.makeText(getContext(), R.string.created_op, Toast.LENGTH_SHORT).show();
-
-		// TODO: ВЫХОДА НЕТ!!!
-//		if (getActivity() != null) {
-//			final BottomNavigationView navigation = getActivity().findViewById(R.id.navigation);
-//			if (navigation != null) {
-//				navigation.setSelectedItemId(navigation.getMenu().getItem(1).getItemId());
-//			}
-//		}
+		App.instance.getRouter().backTo(Screens.SCREEN_WALLET);
 	}
 
 	@Override
@@ -184,6 +162,11 @@ public class OperationView extends Fragment implements OperationContract.View {
 		}
 	}
 
+	@Override
+	public void showHideSumError(boolean flag) {
+		textViewSumError.setVisibility(flag ? View.VISIBLE : View.GONE);
+	}
+
 	public void showHidePeriodForm(boolean isVisible) {
 		formPeriod.setVisibility(isVisible ? View.VISIBLE : View.GONE);
 	}
@@ -191,6 +174,11 @@ public class OperationView extends Fragment implements OperationContract.View {
 	@OnClick(R.id.buttonSave)
 	void onClickSave(View v) {
 		presenter.createOperation();
+	}
+
+	@OnTextChanged(R.id.edit_sum)
+	void onTextChangedSum(CharSequence s, int start, int before, int count) {
+		showHideSumError(false);
 	}
 
 	@OnCheckedChanged(R.id.period_checkbox)

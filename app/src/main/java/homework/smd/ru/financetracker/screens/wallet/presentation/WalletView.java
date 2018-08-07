@@ -63,14 +63,9 @@ public class WalletView extends Fragment implements WalletContract.View {
 		return fragment;
 	}
 
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		wallet = (Wallet) getArguments().getSerializable(ARG_WALLET);
-	}
-
 	// TODO: Добавить прокрутку длинных имён для кошелька
 	// TODO: На главный экран укарасивать длину имени
+	// TODO: Удалить старь
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater,
@@ -79,6 +74,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 
 		final View view = inflater.inflate(R.layout.fragment_wallet, container, false);
 		unbinder = ButterKnife.bind(this, view);
+		wallet = (Wallet) getArguments().getSerializable(ARG_WALLET);
 
 		initViews();
 		viewModel = ViewModelProviders.of(this).get(WalletViewModel.class);

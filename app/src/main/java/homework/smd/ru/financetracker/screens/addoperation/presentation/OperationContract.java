@@ -1,5 +1,6 @@
 package homework.smd.ru.financetracker.screens.addoperation.presentation;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.widget.AdapterView;
 
@@ -18,10 +19,6 @@ public interface OperationContract {
 
 		void setOnCategoriesClickListener(AdapterView.OnItemSelectedListener listener);
 
-		void setExpense(List<Wallet> expens);
-
-		Wallet getExpense();
-
 		float getSum();
 
 		@Nullable String getCategory();
@@ -33,13 +30,17 @@ public interface OperationContract {
 		boolean getIsPeriod();
 
 		int getPeriodDays();
+
+		void showHideSumError(boolean flag);
 	}
 
 	interface Presenter {
-		void attachView(View view);
+		void attachView(View view, Context context);
 
 		void detachView();
 
 		void createOperation();
+
+		void setWallet(Wallet wallet);
 	}
 }

@@ -12,19 +12,19 @@
     <string name="content_unavailable">Контент временно недоступен</string>
 
     <!--SettingFragment-->
-    <string name="settings_currency">Валюта:</string>
+    <string name="settings_currency">Валюта</string>
 
     <!--MainView-->
-    <string name="balance">Баланс:</string>
-    <string name="currency">Валюта:</string>
+    <string name="balance">Баланс</string>
+    <string name="currency">Валюта</string>
     <string name="title_main">Главная</string>
     <string name="title_operations">Расходы</string>
-    <string name="hint_operation_sum">Сумма:</string>
-    <string name="hint_operation_category">Введите новую категорию:</string>
+    <string name="hint_operation_sum">Сумма</string>
+    <string name="hint_operation_category">Введите новую категорию</string>
 
     <!--Add OperationEntity-->
-    <string name="plus_sum">Заработал</string>
-    <string name="minus_sum">Потратил</string>
+    <string name="plus_sum">Доход</string>
+    <string name="minus_sum">Расход</string>
     <string name="period_checkbox">Период</string>
     <string name="period_title">Количество дней</string>
     <string-array name="default_categories">
@@ -35,6 +35,8 @@
     </string-array>
     <string name="created_op">Операция добавлена</string>
     <string name="add_op">Операция</string>
+    <string name="add_operation_category_label">Категория</string>
+    <string name="operation_error_empty_sum">Вы должны заполнить сумму</string>
 
     <!-- Wallet -->
     <string name="wallet_change">Изменить кошелек</string>
