@@ -26,7 +26,7 @@
     <!--Add OperationEntity-->
     <string name="plus_sum">Доход</string>
     <string name="minus_sum">Расход</string>
-    <string name="period_checkbox">Период</string>
+    <string name="period_checkbox">Периодическое списание</string>
     <string name="period_title">Количество дней</string>
     <string-array name="default_categories">
         <item>Еда</item>
@@ -57,6 +57,8 @@
     <string name="wallet_create_dialog_title_change">Изменение кошелька</string>
     <string name="wallet_create_dialog_name_hint">Имя кошелька</string>
     <string name="wallet_create_dialog_name_error">Нужно ввести имя кошелька</string>
+
+    <string name="empty_field_error">Необходимо заполнить поле</string>
 
 
 </resources>

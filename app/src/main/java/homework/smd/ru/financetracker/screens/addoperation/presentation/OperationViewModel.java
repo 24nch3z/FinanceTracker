@@ -7,10 +7,10 @@ import java.util.Date;
 public class OperationViewModel extends ViewModel {
 
 	public double sum;
-	public String category;
-	public String currency;
-	public boolean isIncome = true;
+//	public String category;
+//	public String currency;
+//	public boolean isIncome = true;
 	public Date operationDate = new Date();
-	public boolean isAnotherCategory = false;
+//	public boolean isAnotherCategory = false;
 
 }

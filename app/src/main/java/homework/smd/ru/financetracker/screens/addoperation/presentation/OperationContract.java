@@ -34,5 +34,7 @@ public interface OperationContract {
 		void setSum(String s);
 
 		void setDate(String s);
+
+		void showHidePeriodError(boolean flag);
 	}
 }

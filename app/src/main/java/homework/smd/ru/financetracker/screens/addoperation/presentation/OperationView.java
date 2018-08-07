@@ -62,6 +62,7 @@ public class OperationView extends Fragment implements OperationContract.View {
 	@BindView(R.id.edittext_period) TextInputEditText editTextPeriod;
 	@BindView(R.id.sum_error) TextView textViewSumError;
 	@BindView(R.id.text_view_date) TextView textViewDate;
+	@BindView(R.id.period_error) TextView textViewPeriodError;
 
 	public static OperationView newInstance(Object data) {
 		OperationView fragment = new OperationView();
@@ -183,6 +184,11 @@ public class OperationView extends Fragment implements OperationContract.View {
 		textViewDate.setText(s);
 	}
 
+	@Override
+	public void showHidePeriodError(boolean flag) {
+		textViewPeriodError.setVisibility(flag ? View.VISIBLE : View.GONE);
+	}
+
 	public void showHidePeriodForm(boolean isVisible) {
 		formPeriod.setVisibility(isVisible ? View.VISIBLE : View.GONE);
 	}
@@ -198,9 +204,15 @@ public class OperationView extends Fragment implements OperationContract.View {
 		presenter.setSum(s.toString());
 	}
 
+	@OnTextChanged(R.id.edittext_period)
+	void onTextChangedPeriod(CharSequence s, int start, int before, int count) {
+		showHidePeriodError(false);
+	}
+
 	@OnCheckedChanged(R.id.period_checkbox)
 	void onCheckedChangedPeriod(CompoundButton compoundButton, boolean b) {
 		showHidePeriodForm(b);
+		showHidePeriodError(false);
 	}
 
 	private void initSpinner(List<String> list, int selection, Spinner spinner) {

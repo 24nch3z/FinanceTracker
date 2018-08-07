@@ -117,14 +117,19 @@ public class OperationPresenter extends BasePresenter<OperationContract.View> {
 	}
 
 	private boolean checkForSave() {
-		double sum = viewModel.sum;
+		boolean flagAllOk = true;
 
-		if (sum == 0) {
+		if (viewModel.sum == 0) {
 			view.showHideSumError(true);
-			return false;
+			flagAllOk = false;
 		}
 
-		return true;
+		if (view.getIsPeriod() && view.getPeriodDays() == 0) {
+			view.showHidePeriodError(true);
+			flagAllOk = false;
+		}
+
+		return flagAllOk;
 	}
 
 	private class OnCategoryClickListener implements AdapterView.OnItemSelectedListener {
