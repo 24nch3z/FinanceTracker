@@ -1,12 +1,9 @@
 package homework.smd.ru.financetracker.screens.addoperation.presentation;
 
-import android.content.Context;
 import android.support.annotation.Nullable;
 import android.widget.AdapterView;
 
 import java.util.List;
-
-import homework.smd.ru.financetracker.models.Wallet;
 
 public interface OperationContract {
 
@@ -15,13 +12,14 @@ public interface OperationContract {
 
 		void showCategory();
 
-		void setCategories(List<String> categories);
+		void setCategories(List<String> categories, int position);
+
+		void setCurrencies(List<String> categories, int position);
 
 		void setOnCategoriesClickListener(AdapterView.OnItemSelectedListener listener);
 
-		float getSum();
-
-		@Nullable String getCategory();
+		@Nullable
+		String getCategory();
 
 		int getCheckedRadioButtonId();
 
@@ -32,15 +30,9 @@ public interface OperationContract {
 		int getPeriodDays();
 
 		void showHideSumError(boolean flag);
-	}
 
-	interface Presenter {
-		void attachView(View view, Context context);
+		void setSum(String s);
 
-		void detachView();
-
-		void createOperation();
-
-		void setWallet(Wallet wallet);
+		void setDate(String s);
 	}
 }

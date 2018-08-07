@@ -1,11 +1,15 @@
 package homework.smd.ru.financetracker.screens.addoperation.presentation;
 
+import android.app.Activity;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,19 +36,24 @@ import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
+import homework.smd.ru.financetracker.dialogs.DatePickerDialog;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.Screens;
 
 public class OperationView extends Fragment implements OperationContract.View {
 
 	private final static String ARG_WALLET = "ARG_WALLET";
+	private static final String DIALOG_DATE = "DIALOG_DATE";
+	private static final int REQUEST_DATE = 0;
 
-	@Inject OperationContract.Presenter presenter;
+	@Inject OperationPresenter presenter;
+	private OperationViewModel viewModel;
 	private Unbinder unbinder;
 	private Wallet wallet;
 
 	@BindView(R.id.edit_sum) TextInputEditText editSum;
 	@BindView(R.id.category_spinner) Spinner spinnerCategory;
+	@BindView(R.id.currency_spinner) Spinner spinnerCurrency;
 	@BindView(R.id.edit_category) TextInputEditText editCategory;
 	@BindView(R.id.category_input) TextInputLayout inputCategory;
 	@BindView(R.id.radio_group_type) RadioGroup radioGroupType;
@@ -51,6 +61,7 @@ public class OperationView extends Fragment implements OperationContract.View {
 	@BindView(R.id.period_form) TextInputLayout formPeriod;
 	@BindView(R.id.edittext_period) TextInputEditText editTextPeriod;
 	@BindView(R.id.sum_error) TextView textViewSumError;
+	@BindView(R.id.text_view_date) TextView textViewDate;
 
 	public static OperationView newInstance(Object data) {
 		OperationView fragment = new OperationView();
@@ -67,13 +78,17 @@ public class OperationView extends Fragment implements OperationContract.View {
 	                         ViewGroup container,
 	                         Bundle savedInstanceState) {
 
-		final View view = inflater.inflate(R.layout.add_operation, container, false);
+		final View view = inflater.inflate(R.layout.fragment_add_operation, container, false);
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 		wallet = (Wallet) getArguments().getSerializable(ARG_WALLET);
 
+		viewModel = ViewModelProviders.of(this).get(OperationViewModel.class);
+
+		presenter.setViewModel(viewModel);
 		presenter.setWallet(wallet);
-		presenter.attachView(this, getContext());
+		presenter.attachView(this);
+		presenter.init(getContext());
 		showHidePeriodForm(checkBoxPeriod.isChecked());
 		return view;
 	}
@@ -96,22 +111,13 @@ public class OperationView extends Fragment implements OperationContract.View {
 	}
 
 	@Override
-	public void setCategories(List<String> categories) {
-		if (getContext() == null) return;
-		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
-			getContext(), android.R.layout.simple_list_item_1, categories);
-		spinnerCategory.setAdapter(arrayAdapter);
+	public void setCategories(List<String> categories, int positions) {
+		initSpinner(categories, positions, spinnerCategory);
 	}
 
 	@Override
-	public float getSum() {
-		final Editable editable = editSum.getText();
-		if (editable == null) return 0f;
-		try {
-			return Float.valueOf(editable.toString());
-		} catch (NumberFormatException e) {
-			return 0f;
-		}
+	public void setCurrencies(List<String> categories, int position) {
+		initSpinner(categories, position, spinnerCurrency);
 	}
 
 	@Override
@@ -167,6 +173,16 @@ public class OperationView extends Fragment implements OperationContract.View {
 		textViewSumError.setVisibility(flag ? View.VISIBLE : View.GONE);
 	}
 
+	@Override
+	public void setSum(String s) {
+		editSum.setText(s);
+	}
+
+	@Override
+	public void setDate(String s) {
+		textViewDate.setText(s);
+	}
+
 	public void showHidePeriodForm(boolean isVisible) {
 		formPeriod.setVisibility(isVisible ? View.VISIBLE : View.GONE);
 	}
@@ -179,10 +195,39 @@ public class OperationView extends Fragment implements OperationContract.View {
 	@OnTextChanged(R.id.edit_sum)
 	void onTextChangedSum(CharSequence s, int start, int before, int count) {
 		showHideSumError(false);
+		presenter.setSum(s.toString());
 	}
 
 	@OnCheckedChanged(R.id.period_checkbox)
 	void onCheckedChangedPeriod(CompoundButton compoundButton, boolean b) {
 		showHidePeriodForm(b);
+	}
+
+	private void initSpinner(List<String> list, int selection, Spinner spinner) {
+		ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+			android.R.layout.simple_spinner_item, list);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		spinner.setSelection(selection);
+	}
+
+	@OnClick(R.id.text_view_date)
+	void onClickDate(View v) {
+		FragmentManager manager = getFragmentManager();
+		DatePickerDialog dialog = DatePickerDialog.newInstance(viewModel.operationDate, R.string.dialog_select_date);
+		dialog.setTargetFragment(OperationView.this, REQUEST_DATE);
+		dialog.show(manager, DIALOG_DATE);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode != Activity.RESULT_OK) {
+			return;
+		}
+
+		if (requestCode == REQUEST_DATE) {
+			Date date = (Date) data.getSerializableExtra(DatePickerDialog.EXTRA_DATE);
+			presenter.setDate(date);
+		}
 	}
 }

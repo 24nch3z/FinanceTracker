@@ -1,25 +1,26 @@
 package homework.smd.ru.financetracker.screens.settings.presentation;
 
-import android.support.annotation.Nullable;
+import android.content.Context;
 
-public class SettingsPresenter implements SettingsContract.Presenter {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-	@Nullable private SettingsContract.View view;
+import homework.smd.ru.financetracker.BasePresenter;
+import homework.smd.ru.financetracker.models.Currency;
 
-	@Override
-	public void attachView(SettingsContract.View view) {
-		this.view = view;
-		view.changeCurrency(true);
+public class SettingsPresenter extends BasePresenter<SettingsContract.View> {
+
+	public void attachView(SettingsContract.View view, Context context) {
+		super.attachView(view);
+		initCurrencySpinner(context);
 	}
 
-	@Override
-	public void detachView() {
-		this.view = null;
-	}
-
-	@Override
-	public void onChangeCurrency(boolean isRub) {
-		if (view == null) return;
-		view.changeCurrency(isRub);
+	public void initCurrencySpinner(Context context) {
+		List<Currency> currencyList = Arrays.asList(Currency.values());
+		List<String> spinnerList = new ArrayList<>();
+		for (Currency currency : currencyList) spinnerList.add(currency.name());
+		int defaultPosition = 1;
+		view.initCurrencySpinner(spinnerList, defaultPosition);
 	}
 }

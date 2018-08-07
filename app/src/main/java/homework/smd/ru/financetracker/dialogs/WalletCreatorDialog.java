@@ -70,7 +70,7 @@ public class WalletCreatorDialog extends DialogFragment {
 			.setTitle(title)
 			.setView(dialogView)
 			.setNeutralButton(android.R.string.cancel, null)
-			.setPositiveButton(android.R.string.ok, null);
+			.setPositiveButton(android.R.string.yes, null);
 
 		AlertDialog dialog = builder.create();
 

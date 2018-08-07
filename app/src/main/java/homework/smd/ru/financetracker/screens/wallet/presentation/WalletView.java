@@ -43,7 +43,6 @@ public class WalletView extends Fragment implements WalletContract.View {
 
 	private Wallet wallet;
 	private Unbinder unbinder;
-	private WalletViewModel viewModel;
 	private WalletPresenter presenter;
 	private WalletInteractor interactor;
 
@@ -63,8 +62,6 @@ public class WalletView extends Fragment implements WalletContract.View {
 		return fragment;
 	}
 
-	// TODO: Добавить прокрутку длинных имён для кошелька
-	// TODO: На главный экран укарачивать длину имени
 	// TODO: Удалить старьё
 	@Nullable
 	@Override
@@ -77,10 +74,8 @@ public class WalletView extends Fragment implements WalletContract.View {
 		wallet = (Wallet) getArguments().getSerializable(ARG_WALLET);
 
 		initViews();
-		viewModel = ViewModelProviders.of(this).get(WalletViewModel.class);
 		interactor = new WalletInteractorStub();
 		presenter = new WalletPresenter(interactor, wallet);
-		presenter.setViewModel(viewModel);
 		presenter.attachView(this);
 
 		return view;
@@ -90,6 +85,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 		recycler.setLayoutManager(new StaggeredGridLayoutManager(
 			SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL));
 
+		textViewTitle.setSelected(true);
 		textViewTitle.setText(wallet.getTitle());
 
 		buttonChangeWallet.setOnClickListener(view -> {

@@ -5,6 +5,8 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 
+import java.util.Date;
+
 import homework.smd.ru.financetracker.database.Converters;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
@@ -31,10 +33,13 @@ public class Operation {
 
 	public Currency currency;
 
-	public Operation(double sum, Currency currency, String category, int expenseId) {
+	public Date operationDate;
+
+	public Operation(double sum, Currency currency, String category, int expenseId, Date operationDate) {
 		this.sum = sum;
 		this.category = category;
 		this.expenseId = expenseId;
 		this.currency = currency;
+		this.operationDate = operationDate;
 	}
 }

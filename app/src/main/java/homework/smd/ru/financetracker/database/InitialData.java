@@ -1,5 +1,7 @@
 package homework.smd.ru.financetracker.database;
 
+import java.util.Date;
+
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.Operation;
@@ -17,17 +19,18 @@ public class InitialData {
 			new Wallet(3, "Любовница", true, 500000)
 		);
 
+		Date date = new Date();
 		database.operationDao().insert(
-			new Operation(1000, Currency.USD, "Рыбка", 1)
+			new Operation(1000, Currency.USD, "Рыбка", 1, date)
 		);
 		database.operationDao().insert(
-			new Operation(6000, Currency.USD, "Рекит", 2)
+			new Operation(6000, Currency.USD, "Рэкет", 2, date)
 		);
 		database.operationDao().insert(
-			new Operation(-1000, Currency.USD, "Кино", 2)
+			new Operation(-1000, Currency.USD, "Кино", 2, date)
 		);
 		database.operationDao().insert(
-			new Operation(500000, Currency.USD, "Алмазы", 3)
+			new Operation(500000, Currency.USD, "Алмазы", 3, date)
 		);
 	}
 }

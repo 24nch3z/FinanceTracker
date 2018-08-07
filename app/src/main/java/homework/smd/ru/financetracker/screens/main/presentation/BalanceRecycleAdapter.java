@@ -67,7 +67,7 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 	@Override
 	public BalanceHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
 		final CardView cardView = (CardView) LayoutInflater.from(parent.getContext())
-			.inflate(R.layout.holder_balance, parent, false);
+			.inflate(R.layout.holder_wallet, parent, false);
 		final BalanceHolder holder = new BalanceHolder(cardView);
 
 		// TODO: передаю пока только айдишник

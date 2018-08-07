@@ -1,15 +1,17 @@
 package homework.smd.ru.financetracker.screens.addoperation.presentation;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import homework.smd.ru.financetracker.BasePresenter;
 import homework.smd.ru.financetracker.R;
+import homework.smd.ru.financetracker.database.Converters;
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.models.Period;
@@ -17,34 +19,62 @@ import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractor;
 import io.reactivex.disposables.CompositeDisposable;
 
-public class OperationPresenter implements OperationContract.Presenter {
+public class OperationPresenter extends BasePresenter<OperationContract.View> {
 
-	@Nullable private OperationContract.View view;
 	private Wallet wallet;
 	private final OperationInteractor interactor;
+	private OperationViewModel viewModel;
 	private CompositeDisposable cd = new CompositeDisposable();
 
 	public OperationPresenter(OperationInteractor interactor) {
 		this.interactor = interactor;
 	}
 
-	@Override
 	public void setWallet(Wallet wallet) {
 		this.wallet = wallet;
 	}
 
-	@Override
-	public void attachView(OperationContract.View view, Context context) {
-		this.view = view;
+	public void setViewModel(OperationViewModel viewModel) {
+		this.viewModel = viewModel;
+	}
+
+	public void init(Context context) {
+		view.setSum(viewModel.sum == 0 ? "" : String.valueOf(viewModel.sum));
+		view.setDate(new Converters().fromDateToString(viewModel.operationDate));
+
 		initCategory(context);
+		initCurrency();
+	}
+
+	public void setSum(String s) {
+		double sum = 0;
+		if (s.trim().length() != 0) {
+			try {
+				sum = Double.parseDouble(s);
+			} catch (NumberFormatException e) { }
+		}
+		viewModel.sum = sum;
+	}
+
+	public void setDate(Date date) {
+		viewModel.operationDate = date;
+		view.setDate(new Converters().fromDateToString(viewModel.operationDate));
 	}
 
 	private void initCategory(Context context) {
 		view.hideCategory();
 		final List<String> categories = Arrays.asList(
 			context.getResources().getStringArray(R.array.default_categories));
-		view.setCategories(categories);
+		view.setCategories(categories, 0);
 		view.setOnCategoriesClickListener(new OnCategoryClickListener());
+	}
+
+	private void initCurrency() {
+		List<Currency> currencyList = Arrays.asList(Currency.values());
+		List<String> spinnerList = new ArrayList<>();
+		for (Currency currency : currencyList) spinnerList.add(currency.name());
+		int defaultPosition = 1;
+		view.setCurrencies(spinnerList, defaultPosition);
 	}
 
 	@Override
@@ -53,13 +83,14 @@ public class OperationPresenter implements OperationContract.Presenter {
 		cd.clear();
 	}
 
-	@Override
 	public void createOperation() {
 		if (view == null) return;
 
 		if (checkForSave()) {
 			final String category = view.getCategory();
-			float sum = view.getSum();
+
+			double sum = viewModel.sum;
+
 			if (sum == 0 || category == null) return;
 
 			int checkedRadioButtonTypeId = view.getCheckedRadioButtonId();
@@ -78,14 +109,15 @@ public class OperationPresenter implements OperationContract.Presenter {
 			}
 
 			int walletId = wallet.getId();
-			final Operation operation = new Operation(sum, Currency.RUB, category, walletId);
+			final Operation operation = new Operation(sum, Currency.RUB, category,
+				walletId, viewModel.operationDate);
 			interactor.addOperation(operation, period);
 			view.back();
 		}
 	}
 
 	private boolean checkForSave() {
-		float sum = view.getSum();
+		double sum = viewModel.sum;
 
 		if (sum == 0) {
 			view.showHideSumError(true);
@@ -107,7 +139,6 @@ public class OperationPresenter implements OperationContract.Presenter {
 		}
 
 		@Override
-		public void onNothingSelected(AdapterView<?> adapterView) {
-		}
+		public void onNothingSelected(AdapterView<?> adapterView) {}
 	}
 }

@@ -13,9 +13,7 @@ import io.reactivex.disposables.Disposable;
 
 public class WalletPresenter extends BasePresenter<WalletContract.View> {
 
-	private WalletViewModel viewModel;
 	private WalletInteractor interactor;
-//	private int expenseId;
 	private Wallet wallet;
 
 	private List<Operation> operations;
@@ -29,10 +27,6 @@ public class WalletPresenter extends BasePresenter<WalletContract.View> {
 		operations = new ArrayList<>();
 		adapter = new OperationRecyclerAdapter();
 		adapter.updateDataset(operations);
-	}
-
-	public void setViewModel(WalletViewModel viewModel) {
-		this.viewModel = viewModel;
 	}
 
 	@Override

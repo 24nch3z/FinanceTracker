@@ -43,6 +43,37 @@
             style="@style/spinnerLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/operation_date_label"/>
+
+        <TextView
+            android:id="@+id/text_view_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_margin"
+            android:paddingLeft="10dp"
+            android:textColor="#000"
+            android:textSize="16sp"
+            tools:text="07.08.2018"/>
+
+        <TextView
+            style="@style/spinnerLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currency"/>
+
+        <Spinner
+            android:id="@+id/currency_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_margin"
+            android:outlineAmbientShadowColor="@color/extra_blue"
+            android:outlineSpotShadowColor="@color/accent">
+        </Spinner>
+
+        <TextView
+            style="@style/spinnerLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/add_operation_category_label"/>
 
         <Spinner

@@ -8,7 +8,7 @@
     <string name="opt_settings">Settings</string>
     <string name="opt_about">About</string>
 
-    <string name="content_unavailable">Content is temporarily unavailable</string>
+    <string name="content_unavailable">Content is temporarily unavailable</string>"
 
     <!--SettingFragment-->
     <string name="settings_currency">Currency</string>
@@ -42,6 +42,8 @@
     <string name="add_op">Operation</string>
     <string name="add_operation_category_label">Category</string>
     <string name="operation_error_empty_sum">You must enter the sum</string>
+    <string name="operation_date_label">Operation date</string>
+    <string name="dialog_select_date">Select the date</string>
 
     <!-- Wallet -->
     <string name="wallet_change">Change wallet</string>

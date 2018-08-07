@@ -38,6 +38,8 @@
     <string name="add_op">Операция</string>
     <string name="add_operation_category_label">Категория</string>
     <string name="operation_error_empty_sum">Вы должны заполнить сумму</string>
+    <string name="operation_date_label">Дата совершения операции</string>
+    <string name="dialog_select_date">Выберите дату</string>
 
     <!-- Wallet -->
     <string name="wallet_change">Изменить кошелек</string>

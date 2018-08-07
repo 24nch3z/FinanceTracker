@@ -31,7 +31,7 @@ public class WalletRemovingDialog extends DialogFragment {
 			.setTitle(getResources().getString(R.string.wallet_removing_title))
 			.setMessage(getResources().getString(R.string.wallet_removing_message))
 			.setNeutralButton(android.R.string.cancel, null)
-			.setPositiveButton(android.R.string.ok, this::remove)
+			.setPositiveButton(android.R.string.yes, this::remove)
 			.create();
 	}
 

@@ -30,7 +30,7 @@ class PresentersModule {
 	}
 
 	@Provides
-	OperationContract.Presenter provideOperationPresenter(Context context, OperationInteractor interactor) {
+	OperationPresenter provideOperationPresenter(OperationInteractor interactor) {
 		return new OperationPresenter(interactor);
 	}
 
