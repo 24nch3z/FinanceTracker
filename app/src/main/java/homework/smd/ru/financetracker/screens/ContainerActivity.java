@@ -29,12 +29,10 @@ import homework.smd.ru.financetracker.screens.wallet.presentation.WalletView;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
-public class ContainerActivity extends AppCompatActivity
-	implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class ContainerActivity extends AppCompatActivity {
 
 	@Inject public Configuration configuration;
 
-	@BindView(R.id.navigation) BottomNavigationView bottomNavigation;
 	@BindView(R.id.toolbar) Toolbar toolbar;
 
 	@Override
@@ -47,7 +45,6 @@ public class ContainerActivity extends AppCompatActivity
 		ButterKnife.bind(this);
 
 		setSupportActionBar(toolbar);
-		bottomNavigation.setOnNavigationItemSelectedListener(this);
 
 		if (savedInstanceState == null) {
 			App.instance.getRouter().newRootScreen(Screens.SCREEN_MAIN);
@@ -138,36 +135,6 @@ public class ContainerActivity extends AppCompatActivity
 			finish();
 		}
 	};
-
-	@Override
-	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-		if (bottomNavigation.getSelectedItemId() == item.getItemId()) return true;
-
-		final int titleID;
-
-		switch (item.getItemId()) {
-			case R.id.navigation_main:
-				App.instance.getRouter().newRootScreen(Screens.SCREEN_MAIN);
-				titleID = R.string.app_full_name;
-				break;
-
-			case R.id.navigation_detail:
-				App.instance.getRouter().newRootScreen(Screens.SCREEN_DETAIL);
-				titleID = R.string.nav_detail;
-				break;
-
-			case R.id.temp_add:
-				App.instance.getRouter().newRootScreen(Screens.SCREEN_ADD_OPERATION);
-				titleID = R.string.add_op;
-				break;
-
-			default:
-				return false;
-		}
-
-		setToolbarTitle(titleID);
-		return true;
-	}
 
 	private void setToolbarTitle(int titleId) {
 		toolbar.setTitle(titleId);

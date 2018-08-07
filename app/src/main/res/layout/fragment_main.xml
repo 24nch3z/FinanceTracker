@@ -34,16 +34,14 @@
                 android:layout_marginEnd="@dimen/fragment_margin"
                 android:text="@string/usd"
                 android:textColor="@color/divider"
-                android:textSize="@dimen/rate_text_size"
-                />
+                android:textSize="@dimen/rate_text_size"/>
 
             <TextView
                 android:id="@+id/usd_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/primary"
-                android:textSize="@dimen/rate_text_size"
-                />
+                android:textSize="@dimen/rate_text_size"/>
         </LinearLayout>
 
         <LinearLayout
@@ -60,16 +58,14 @@
                 android:layout_marginEnd="@dimen/fragment_margin"
                 android:text="@string/eur"
                 android:textColor="@color/divider"
-                android:textSize="@dimen/rate_text_size"
-                />
+                android:textSize="@dimen/rate_text_size"/>
 
             <TextView
                 android:id="@+id/eur_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/primary"
-                android:textSize="@dimen/rate_text_size"
-                />
+                android:textSize="@dimen/rate_text_size"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -84,12 +80,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:visibility="visible"
-        />
+        android:visibility="visible"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:scrollbars="vertical"/>
 </LinearLayout>

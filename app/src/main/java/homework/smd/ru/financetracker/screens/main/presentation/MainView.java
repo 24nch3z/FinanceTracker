@@ -24,7 +24,6 @@ import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configura
 import homework.smd.ru.financetracker.dialogs.WalletCreatorDialog;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.Screens;
-import homework.smd.ru.financetracker.screens.wallet.presentation.WalletView;
 
 public class MainView extends Fragment implements MainContract.View {
 

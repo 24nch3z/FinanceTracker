@@ -39,21 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
-
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/navigation"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bot_nav_bar_height"
-            android:background="@color/accent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/navigation"
-            app:itemBackground="@color/accent"
-            app:itemTextColor="@drawable/bottom_nav_bar_selector"
-            app:itemIconTint="@drawable/bottom_nav_bar_selector"
-            android:visibility="gone"/>
-
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
