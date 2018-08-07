@@ -1,6 +1,8 @@
 package homework.smd.ru.financetracker.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
@@ -18,6 +20,7 @@ import homework.smd.ru.financetracker.models.Wallet;
 
 public class WalletCreatorDialog extends DialogFragment {
 
+	public static final String NEW_WALLET_NAME = "NEW_WALLET_NAME";
 	private static final String WALLET = "WALLET";
 
 	public static WalletCreatorDialog newInstance(Wallet wallet) {
@@ -97,6 +100,20 @@ public class WalletCreatorDialog extends DialogFragment {
 			wallet.setTitle(name);
 			App.instance.getDatabase().walletDao()
 				.update(wallet);
+			sendResult(name);
 		}
+	}
+
+	private void sendResult(String name) {
+		if (getTargetFragment() == null) {
+			return;
+		}
+
+		Intent intent = new Intent();
+		intent.putExtra(NEW_WALLET_NAME, name);
+		int resultCode = Activity.RESULT_OK;
+
+		getTargetFragment()
+			.onActivityResult(getTargetRequestCode(), resultCode, intent);
 	}
 }

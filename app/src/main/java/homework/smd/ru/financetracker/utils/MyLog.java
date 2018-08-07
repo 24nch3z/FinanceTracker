@@ -1,4 +1,4 @@
-package homework.smd.ru.financetracker;
+package homework.smd.ru.financetracker.utils;
 
 public class MyLog {
 

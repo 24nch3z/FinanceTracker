@@ -40,6 +40,12 @@
     <string name="wallet_change">Изменить кошелек</string>
     <string name="wallet_create_operation">Добавить операцию</string>
     <string name="wallet_remove_wallet">Удалить кошелек</string>
+    <string name="wallet_remove_wallet_success_toast">Ваш кошелек был удален</string>
+    <string name="wallet_change_wallet_success_toast">Ваш кошелек был изменен</string>
+
+    <!-- Wallet dialog creator -->
+    <string name="wallet_removing_title">Удаление кошелька</string>
+    <string name="wallet_removing_message">Вы действительно хотите удалить этот кошелек?</string>
 
     <!-- Wallet dialog creator -->
     <string name="wallet_create_dialog_title_create">Создание кошелька</string>

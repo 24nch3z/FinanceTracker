@@ -44,6 +44,12 @@
     <string name="wallet_change">Change wallet</string>
     <string name="wallet_create_operation">Add operation</string>
     <string name="wallet_remove_wallet">Remove wallet</string>
+    <string name="wallet_remove_wallet_success_toast">Your wallet was removed</string>
+    <string name="wallet_change_wallet_success_toast">Your wallet was changed</string>
+
+    <!-- Wallet dialog creator -->
+    <string name="wallet_removing_title">Wallet removing</string>
+    <string name="wallet_removing_message">Are you sure you want to remove this wallet?</string>
 
     <!-- Wallet dialog creator -->
     <string name="wallet_create_dialog_title_create">Create</string>
