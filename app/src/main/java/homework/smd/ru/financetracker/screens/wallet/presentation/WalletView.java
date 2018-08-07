@@ -64,8 +64,8 @@ public class WalletView extends Fragment implements WalletContract.View {
 	}
 
 	// TODO: Добавить прокрутку длинных имён для кошелька
-	// TODO: На главный экран укарасивать длину имени
-	// TODO: Удалить старь
+	// TODO: На главный экран укарачивать длину имени
+	// TODO: Удалить старьё
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater,

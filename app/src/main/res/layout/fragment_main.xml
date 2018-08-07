@@ -73,12 +73,18 @@
         </LinearLayout>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button_create_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_wallet"/>
+
     <ProgressBar
         android:id="@+id/main_progress"
-        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
+        android:visibility="visible"
         />
 
     <android.support.v7.widget.RecyclerView

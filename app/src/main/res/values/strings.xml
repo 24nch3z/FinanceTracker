@@ -25,6 +25,7 @@
     <string name="title_operations">Expenses</string>
     <string name="hint_operation_sum">Sum:</string>
     <string name="hint_operation_category">Input new category</string>
+    <string name="add_new_wallet">Add new wallet</string>
 
     <!--Add OperationEntity-->
     <string name="minus_sum">Spent</string>

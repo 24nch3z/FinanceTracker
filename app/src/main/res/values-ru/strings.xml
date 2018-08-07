@@ -21,6 +21,7 @@
     <string name="title_operations">Расходы</string>
     <string name="hint_operation_sum">Сумма</string>
     <string name="hint_operation_category">Введите новую категорию</string>
+    <string name="add_new_wallet">Создать новый кошелек</string>
 
     <!--Add OperationEntity-->
     <string name="plus_sum">Доход</string>
