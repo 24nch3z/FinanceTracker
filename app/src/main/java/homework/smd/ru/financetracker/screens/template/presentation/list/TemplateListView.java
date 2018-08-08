@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,8 +41,8 @@ public class TemplateListView extends Fragment implements TemplateListContract.V
 		unbinder = ButterKnife.bind(this, view);
 		App.getComponent().inject(this);
 
-		presenter.attachView(this);
 		initViews();
+		presenter.attachView(this);
 
 		return view;
 	}
@@ -57,5 +58,14 @@ public class TemplateListView extends Fragment implements TemplateListContract.V
 		buttonCreateTemplate.setOnClickListener(view -> {
 			App.instance.getRouter().navigateTo(Screens.SCREEN_TEMPLATE_CREATOR);
 		});
+
+		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//		recyclerView.addItemDecoration(new TemplateListDecorator((int)
+//			getResources().getDimension(R.dimen.template_list_decorator_margin)));
+	}
+
+	@Override
+	public void setAdapter(TemplateListAdapter adapter) {
+		recyclerView.setAdapter(adapter);
 	}
 }

@@ -1,7 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/fragment_margin">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/template_creator_title_hint"
+                android:maxLength="5"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/card_money_size"/>
+
+            <TextView
+                android:id="@+id/title_error"
+                style="@style/errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/template_creator_name_error"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/fragment_margin">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_sum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_operation_sum"
+                android:inputType="numberDecimal"
+                android:maxLength="5"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/card_money_size"/>
+
+            <TextView
+                android:id="@+id/sum_error"
+                style="@style/errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/operation_error_empty_sum"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            style="@style/spinnerLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currency"/>
+
+        <Spinner
+            android:id="@+id/currency_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_margin"
+            android:outlineAmbientShadowColor="@color/extra_blue"
+            android:outlineSpotShadowColor="@color/accent">
+        </Spinner>
+
+        <TextView
+            style="@style/spinnerLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_operation_category_label"/>
+
+        <Spinner
+            android:id="@+id/category_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_margin"
+            android:outlineAmbientShadowColor="@color/extra_blue"
+            android:outlineSpotShadowColor="@color/accent">
+        </Spinner>
+
+        <TextView
+            style="@style/spinnerLabel"
+            android:layout_marginTop="@dimen/fragment_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Тип операции"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_button_become"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/plus_sum"/>
+
+            <RadioButton
+                android:id="@+id/radio_button_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="@string/minus_sum"/>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/buttonSave"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:text="Сохранить"/>
+
+    </LinearLayout>
+</ScrollView>

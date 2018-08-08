@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import homework.smd.ru.financetracker.BasePresenter;
-import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.Operation;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 public class WalletPresenter extends BasePresenter<WalletContract.View> {
@@ -18,7 +17,6 @@ public class WalletPresenter extends BasePresenter<WalletContract.View> {
 
 	private List<Operation> operations;
 	private OperationRecyclerAdapter adapter;
-	private final CompositeDisposable cd = new CompositeDisposable();
 
 	public WalletPresenter(WalletInteractor interactor) {
 		this.interactor = interactor;
@@ -41,17 +39,11 @@ public class WalletPresenter extends BasePresenter<WalletContract.View> {
 			.getOperations(wallet.getId())
 			.onBackpressureBuffer()
 			.observeOn(AndroidSchedulers.mainThread())
-			.subscribe((operations) -> {
+			.subscribe(operations -> {
 				this.operations.clear();
 				this.operations.addAll(operations);
 				adapter.updateDataset(this.operations);
 			});
 		cd.add(disposable);
-	}
-
-	@Override
-	public void detachView() {
-		super.detachView();
-		cd.clear();
 	}
 }

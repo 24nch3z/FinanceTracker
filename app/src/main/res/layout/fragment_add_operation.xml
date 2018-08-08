@@ -136,11 +136,17 @@
                 tools:visibility="visible"/>
         </android.support.design.widget.TextInputLayout>
 
+        <TextView
+            style="@style/spinnerLabel"
+            android:layout_marginTop="@dimen/fragment_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Тип операции"/>
+
         <RadioGroup
             android:id="@+id/radio_group_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fragment_margin"
             android:orientation="horizontal">
 
             <RadioButton

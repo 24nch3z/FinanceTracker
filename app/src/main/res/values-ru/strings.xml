@@ -60,6 +60,8 @@
 
     <!-- Шаблоны -->
     <string name="template_list_add">Создать шаблон</string>
+    <string name="template_creator_title_hint">Название</string>
+    <string name="template_creator_name_error">Вы должны заполнить название</string>
 
     <string name="empty_field_error">Необходимо заполнить поле</string>
     <string name="templates">Шаблоны</string>

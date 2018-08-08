@@ -39,6 +39,7 @@ import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.dialogs.DatePickerDialog;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.Screens;
+import homework.smd.ru.financetracker.utils.SpinnerHelper;
 
 public class OperationView extends Fragment implements OperationContract.View {
 
@@ -113,12 +114,12 @@ public class OperationView extends Fragment implements OperationContract.View {
 
 	@Override
 	public void setCategories(List<String> categories, int positions) {
-		initSpinner(categories, positions, spinnerCategory);
+		SpinnerHelper.initSimpleSpinner(categories, positions, spinnerCategory, getContext());
 	}
 
 	@Override
 	public void setCurrencies(List<String> categories, int position) {
-		initSpinner(categories, position, spinnerCurrency);
+		SpinnerHelper.initSimpleSpinner(categories, position, spinnerCurrency, getContext());
 	}
 
 	@Override
@@ -213,14 +214,6 @@ public class OperationView extends Fragment implements OperationContract.View {
 	void onCheckedChangedPeriod(CompoundButton compoundButton, boolean b) {
 		showHidePeriodForm(b);
 		showHidePeriodError(false);
-	}
-
-	private void initSpinner(List<String> list, int selection, Spinner spinner) {
-		ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
-			android.R.layout.simple_spinner_item, list);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		spinner.setSelection(selection);
 	}
 
 	@OnClick(R.id.text_view_date)

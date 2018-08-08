@@ -18,4 +18,6 @@
     <dimen name="bot_nav_bar_height">60dp</dimen>
 
     <dimen name="wallet_title_size">24sp</dimen>
+
+    <dimen name="template_list_decorator_margin">16dp</dimen>
 </resources>
