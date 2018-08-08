@@ -44,6 +44,7 @@
     <string name="operation_error_empty_sum">You must enter the sum</string>
     <string name="operation_date_label">Operation date</string>
     <string name="dialog_select_date">Select the date</string>
+    <string name="select_template">Select template</string>
 
     <!-- Wallet -->
     <string name="wallet_change">Change wallet</string>
@@ -69,5 +70,6 @@
 
     <string name="empty_field_error">You must fill in the field</string>
     <string name="templates">Templates</string>
+    <string name="save">Save</string>
     
 </resources>

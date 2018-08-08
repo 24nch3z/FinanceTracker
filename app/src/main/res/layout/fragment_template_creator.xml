@@ -78,8 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/fragment_margin"
             android:outlineAmbientShadowColor="@color/extra_blue"
-            android:outlineSpotShadowColor="@color/accent">
-        </Spinner>
+            android:outlineSpotShadowColor="@color/accent"/>
 
         <TextView
             style="@style/spinnerLabel"
@@ -93,8 +92,37 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/fragment_margin"
             android:outlineAmbientShadowColor="@color/extra_blue"
-            android:outlineSpotShadowColor="@color/accent">
-        </Spinner>
+            android:outlineSpotShadowColor="@color/accent"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/category_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_operation_category"
+                android:inputType="textAutoCorrect|textCapSentences"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/card_money_size"/>
+
+            <TextView
+                android:id="@+id/category_error"
+                style="@style/errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/empty_field_error"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </android.support.design.widget.TextInputLayout>
+
 
         <TextView
             style="@style/spinnerLabel"
@@ -110,7 +138,7 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radio_button_become"
+                android:id="@+id/radio_button_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

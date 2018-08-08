@@ -60,8 +60,6 @@ public class TemplateListView extends Fragment implements TemplateListContract.V
 		});
 
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//		recyclerView.addItemDecoration(new TemplateListDecorator((int)
-//			getResources().getDimension(R.dimen.template_list_decorator_margin)));
 	}
 
 	@Override

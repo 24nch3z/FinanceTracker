@@ -7,5 +7,11 @@ public class TemplateCreatorViewModel extends ViewModel {
 	double sum = 0;
 	boolean isIncome = true;
 	String title = "";
+	int currencyPosition = 1;
+
+	int categoryPosition = 0;
+	boolean isOtherCategory = false;
+	String otherCategory = "";
+
 
 }

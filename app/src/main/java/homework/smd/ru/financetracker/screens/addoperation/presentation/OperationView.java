@@ -224,6 +224,11 @@ public class OperationView extends Fragment implements OperationContract.View {
 		dialog.show(manager, DIALOG_DATE);
 	}
 
+	@OnClick(R.id.button_select_template)
+	void onClickSelectTemplate(View v) {
+
+	}
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != Activity.RESULT_OK) {

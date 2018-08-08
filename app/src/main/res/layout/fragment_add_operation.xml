@@ -2,15 +2,15 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="@dimen/fragment_margin"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:padding="@dimen/fragment_margin">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -23,15 +23,15 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_operation_sum"
                 android:inputType="numberDecimal"
+                android:maxLength="5"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/card_money_size"
-                android:maxLength="5"/>
+                android:textSize="@dimen/card_money_size"/>
 
             <TextView
-                style="@style/errorText"
                 android:id="@+id/sum_error"
+                style="@style/errorText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -120,9 +120,9 @@
                 android:id="@+id/edittext_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="3"
                 android:hint="@string/period_title"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:maxLength="3"/>
 
             <TextView
                 android:id="@+id/period_error"
@@ -138,9 +138,9 @@
 
         <TextView
             style="@style/spinnerLabel"
-            android:layout_marginTop="@dimen/fragment_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_margin"
             android:text="Тип операции"/>
 
         <RadioGroup
@@ -168,12 +168,20 @@
         </RadioGroup>
 
         <Button
+            android:id="@+id/button_select_template"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:text="@string/select_template"/>
+
+        <Button
             android:id="@+id/buttonSave"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
-            android:text="Сохранить"/>
+            android:text="@string/save"/>
 
     </LinearLayout>
 </ScrollView>
