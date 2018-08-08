@@ -29,11 +29,13 @@ public class Operation {
 
 	public String category;
 
-	public int expenseId;
+	public int expenseId; // TODO: to wallet
 
 	public Currency currency;
 
 	public Date operationDate;
+
+	public Operation() {};
 
 	public Operation(double sum, Currency currency, String category, int expenseId, Date operationDate) {
 		this.sum = sum;

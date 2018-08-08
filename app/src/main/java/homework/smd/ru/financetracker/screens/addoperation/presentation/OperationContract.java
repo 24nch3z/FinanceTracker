@@ -1,40 +1,22 @@
 package homework.smd.ru.financetracker.screens.addoperation.presentation;
 
-import android.support.annotation.Nullable;
-import android.widget.AdapterView;
-
 import java.util.List;
 
 public interface OperationContract {
 
 	interface View {
-		void hideCategory();
-
-		void showCategory();
-
-		void setCategories(List<String> categories, int position);
-
-		void setCurrencies(List<String> categories, int position);
-
-		void setOnCategoriesClickListener(AdapterView.OnItemSelectedListener listener);
-
-		@Nullable
-		String getCategory();
-
-		int getCheckedRadioButtonId();
-
-		void back();
-
-		boolean getIsPeriod();
-
-		int getPeriodDays();
-
-		void showHideSumError(boolean flag);
-
 		void setSum(String s);
-
+		void setCategories(List<String> list, int selection);
+		void setCategoryInput(String s);
+		void setCurrencies(List<String> list, int selection);
+		void showHideSumError(boolean flag);
+		void showHideOtherCategoryError(boolean flag);
+		void showHideOtherCategory(boolean flag);
 		void setDate(String s);
-
+		void setType(boolean isIncome);
+		void back();
 		void showHidePeriodError(boolean flag);
+		void showHidePeriodForm(boolean isVisible);
+		void setPeriodDays(String s);
 	}
 }

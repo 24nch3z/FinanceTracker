@@ -70,10 +70,11 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 			template.currency = currencies.get(viewModel.currencyPosition);
 			template.sum = viewModel.sum;
 			template.title = viewModel.title;
+			template.isIncome = viewModel.isIncome;
 
-			if (!viewModel.isIncome) {
-				template.sum *= -1;
-			}
+//			if (!viewModel.isIncome) {
+//				template.sum *= -1;
+//			}
 
 			// TODO: Пока тут только метод insert
 			interactor.insert(template);
@@ -122,7 +123,7 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 		int categoriesLength = categories.size();
 
 		viewModel.categoryPosition = position;
-		if (position +1 == categoriesLength) {
+		if (position + 1 == categoriesLength) {
 			view.showHideOtherCategory(true);
 			viewModel.isOtherCategory = true;
 		} else {

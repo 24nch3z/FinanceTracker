@@ -3,7 +3,7 @@ package homework.smd.ru.financetracker.injections;
 import dagger.Module;
 import dagger.Provides;
 import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractor;
-import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractorStub;
+import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractorImpl;
 import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractor;
 import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractorStub;
 import homework.smd.ru.financetracker.screens.main.domain.MainInteractor;
@@ -18,7 +18,7 @@ public class StubsModule {
 
 	@Provides
 	OperationInteractor provideOperationInteractor() {
-		return new OperationInteractorStub();
+		return new OperationInteractorImpl();
 	}
 
 	@Provides

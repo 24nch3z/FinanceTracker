@@ -23,12 +23,17 @@ public class OperationTemplate implements Serializable {
 	
 	public String title;
 
+	public boolean isIncome;
+
 	public OperationTemplate() { }
 
-	public OperationTemplate(double sum, Currency currency, String category, String title) {
+	public OperationTemplate(double sum, Currency currency,
+	                         String category, String title, boolean isIncome) {
+
 		this.sum = sum;
 		this.category = category;
 		this.currency = currency;
 		this.title = title;
+		this.isIncome = isIncome;
 	}
 }

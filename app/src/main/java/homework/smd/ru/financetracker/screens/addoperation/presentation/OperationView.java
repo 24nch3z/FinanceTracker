@@ -5,19 +5,17 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,11 +30,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
 import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.dialogs.DatePickerDialog;
+import homework.smd.ru.financetracker.dialogs.TemplatePickerDialog;
+import homework.smd.ru.financetracker.models.OperationTemplate;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.Screens;
 import homework.smd.ru.financetracker.utils.SpinnerHelper;
@@ -44,8 +45,12 @@ import homework.smd.ru.financetracker.utils.SpinnerHelper;
 public class OperationView extends Fragment implements OperationContract.View {
 
 	private final static String ARG_WALLET = "ARG_WALLET";
+
 	private static final String DIALOG_DATE = "DIALOG_DATE";
-	private static final int REQUEST_DATE = 0;
+	private static final String DIALOG_TEMPLATE = "DIALOG_TEMPLATE";
+
+	private static final int REQUEST_DATE = 1;
+	private static final int REQUEST_TEMPLATE = 2;
 
 	@Inject OperationPresenter presenter;
 	private OperationViewModel viewModel;
@@ -64,6 +69,8 @@ public class OperationView extends Fragment implements OperationContract.View {
 	@BindView(R.id.sum_error) TextView textViewSumError;
 	@BindView(R.id.text_view_date) TextView textViewDate;
 	@BindView(R.id.period_error) TextView textViewPeriodError;
+	@BindView(R.id.category_error) TextView textViewCategoryError;
+
 
 	public static OperationView newInstance(Object data) {
 		OperationView fragment = new OperationView();
@@ -90,8 +97,12 @@ public class OperationView extends Fragment implements OperationContract.View {
 		presenter.setViewModel(viewModel);
 		presenter.setWallet(wallet);
 		presenter.attachView(this);
-		presenter.init(getContext());
-		showHidePeriodForm(checkBoxPeriod.isChecked());
+		presenter.initViews(getContext());
+
+		radioGroupType.setOnCheckedChangeListener((RadioGroup radioGroup, int i) -> {
+			presenter.setType(i == R.id.radio_button_income);
+		});
+
 		return view;
 	}
 
@@ -100,16 +111,6 @@ public class OperationView extends Fragment implements OperationContract.View {
 		unbinder.unbind();
 		presenter.detachView();
 		super.onDestroyView();
-	}
-
-	@Override
-	public void hideCategory() {
-		inputCategory.setVisibility(View.GONE);
-	}
-
-	@Override
-	public void showCategory() {
-		inputCategory.setVisibility(View.VISIBLE);
 	}
 
 	@Override
@@ -123,51 +124,9 @@ public class OperationView extends Fragment implements OperationContract.View {
 	}
 
 	@Override
-	@Nullable
-	public String getCategory() {
-		final Object category = spinnerCategory.getSelectedItem();
-		final int size = spinnerCategory.getCount();
-
-		if (category.equals(spinnerCategory.getItemAtPosition(size - 1))) {
-			final Editable editable = editCategory.getEditableText();
-			if (editable == null) return null;
-			return editable.toString();
-		} else {
-			return (String) category;
-		}
-	}
-
-	@Override
-	public int getCheckedRadioButtonId() {
-		return radioGroupType.getCheckedRadioButtonId();
-	}
-
-	@Override
-	public void setOnCategoriesClickListener(AdapterView.OnItemSelectedListener listener) {
-		spinnerCategory.setOnItemSelectedListener(listener);
-	}
-
-	@Override
 	public void back() {
 		Toast.makeText(getContext(), R.string.created_op, Toast.LENGTH_SHORT).show();
 		App.instance.getRouter().backTo(Screens.SCREEN_WALLET);
-	}
-
-	@Override
-	public boolean getIsPeriod() {
-		return checkBoxPeriod.isChecked();
-	}
-
-	@Override
-	public int getPeriodDays() {
-		String str = editTextPeriod.getText().toString();
-
-		try {
-			int days = Integer.parseInt(str);
-			return days;
-		} catch (NumberFormatException e) {
-			return 0;
-		}
 	}
 
 	@Override
@@ -190,8 +149,14 @@ public class OperationView extends Fragment implements OperationContract.View {
 		textViewPeriodError.setVisibility(flag ? View.VISIBLE : View.GONE);
 	}
 
+	@Override
 	public void showHidePeriodForm(boolean isVisible) {
 		formPeriod.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+	}
+
+	@Override
+	public void setPeriodDays(String s) {
+		editTextPeriod.setText(s);
 	}
 
 	@OnClick(R.id.buttonSave)
@@ -201,19 +166,17 @@ public class OperationView extends Fragment implements OperationContract.View {
 
 	@OnTextChanged(R.id.edit_sum)
 	void onTextChangedSum(CharSequence s, int start, int before, int count) {
-		showHideSumError(false);
 		presenter.setSum(s.toString());
 	}
 
 	@OnTextChanged(R.id.edittext_period)
 	void onTextChangedPeriod(CharSequence s, int start, int before, int count) {
-		showHidePeriodError(false);
+		presenter.setPeriodDays(s.toString());
 	}
 
 	@OnCheckedChanged(R.id.period_checkbox)
-	void onCheckedChangedPeriod(CompoundButton compoundButton, boolean b) {
-		showHidePeriodForm(b);
-		showHidePeriodError(false);
+	void onCheckedChangedPeriod(CompoundButton compoundButton, boolean flag) {
+		presenter.setPeriodFlag(flag);
 	}
 
 	@OnClick(R.id.text_view_date)
@@ -226,7 +189,46 @@ public class OperationView extends Fragment implements OperationContract.View {
 
 	@OnClick(R.id.button_select_template)
 	void onClickSelectTemplate(View v) {
+		FragmentManager manager = getFragmentManager();
+		TemplatePickerDialog dialog = new TemplatePickerDialog();
+		dialog.setTargetFragment(OperationView.this, REQUEST_TEMPLATE);
+		dialog.show(manager, DIALOG_TEMPLATE);
+	}
 
+	@Override
+	public void setCategoryInput(String s) {
+		editCategory.setText(s);
+	}
+
+	@Override
+	public void setType(boolean isIncome) {
+		int radio = isIncome ? R.id.radio_button_income : R.id.radio_button_cost;
+		((RadioButton) radioGroupType.findViewById(radio)).setChecked(true);
+	}
+
+	@Override
+	public void showHideOtherCategoryError(boolean flag) {
+		textViewCategoryError.setVisibility(flag ? View.VISIBLE : View.GONE);
+	}
+
+	@Override
+	public void showHideOtherCategory(boolean flag) {
+		inputCategory.setVisibility(flag ? View.VISIBLE : View.GONE);
+	}
+
+	@OnItemSelected(R.id.category_spinner)
+	void onItemSelectedCategory(AdapterView<?> adapterView, View view, int i, long l) {
+		presenter.setCategoryPosition(i);
+	}
+
+	@OnTextChanged(R.id.edit_category)
+	void onTextChangedOtherCategory(CharSequence s, int start, int before, int count) {
+		presenter.setOtherCategory(s.toString());
+	}
+
+	@OnItemSelected(R.id.currency_spinner)
+	void onItemSelectedCurrency(AdapterView<?> adapterView, View view, int i, long l) {
+		presenter.setCurrencyPosition(i);
 	}
 
 	@Override
@@ -235,9 +237,16 @@ public class OperationView extends Fragment implements OperationContract.View {
 			return;
 		}
 
-		if (requestCode == REQUEST_DATE) {
-			Date date = (Date) data.getSerializableExtra(DatePickerDialog.EXTRA_DATE);
-			presenter.setDate(date);
+		switch (requestCode) {
+			case REQUEST_DATE:
+				Date date = (Date) data.getSerializableExtra(DatePickerDialog.EXTRA_DATE);
+				presenter.setDate(date);
+				break;
+			case REQUEST_TEMPLATE:
+				OperationTemplate template = (OperationTemplate)
+					data.getSerializableExtra(TemplatePickerDialog.EXTRA_TEMPLATE);
+				presenter.setTemplate(template, getContext());
+				break;
 		}
 	}
 }

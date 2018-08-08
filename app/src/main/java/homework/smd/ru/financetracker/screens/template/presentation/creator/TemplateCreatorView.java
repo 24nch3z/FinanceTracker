@@ -113,8 +113,8 @@ public class TemplateCreatorView extends Fragment implements TemplateCreatorCont
 
 	@Override
 	public void setType(boolean isIncome) {
-		((RadioButton) radioGroupType
-			.findViewById(R.id.radio_button_income)).setChecked(isIncome);
+		int radio = isIncome ? R.id.radio_button_income : R.id.radio_button_cost;
+		((RadioButton) radioGroupType.findViewById(radio)).setChecked(true);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import homework.smd.ru.financetracker.models.OperationTemplate;
 import homework.smd.ru.financetracker.models.Period;
 import io.reactivex.Flowable;
 
-public class OperationInteractorStub implements OperationInteractor {
+public class OperationInteractorImpl implements OperationInteractor {
 
 	private final OperationRepository operationRepository =
 		new OperationRepositoryDataBase();
@@ -24,7 +24,7 @@ public class OperationInteractorStub implements OperationInteractor {
 
 	@Override
 	public void addOperation(@NonNull Operation operation, @Nullable Period period) {
-		operationRepository.addOperation(operation, period);
+		operationRepository.addOperation(operation, period); // TODO: Разбить
 	}
 
 	@Override

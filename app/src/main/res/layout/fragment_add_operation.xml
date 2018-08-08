@@ -101,8 +101,17 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/card_money_size"
-                />
+                android:textSize="@dimen/card_money_size"/>
+
+            <TextView
+                android:id="@+id/category_error"
+                style="@style/errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/empty_field_error"
+                android:visibility="gone"
+                tools:visibility="visible"/>
         </android.support.design.widget.TextInputLayout>
 
         <CheckBox
@@ -150,7 +159,7 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radio_button_become"
+                android:id="@+id/radio_button_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
