@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import homework.smd.ru.financetracker.App;
+import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.models.OperationTemplate;
 
 public class TemplatePickerDialog extends DialogFragment {
@@ -49,7 +50,7 @@ public class TemplatePickerDialog extends DialogFragment {
 			});
 
 		return new AlertDialog.Builder(getActivity())
-			.setTitle("Выберите шаблон") // TODO: Вынести в res
+			.setTitle(getString(R.string.template_picker_dialog_title))
 			.setNeutralButton(android.R.string.cancel, null)
 			.setAdapter(adapter, this::sendResult)
 			.create();

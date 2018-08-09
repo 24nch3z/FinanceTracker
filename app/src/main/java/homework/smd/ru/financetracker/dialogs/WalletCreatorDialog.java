@@ -91,7 +91,6 @@ public class WalletCreatorDialog extends DialogFragment {
 	}
 
 	private void createOrUpdateWallet(Wallet wallet, String name) {
-		// TODO: Пока грязно прям буду кидать в базу новый кошель
 		if (wallet == null) {
 			wallet = new Wallet(0, name, true, 0);
 			App.instance.getDatabase().walletDao()

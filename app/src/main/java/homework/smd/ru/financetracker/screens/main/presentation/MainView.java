@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,7 +55,13 @@ public class MainView extends Fragment implements MainContract.View {
 		unbinder = ButterKnife.bind(this, view);
 		initView();
 		presenter.attachView(this);
+		setToolbarText();
 		return view;
+	}
+
+	private void setToolbarText() {
+		((AppCompatActivity) getActivity()).getSupportActionBar()
+			.setTitle(getString(R.string.toolbar_main));
 	}
 
 	private void initView() {

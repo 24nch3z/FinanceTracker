@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -60,7 +61,6 @@ public class WalletView extends Fragment implements WalletContract.View {
 		return fragment;
 	}
 
-	// TODO: Удалить старьё
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater,
@@ -75,8 +75,14 @@ public class WalletView extends Fragment implements WalletContract.View {
 		initViews();
 		presenter.setWallet(wallet);
 		presenter.attachView(this);
+		setToolbarText();
 
 		return view;
+	}
+
+	private void setToolbarText() {
+		((AppCompatActivity) getActivity()).getSupportActionBar()
+			.setTitle(getString(R.string.toolbar_wallet));
 	}
 
 	private void initViews() {

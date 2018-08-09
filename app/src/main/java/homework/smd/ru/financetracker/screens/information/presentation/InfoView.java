@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
-//import android.support.v4.text.HtmlCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -39,7 +39,13 @@ public class InfoView extends Fragment implements InfoContract.View {
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
 		presenter.attachView(this);
+		setToolbarText();
 		return view;
+	}
+
+	private void setToolbarText() {
+		((AppCompatActivity) getActivity()).getSupportActionBar()
+			.setTitle(getString(R.string.toolbar_about));
 	}
 
 	@Override
@@ -51,8 +57,7 @@ public class InfoView extends Fragment implements InfoContract.View {
 
 	@Override
 	public void setHtmlContent(String content) {
-		// TODO: Вернуть
-//		contentView.setText(HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_COMPACT));
+		// TODO: Заменить
 	}
 
 	@Override

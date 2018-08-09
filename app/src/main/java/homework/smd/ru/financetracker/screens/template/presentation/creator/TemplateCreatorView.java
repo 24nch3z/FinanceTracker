@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,8 +89,14 @@ public class TemplateCreatorView extends Fragment implements TemplateCreatorCont
 		viewModel = ViewModelProviders.of(this).get(TemplateCreatorViewModel.class);
 		presenter.setModel(viewModel, template);
 		presenter.attachView(this, getContext());
+		setToolbarText();
 
 		return view;
+	}
+
+	private void setToolbarText() {
+		((AppCompatActivity) getActivity()).getSupportActionBar()
+			.setTitle(getString(R.string.toolbar_template_creator));
 	}
 
 	@Override

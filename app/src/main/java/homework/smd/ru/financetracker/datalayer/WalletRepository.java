@@ -7,7 +7,6 @@ import java.util.List;
 import homework.smd.ru.financetracker.models.Wallet;
 import io.reactivex.Flowable;
 
-// TODO: Тут тоже сменить на wallet
 public interface WalletRepository {
 
 	@NonNull

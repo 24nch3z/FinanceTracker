@@ -9,6 +9,14 @@
     <string name="opt_settings">Настройки</string>
     <string name="opt_about">О приложении</string>
 
+    <string name="toolbar_main">Главная</string>
+    <string name="toolbar_settings">Настройки</string>
+    <string name="toolbar_about">О приложении</string>
+    <string name="toolbar_templates">Шаблоны</string>
+    <string name="toolbar_template_creator">Шаблон</string>
+    <string name="toolbar_wallet">Счет</string>
+    <string name="toolbar_operation">Операция</string>
+
     <string name="content_unavailable">Контент временно недоступен</string>
 
     <!--SettingFragment-->
@@ -68,5 +76,6 @@
     <string name="templates">Шаблоны</string>
     <string name="save">Сохранить</string>
     <string name="remove">Удалить</string>
+    <string name="template_picker_dialog_title">Выберите шаблон</string>
 
 </resources>

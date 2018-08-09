@@ -106,7 +106,6 @@ public class ContainerActivity extends AppCompatActivity {
 			default:
 				return super.onOptionsItemSelected(item);
 		}
-		setToolbarTitle(titleID);
 
 		return true;
 	}
@@ -145,8 +144,4 @@ public class ContainerActivity extends AppCompatActivity {
 			finish();
 		}
 	};
-
-	private void setToolbarTitle(int titleId) {
-		toolbar.setTitle(titleId);
-	}
 }

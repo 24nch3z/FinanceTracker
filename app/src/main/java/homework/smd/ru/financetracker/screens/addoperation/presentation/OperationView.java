@@ -9,6 +9,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,8 +103,14 @@ public class OperationView extends Fragment implements OperationContract.View {
 		radioGroupType.setOnCheckedChangeListener((RadioGroup radioGroup, int i) -> {
 			presenter.setType(i == R.id.radio_button_income);
 		});
+		setToolbarText();
 
 		return view;
+	}
+
+	private void setToolbarText() {
+		((AppCompatActivity) getActivity()).getSupportActionBar()
+			.setTitle(getString(R.string.toolbar_operation));
 	}
 
 	@Override
