@@ -33,14 +33,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/fragment_margin"
                 android:text="@string/usd"
-                android:textColor="@color/divider"
+                android:textColor="@color/primary"
                 android:textSize="@dimen/rate_text_size"/>
 
             <TextView
                 android:id="@+id/usd_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/primary"
                 android:textSize="@dimen/rate_text_size"/>
         </LinearLayout>
 
@@ -57,14 +56,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/fragment_margin"
                 android:text="@string/eur"
-                android:textColor="@color/divider"
+                android:textColor="@color/primary"
                 android:textSize="@dimen/rate_text_size"/>
 
             <TextView
                 android:id="@+id/eur_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/primary"
                 android:textSize="@dimen/rate_text_size"/>
         </LinearLayout>
     </LinearLayout>
@@ -75,6 +73,7 @@
         android:orientation="horizontal">
 
         <Button
+            style="@style/button"
             android:id="@+id/button_templates"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -83,6 +82,7 @@
             android:text="@string/templates"/>
 
         <Button
+            style="@style/button"
             android:id="@+id/button_create_wallet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

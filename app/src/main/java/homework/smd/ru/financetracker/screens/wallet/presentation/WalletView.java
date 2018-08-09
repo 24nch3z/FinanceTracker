@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import javax.inject.Inject;
@@ -45,9 +46,9 @@ public class WalletView extends Fragment implements WalletContract.View {
 
 	@BindView(R.id.recycler_view) RecyclerView recycler;
 	@BindView(R.id.title) TextView textViewTitle;
-	@BindView(R.id.change_wallet) Button buttonChangeWallet;
-	@BindView(R.id.create_operation) Button buttonCreateOperation;
-	@BindView(R.id.remove_wallet) Button buttonRemoveWallet;
+	@BindView(R.id.change_wallet) ImageView buttonChangeWallet;
+	@BindView(R.id.create_operation) ImageView buttonCreateOperation;
+	@BindView(R.id.remove_wallet) ImageView buttonRemoveWallet;
 
 	public static WalletView getInstance(Object data) {
 		WalletView fragment = new WalletView();

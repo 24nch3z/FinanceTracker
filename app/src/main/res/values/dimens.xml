@@ -20,4 +20,6 @@
     <dimen name="wallet_title_size">24sp</dimen>
 
     <dimen name="template_list_decorator_margin">16dp</dimen>
+
+    <dimen name="wallet_button_size">32dp</dimen>
 </resources>

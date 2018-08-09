@@ -22,8 +22,7 @@
             android:background="@color/accent"
             app:titleTextColor="@color/primary_light"
             app:subtitleTextColor="@color/primary_light"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            />
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     </android.support.design.widget.AppBarLayout>
 

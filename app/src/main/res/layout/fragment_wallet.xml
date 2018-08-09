@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,43 +9,50 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/small_margin"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:singleLine="true"
-        android:textSize="@dimen/wallet_title_size"
-        tools:text="Карта сбербанка"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/small_margin"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/change_wallet"
+        <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/wallet_change"/>
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:textSize="@dimen/wallet_title_size"
+            tools:text="Карта сбербанка"/>
 
-        <Button
-            android:id="@+id/create_operation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/wallet_create_operation"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/remove_wallet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/wallet_remove_wallet"/>
+            <ImageView
+                android:id="@+id/remove_wallet"
+                android:layout_width="@dimen/wallet_button_size"
+                android:layout_height="@dimen/wallet_button_size"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/remove"/>
+
+            <ImageView
+                android:id="@+id/change_wallet"
+                android:layout_width="@dimen/wallet_button_size"
+                android:layout_height="@dimen/wallet_button_size"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:srcCompat="@drawable/edit"/>
+
+            <ImageView
+                android:id="@+id/create_operation"
+                android:layout_width="@dimen/wallet_button_size"
+                android:layout_height="@dimen/wallet_button_size"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/add"/>
+        </LinearLayout>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

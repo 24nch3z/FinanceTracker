@@ -51,6 +51,9 @@ public class OperationPresenter extends BasePresenter<OperationContract.View> {
 			String.valueOf(viewModel.periodDays) : "");
 		view.setType(viewModel.isIncome);
 		view.showHideOtherCategory(viewModel.isOtherCategory);
+		if (viewModel.isOtherCategory) {
+			view.setCategoryInput(viewModel.otherCategory);
+		}
 	}
 
 	public void setSum(String s) {
