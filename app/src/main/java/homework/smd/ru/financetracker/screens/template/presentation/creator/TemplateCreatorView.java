@@ -11,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,8 +52,8 @@ public class TemplateCreatorView extends Fragment implements TemplateCreatorCont
 	@BindView(R.id.category_input) TextInputLayout otherCategoryForm;
 	@BindView(R.id.edit_category) TextInputEditText editTextOtherCategory;
 	@BindView(R.id.category_error) TextView textViewCategoryError;
-
 	@BindView(R.id.radio_group_type) RadioGroup radioGroupType;
+	@BindView(R.id.button_remove) Button buttonRemove;
 
 	public static TemplateCreatorView newInstance(Object template) {
 		TemplateCreatorView fragment = new TemplateCreatorView();
@@ -68,17 +70,23 @@ public class TemplateCreatorView extends Fragment implements TemplateCreatorCont
 	public View onCreateView(@NonNull LayoutInflater inflater,
 	                         @Nullable ViewGroup container,
 	                         @Nullable Bundle savedInstanceState) {
+
 		final View view = inflater
 			.inflate(R.layout.fragment_template_creator, container, false);
 		unbinder = ButterKnife.bind(this, view);
 		App.getComponent().inject(this);
+
+		OperationTemplate template = null;
+		if (savedInstanceState == null && getArguments().containsKey(ARG_TEMPLATE)) {
+			template = (OperationTemplate) getArguments().getSerializable(ARG_TEMPLATE);
+		}
 
 		radioGroupType.setOnCheckedChangeListener((RadioGroup radioGroup, int i) -> {
 			presenter.setType(i == R.id.radio_button_income);
 		});
 
 		viewModel = ViewModelProviders.of(this).get(TemplateCreatorViewModel.class);
-		presenter.setViewModel(viewModel);
+		presenter.setModel(viewModel, template);
 		presenter.attachView(this, getContext());
 
 		return view;
@@ -143,25 +151,33 @@ public class TemplateCreatorView extends Fragment implements TemplateCreatorCont
 	}
 
 	@Override
-	public void back() {
-		MyToast.get(getContext()).show("Шаблон успешно создан"); // TODO: res
+	public void showHideRemoveButton(boolean flag) {
+		buttonRemove.setVisibility(flag ? View.VISIBLE : View.GONE);
+	}
+
+	@Override
+	public void back(String message) { // TODO: to res
+		MyToast.get(getContext()).show(message);
 		App.instance.getRouter().backTo(Screens.SCREEN_TEMPLATES);
 	}
 
-	@OnClick(R.id.buttonSave)
+	@OnClick(R.id.button_save)
 	void onClickSave(View v) {
 		presenter.save();
 	}
 
+	@OnClick(R.id.button_remove)
+	void onClickRemove(View v) {
+		presenter.remove();
+	}
+
 	@OnTextChanged(R.id.edit_title)
 	void onTextChangedTitle(CharSequence s, int start, int before, int count) {
-		showHideTitleError(false);
 		presenter.setTitle(s.toString());
 	}
 
 	@OnTextChanged(R.id.edit_sum)
 	void onTextChangedSum(CharSequence s, int start, int before, int count) {
-		showHideSumError(false);
 		presenter.setSum(s.toString());
 	}
 
@@ -173,12 +189,10 @@ public class TemplateCreatorView extends Fragment implements TemplateCreatorCont
 	@OnItemSelected(R.id.category_spinner)
 	void onItemSelectedCategory(AdapterView<?> adapterView, View view, int i, long l) {
 		presenter.setCategoryPosition(i);
-		showHideOtherCategoryError(false);
 	}
 
 	@OnTextChanged(R.id.edit_category)
 	void onTextChangedOtherCategory(CharSequence s, int start, int before, int count) {
-		showHideOtherCategoryError(false);
 		presenter.setOtherCategory(s.toString());
 	}
 }

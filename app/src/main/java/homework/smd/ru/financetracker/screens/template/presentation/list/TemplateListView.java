@@ -18,9 +18,11 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
+import homework.smd.ru.financetracker.models.OperationTemplate;
 import homework.smd.ru.financetracker.screens.Screens;
 
-public class TemplateListView extends Fragment implements TemplateListContract.View {
+public class TemplateListView extends Fragment implements
+	TemplateListContract.View, CallbackUpdateTemplate {
 
 	private Unbinder unbinder;
 	@Inject TemplateListPresenter presenter;
@@ -42,7 +44,7 @@ public class TemplateListView extends Fragment implements TemplateListContract.V
 		App.getComponent().inject(this);
 
 		initViews();
-		presenter.attachView(this);
+		presenter.attachView(this, this);
 
 		return view;
 	}
@@ -55,15 +57,19 @@ public class TemplateListView extends Fragment implements TemplateListContract.V
 	}
 
 	private void initViews() {
+		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 		buttonCreateTemplate.setOnClickListener(view -> {
 			App.instance.getRouter().navigateTo(Screens.SCREEN_TEMPLATE_CREATOR);
 		});
-
-		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 	}
 
 	@Override
 	public void setAdapter(TemplateListAdapter adapter) {
 		recyclerView.setAdapter(adapter);
+	}
+
+	@Override
+	public void updateTemplate(OperationTemplate template) {
+		App.instance.getRouter().navigateTo(Screens.SCREEN_TEMPLATE_CREATOR, template);
 	}
 }

@@ -19,12 +19,11 @@ public class TemplateListPresenter extends BasePresenter<TemplateListContract.Vi
 	public TemplateListPresenter(TemplateInteractor interactor) {
 		this.interactor = interactor;
 		templates = new ArrayList<>();
-		adapter = new TemplateListAdapter(templates);
 	}
 
-	@Override
-	public void attachView(TemplateListContract.View view) {
+	public void attachView(TemplateListContract.View view, CallbackUpdateTemplate callback) {
 		super.attachView(view);
+		adapter = new TemplateListAdapter(templates, callback);
 		view.setAdapter(adapter);
 
 		final Disposable disposable = interactor

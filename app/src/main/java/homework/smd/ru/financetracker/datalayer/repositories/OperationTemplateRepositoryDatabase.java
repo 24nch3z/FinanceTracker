@@ -31,4 +31,9 @@ public class OperationTemplateRepositoryDatabase implements OperationTemplateRep
 	public void update(OperationTemplate template) {
 		db.operationTemplateDao().update(template);
 	}
+
+	@Override
+	public void remove(OperationTemplate template) {
+		db.operationTemplateDao().delete(template);
+	}
 }

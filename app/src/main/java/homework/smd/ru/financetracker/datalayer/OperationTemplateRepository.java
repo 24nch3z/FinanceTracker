@@ -12,4 +12,6 @@ public interface OperationTemplateRepository {
 	long insert(OperationTemplate template);
 
 	void update(OperationTemplate template);
+
+	void remove(OperationTemplate template);
 }

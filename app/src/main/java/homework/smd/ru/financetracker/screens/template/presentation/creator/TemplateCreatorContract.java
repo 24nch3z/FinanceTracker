@@ -15,6 +15,7 @@ public interface TemplateCreatorContract {
 		void showHideTitleError(boolean flag);
 		void showHideOtherCategoryError(boolean flag);
 		void showHideOtherCategory(boolean flag);
-		void back();
+		void showHideRemoveButton(boolean flag);
+		void back(String message);
 	}
 }

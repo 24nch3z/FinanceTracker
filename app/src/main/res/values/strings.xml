@@ -71,5 +71,6 @@
     <string name="empty_field_error">You must fill in the field</string>
     <string name="templates">Templates</string>
     <string name="save">Save</string>
+    <string name="remove">Remove</string>
     
 </resources>

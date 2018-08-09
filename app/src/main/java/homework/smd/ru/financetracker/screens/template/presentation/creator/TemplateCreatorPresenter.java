@@ -11,6 +11,7 @@ import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.OperationTemplate;
 import homework.smd.ru.financetracker.screens.template.domain.TemplateInteractor;
+import homework.smd.ru.financetracker.utils.MyLog;
 
 public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContract.View> {
 
@@ -23,8 +24,17 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 		this.interactor = interactor;
 	}
 
-	public void setViewModel(TemplateCreatorViewModel viewModel) {
+	public void setModel(TemplateCreatorViewModel viewModel, OperationTemplate template) {
 		this.viewModel = viewModel;
+		if (template != null && this.viewModel.isNew) {
+			MyLog.l("CHECK");
+			this.viewModel.isNew = false;
+			this.viewModel.id = template.id;
+			this.viewModel.sum = template.sum;
+			this.viewModel.title = template.title;
+			this.viewModel.isIncome = template.isIncome;
+			// TODO: Доделать остальные значения
+		}
 	}
 
 	public void attachView(TemplateCreatorContract.View view, Context context) {
@@ -36,10 +46,11 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 		initCategory(context);
 		initCurrencies();
 		view.setTitle(viewModel.title);
-		view.setSum(viewModel.sum != 0.0 ? String.valueOf(viewModel.sum) : "");
+		view.setSum(viewModel.sum != 0 ? String.valueOf(viewModel.sum) : "");
 		view.setCategoryInput(viewModel.otherCategory);
 		view.showHideOtherCategory(viewModel.isOtherCategory);
 		view.setType(viewModel.isIncome);
+		view.showHideRemoveButton(!viewModel.isNew);
 	}
 
 	private void initCategory(Context context) {
@@ -72,14 +83,25 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 			template.title = viewModel.title;
 			template.isIncome = viewModel.isIncome;
 
-//			if (!viewModel.isIncome) {
-//				template.sum *= -1;
-//			}
+			String message = "";
+			if (viewModel.isNew) {
+				interactor.insert(template);
+				message = "Шаблон успешно создан";
+			} else {
+				template.id = viewModel.id;
+				interactor.update(template);
+				message = "Шаблон обновлен";
+			}
 
-			// TODO: Пока тут только метод insert
-			interactor.insert(template);
-			view.back();
+			view.back(message);
 		}
+	}
+
+	public void remove() {
+		OperationTemplate template = new OperationTemplate();
+		template.id = viewModel.id;
+		interactor.remove(template);
+		view.back("Шаблон удален");
 	}
 
 	private boolean validate() {
@@ -109,10 +131,12 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 			sum = Double.parseDouble(s);
 		} catch (NumberFormatException e) { }
 		viewModel.sum = sum;
+		view.showHideSumError(false);
 	}
 
 	public void setTitle(String s) {
 		viewModel.title = s;
+		view.showHideTitleError(false);
 	}
 
 	public void setCurrencyPosition(int position) {
@@ -120,6 +144,7 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 	}
 
 	public void setCategoryPosition(int position) {
+		view.showHideOtherCategoryError(false);
 		int categoriesLength = categories.size();
 
 		viewModel.categoryPosition = position;
@@ -136,6 +161,7 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 
 	public void setOtherCategory(String s) {
 		viewModel.otherCategory = s;
+		view.showHideOtherCategoryError(false);
 	}
 
 	public void setType(boolean isIncome) {

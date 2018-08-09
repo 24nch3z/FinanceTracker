@@ -67,5 +67,6 @@
     <string name="empty_field_error">Необходимо заполнить поле</string>
     <string name="templates">Шаблоны</string>
     <string name="save">Сохранить</string>
+    <string name="remove">Удалить</string>
 
 </resources>

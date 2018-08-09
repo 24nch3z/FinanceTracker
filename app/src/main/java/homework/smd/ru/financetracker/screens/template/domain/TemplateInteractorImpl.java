@@ -28,4 +28,9 @@ public class TemplateInteractorImpl implements TemplateInteractor {
 	public void update(OperationTemplate template) {
 		operationTemplateRepository.update(template);
 	}
+
+	@Override
+	public void remove(OperationTemplate template) {
+		operationTemplateRepository.remove(template);
+	}
 }

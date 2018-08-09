@@ -14,15 +14,18 @@ import homework.smd.ru.financetracker.models.OperationTemplate;
 public class TemplateListAdapter extends RecyclerView.Adapter<TemplateListHolder> {
 
 	private List<OperationTemplate> items;
+	private CallbackUpdateTemplate callback;
 
-	public TemplateListAdapter(List<OperationTemplate> items) {
+	public TemplateListAdapter(List<OperationTemplate> items, CallbackUpdateTemplate callback) {
 		this.items = items;
+		this.callback = callback;
 	}
 
 	public void updateItems(List<OperationTemplate> items) {
 		this.items = items;
 	}
 
+	@NonNull
 	@Override
 	public TemplateListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -33,7 +36,7 @@ public class TemplateListAdapter extends RecyclerView.Adapter<TemplateListHolder
 	@Override
 	public void onBindViewHolder(@NonNull TemplateListHolder holder, int i) {
 		OperationTemplate template = items.get(i);
-		holder.bind(template);
+		holder.bind(template, callback);
 	}
 
 	@Override

@@ -4,11 +4,14 @@ import android.arch.lifecycle.ViewModel;
 
 public class TemplateCreatorViewModel extends ViewModel {
 
+	boolean isNew = true;
+	int id = -1;
+
 	double sum = 0;
-	boolean isIncome = true;
 	String title = "";
+	boolean isIncome = true;
 	int currencyPosition = 1;
 	int categoryPosition = 0;
-	boolean isOtherCategory = false;
 	String otherCategory = "";
+	boolean isOtherCategory = false;
 }
