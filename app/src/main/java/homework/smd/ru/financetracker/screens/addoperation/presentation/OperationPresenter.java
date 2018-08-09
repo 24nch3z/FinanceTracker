@@ -17,6 +17,7 @@ import homework.smd.ru.financetracker.models.OperationTemplate;
 import homework.smd.ru.financetracker.models.Period;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractor;
+import homework.smd.ru.financetracker.utils.Utils;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class OperationPresenter extends BasePresenter<OperationContract.View> {
@@ -43,7 +44,7 @@ public class OperationPresenter extends BasePresenter<OperationContract.View> {
 
 	public void initViews(Context context) {
 		view.setSum(viewModel.sum == 0 ? "" : String.valueOf(viewModel.sum));
-		view.setDate(new Converters().fromDateToString(viewModel.operationDate)); // TODO: Вынести
+		view.setDate(Utils.fromDateToString(viewModel.operationDate));
 		initCategories(context);
 		initCurrencies();
 		view.showHidePeriodForm(viewModel.isPeriod);
@@ -69,7 +70,7 @@ public class OperationPresenter extends BasePresenter<OperationContract.View> {
 
 	public void setDate(Date date) {
 		viewModel.operationDate = date;
-		view.setDate(new Converters().fromDateToString(viewModel.operationDate));
+		view.setDate(Utils.fromDateToString(viewModel.operationDate));
 	}
 
 	private void initCategories(Context context) {
