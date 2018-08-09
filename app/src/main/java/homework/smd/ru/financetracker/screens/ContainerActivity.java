@@ -27,6 +27,7 @@ import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView
 import homework.smd.ru.financetracker.screens.template.presentation.creator.TemplateCreatorView;
 import homework.smd.ru.financetracker.screens.template.presentation.list.TemplateListView;
 import homework.smd.ru.financetracker.screens.wallet.presentation.WalletView;
+import homework.smd.ru.financetracker.screens.walletReport.presentation.WalletReportView;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
@@ -86,19 +87,15 @@ public class ContainerActivity extends AppCompatActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		final int titleID;
-
 		// TODO: Теперь, когда я в настройках или в эбаут, не могу переключиться на навигэйшн
 		// TODO: с navigateTo проблема, если я несколько раз открою настройки или about, то все в стэке останутся
 		switch (item.getItemId()) {
 			case R.id.opt_settings:
 				App.instance.getRouter().navigateTo(Screens.SCREEN_SETTINGS);
-				titleID = R.string.opt_settings;
 				break;
 
 			case R.id.opt_about:
 				App.instance.getRouter().navigateTo(Screens.SCREEN_ABOUT);
-				titleID = R.string.opt_about;
 				break;
 
 			default:
@@ -127,6 +124,8 @@ public class ContainerActivity extends AppCompatActivity {
 					return TemplateListView.newInstance();
 				case Screens.SCREEN_TEMPLATE_CREATOR:
 					return TemplateCreatorView.newInstance(data);
+				case Screens.SCREEN_TEMPLATE_REPORT:
+					return WalletReportView.newInstance(data);
 			}
 			return MainView.newInstance();
 		}

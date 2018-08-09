@@ -20,7 +20,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromDateToLong(date: Date) = date.getTime()
+    fun fromDateToLong(date: Date) = date.time
 
     @TypeConverter
     fun fromLongToDate(time: Long) = Date(time)

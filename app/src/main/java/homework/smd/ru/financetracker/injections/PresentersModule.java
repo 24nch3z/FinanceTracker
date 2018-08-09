@@ -16,6 +16,9 @@ import homework.smd.ru.financetracker.screens.template.presentation.creator.Temp
 import homework.smd.ru.financetracker.screens.template.presentation.list.TemplateListPresenter;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import homework.smd.ru.financetracker.screens.wallet.presentation.WalletPresenter;
+import homework.smd.ru.financetracker.screens.walletReport.domain.WalletReportInteractor;
+import homework.smd.ru.financetracker.screens.walletReport.presentation.WalletReportPresenter;
+import homework.smd.ru.financetracker.screens.walletReport.presentation.WalletReportView;
 
 @Module
 class PresentersModule {
@@ -48,5 +51,10 @@ class PresentersModule {
 	@Provides
 	TemplateCreatorPresenter provideTemplateCreatorPresenter(TemplateInteractor interactor) {
 		return new TemplateCreatorPresenter(interactor);
+	}
+
+	@Provides
+	WalletReportPresenter provideWalletReportInteractorReport(WalletReportInteractor interactor) {
+		return new WalletReportPresenter(interactor);
 	}
 }

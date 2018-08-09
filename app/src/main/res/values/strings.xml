@@ -15,6 +15,7 @@
     <string name="toolbar_template_creator">Template</string>
     <string name="toolbar_wallet">Wallet</string>
     <string name="toolbar_operation">Operation</string>
+    <string name="toolbar_wallet_report">Report</string>
 
     <string name="content_unavailable">Content is temporarily unavailable</string>"
 
@@ -78,6 +79,12 @@
     <string name="template_creator_insert_success">Template successfully created</string>
     <string name="template_creator_update_success">Template updated</string>
     <string name="template_creator_remove_success">Template deleted</string>
+
+    <!-- Template report -->
+    <string name="template_report_date_from">From</string>
+    <string name="template_report_date_to">To</string>
+    <string name="template_report_error_to_less_from">End date can not be less than start date</string>
+    <string name="template_report_error_from_more_to">Start date can not be longer than end date</string>
 
     <string name="empty_field_error">You must fill in the field</string>
     <string name="templates">Templates</string>

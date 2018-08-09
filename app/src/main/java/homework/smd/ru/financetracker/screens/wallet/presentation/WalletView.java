@@ -50,14 +50,15 @@ public class WalletView extends Fragment implements WalletContract.View {
 	@BindView(R.id.change_wallet) ImageView buttonChangeWallet;
 	@BindView(R.id.create_operation) ImageView buttonCreateOperation;
 	@BindView(R.id.remove_wallet) ImageView buttonRemoveWallet;
+	@BindView(R.id.to_report) ImageView buttonOpenReport;
 
 	public static WalletView getInstance(Object data) {
 		WalletView fragment = new WalletView();
-		Bundle bundle = new Bundle();
+		Bundle args = new Bundle();
 		if (data != null) {
-			bundle.putSerializable(ARG_WALLET, (Wallet) data);
+			args.putSerializable(ARG_WALLET, (Wallet) data);
 		}
-		fragment.setArguments(bundle);
+		fragment.setArguments(args);
 		return fragment;
 	}
 
@@ -108,6 +109,10 @@ public class WalletView extends Fragment implements WalletContract.View {
 			WalletRemovingDialog dialog = WalletRemovingDialog.newInstance(wallet);
 			dialog.setTargetFragment(WalletView.this, REQUEST_IS_REMOVING);
 			dialog.show(manager, REMOVE_DIALOG);
+		});
+
+		buttonOpenReport.setOnClickListener(view -> {
+			App.instance.getRouter().navigateTo(Screens.SCREEN_TEMPLATE_REPORT, wallet);
 		});
 	}
 

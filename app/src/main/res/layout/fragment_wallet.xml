@@ -52,6 +52,14 @@
                 android:layout_height="@dimen/wallet_button_size"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/add"/>
+
+            <ImageView
+                android:id="@+id/to_report"
+                android:layout_width="@dimen/wallet_button_size"
+                android:layout_height="@dimen/wallet_button_size"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/report"/>
         </LinearLayout>
     </LinearLayout>
 

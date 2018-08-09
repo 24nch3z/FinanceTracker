@@ -8,4 +8,5 @@ public class Screens {
 	public static final String SCREEN_WALLET = "SCREEN_WALLET";
 	public static final String SCREEN_TEMPLATES = "SCREEN_TEMPLATES";
 	public static final String SCREEN_TEMPLATE_CREATOR = "SCREEN_TEMPLATE_CREATOR";
+	public static final String SCREEN_TEMPLATE_REPORT = "SCREEN_TEMPLATE_REPORT";
 }

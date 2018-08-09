@@ -10,6 +10,8 @@ import homework.smd.ru.financetracker.screens.template.domain.TemplateInteractor
 import homework.smd.ru.financetracker.screens.template.domain.TemplateInteractorImpl;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractorImpl;
+import homework.smd.ru.financetracker.screens.walletReport.domain.WalletReportInteractor;
+import homework.smd.ru.financetracker.screens.walletReport.domain.WalletReportInteractorImpl;
 
 @Module
 public class StubsModule {
@@ -32,5 +34,10 @@ public class StubsModule {
 	@Provides
 	TemplateInteractor provideTemplateInteractor() {
 		return new TemplateInteractorImpl();
+	}
+
+	@Provides
+	WalletReportInteractor provideWalletReportInteractor() {
+		return new WalletReportInteractorImpl();
 	}
 }

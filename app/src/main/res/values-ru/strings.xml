@@ -16,6 +16,7 @@
     <string name="toolbar_template_creator">Шаблон</string>
     <string name="toolbar_wallet">Счет</string>
     <string name="toolbar_operation">Операция</string>
+    <string name="toolbar_wallet_report">Отчет</string>
 
     <string name="content_unavailable">Контент временно недоступен</string>
 
@@ -74,6 +75,12 @@
     <string name="template_creator_insert_success">Шаблон успешно создан</string>
     <string name="template_creator_update_success">Шаблон обновлен</string>
     <string name="template_creator_remove_success">Шаблон удален</string>
+
+    <!-- Template report -->
+    <string name="template_report_date_from">Дата начала</string>
+    <string name="template_report_date_to">Дата окончания</string>
+    <string name="template_report_error_to_less_from">Дата окончания не может быть меньше даты начала</string>
+    <string name="template_report_error_from_more_to">Дата начала не может быть больше даты окончания</string>
 
     <string name="empty_field_error">Необходимо заполнить поле</string>
     <string name="templates">Шаблоны</string>
