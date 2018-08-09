@@ -110,6 +110,10 @@ public class OperationPresenter extends BasePresenter<OperationContract.View> {
 			operation.operationDate = viewModel.operationDate;
 			operation.sum = viewModel.sum;
 
+			if (!viewModel.isIncome) {
+				operation.sum *= -1;
+			}
+
 			boolean isPeriod = viewModel.isPeriod;
 			Period period = null;
 			if (isPeriod) {

@@ -6,15 +6,15 @@ import java.util.List;
 
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.database.AppDatabase;
-import homework.smd.ru.financetracker.datalayer.ExpenseRepository;
+import homework.smd.ru.financetracker.datalayer.WalletRepository;
 import homework.smd.ru.financetracker.models.Wallet;
 import io.reactivex.Flowable;
 
-public class ExpenseRepositoryDatabase implements ExpenseRepository {
+public class WalletRepositoryDatabase implements WalletRepository {
 
 	private AppDatabase db;
 
-	public ExpenseRepositoryDatabase() {
+	public WalletRepositoryDatabase() {
 		db = App.instance.getDatabase();
 	}
 

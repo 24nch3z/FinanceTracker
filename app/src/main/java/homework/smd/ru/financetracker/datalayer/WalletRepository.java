@@ -8,7 +8,7 @@ import homework.smd.ru.financetracker.models.Wallet;
 import io.reactivex.Flowable;
 
 // TODO: Тут тоже сменить на wallet
-public interface ExpenseRepository {
+public interface WalletRepository {
 
 	@NonNull
 	Flowable<List<Wallet>> getExpens();

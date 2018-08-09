@@ -5,9 +5,9 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import homework.smd.ru.financetracker.datalayer.CurrencyRepository;
-import homework.smd.ru.financetracker.datalayer.ExpenseRepository;
+import homework.smd.ru.financetracker.datalayer.WalletRepository;
 import homework.smd.ru.financetracker.datalayer.repositories.CurrencyRepositoryStub;
-import homework.smd.ru.financetracker.datalayer.repositories.ExpenseRepositoryDatabase;
+import homework.smd.ru.financetracker.datalayer.repositories.WalletRepositoryDatabase;
 import homework.smd.ru.financetracker.models.CurrencyModelAPI;
 import homework.smd.ru.financetracker.models.CurrencyRate;
 import homework.smd.ru.financetracker.models.Wallet;
@@ -15,13 +15,13 @@ import io.reactivex.Flowable;
 
 public class MainInteractorImpl implements MainInteractor {
 
-	private final ExpenseRepository expenseRepository = new ExpenseRepositoryDatabase();
+	private final WalletRepository walletRepository = new WalletRepositoryDatabase();
 	private final CurrencyRepository currencyRepository = new CurrencyRepositoryStub();
 
 	@NonNull
 	@Override
 	public Flowable<List<Wallet>> getUserExpenses() {
-		return expenseRepository
+		return walletRepository
 			.getExpens();
 	}
 
@@ -43,6 +43,6 @@ public class MainInteractorImpl implements MainInteractor {
 
 	@Override
 	public void updateExpense(Wallet wallet) {
-		expenseRepository.updateExpense(wallet);
+		walletRepository.updateExpense(wallet);
 	}
 }
