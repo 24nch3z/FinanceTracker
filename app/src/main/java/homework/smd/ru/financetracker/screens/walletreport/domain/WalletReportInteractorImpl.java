@@ -1,4 +1,4 @@
-package homework.smd.ru.financetracker.screens.walletReport.domain;
+package homework.smd.ru.financetracker.screens.walletreport.domain;
 
 import java.util.List;
 

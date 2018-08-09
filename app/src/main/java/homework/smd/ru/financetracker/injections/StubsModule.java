@@ -10,8 +10,8 @@ import homework.smd.ru.financetracker.screens.template.domain.TemplateInteractor
 import homework.smd.ru.financetracker.screens.template.domain.TemplateInteractorImpl;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractorImpl;
-import homework.smd.ru.financetracker.screens.walletReport.domain.WalletReportInteractor;
-import homework.smd.ru.financetracker.screens.walletReport.domain.WalletReportInteractorImpl;
+import homework.smd.ru.financetracker.screens.walletreport.domain.WalletReportInteractor;
+import homework.smd.ru.financetracker.screens.walletreport.domain.WalletReportInteractorImpl;
 
 @Module
 public class StubsModule {

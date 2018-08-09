@@ -3,8 +3,6 @@ package homework.smd.ru.financetracker.screens;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +25,7 @@ import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView
 import homework.smd.ru.financetracker.screens.template.presentation.creator.TemplateCreatorView;
 import homework.smd.ru.financetracker.screens.template.presentation.list.TemplateListView;
 import homework.smd.ru.financetracker.screens.wallet.presentation.WalletView;
-import homework.smd.ru.financetracker.screens.walletReport.presentation.WalletReportView;
+import homework.smd.ru.financetracker.screens.walletreport.presentation.WalletReportView;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 

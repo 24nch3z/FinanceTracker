@@ -16,9 +16,8 @@ import homework.smd.ru.financetracker.screens.template.presentation.creator.Temp
 import homework.smd.ru.financetracker.screens.template.presentation.list.TemplateListPresenter;
 import homework.smd.ru.financetracker.screens.wallet.domain.WalletInteractor;
 import homework.smd.ru.financetracker.screens.wallet.presentation.WalletPresenter;
-import homework.smd.ru.financetracker.screens.walletReport.domain.WalletReportInteractor;
-import homework.smd.ru.financetracker.screens.walletReport.presentation.WalletReportPresenter;
-import homework.smd.ru.financetracker.screens.walletReport.presentation.WalletReportView;
+import homework.smd.ru.financetracker.screens.walletreport.domain.WalletReportInteractor;
+import homework.smd.ru.financetracker.screens.walletreport.presentation.WalletReportPresenter;
 
 @Module
 class PresentersModule {

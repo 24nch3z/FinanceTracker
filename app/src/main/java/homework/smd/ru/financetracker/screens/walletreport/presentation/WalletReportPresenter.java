@@ -1,24 +1,26 @@
-package homework.smd.ru.financetracker.screens.walletReport.presentation;
+package homework.smd.ru.financetracker.screens.walletreport.presentation;
 
 import android.app.Activity;
 import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import homework.smd.ru.financetracker.BasePresenter;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.dialogs.DatePickerDialog;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.models.Wallet;
-import homework.smd.ru.financetracker.screens.walletReport.domain.WalletReportInteractor;
+import homework.smd.ru.financetracker.screens.walletreport.domain.WalletReportInteractor;
 import homework.smd.ru.financetracker.utils.Utils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
-import static homework.smd.ru.financetracker.screens.walletReport.presentation.WalletReportView.REQUEST_DATE_FROM;
-import static homework.smd.ru.financetracker.screens.walletReport.presentation.WalletReportView.REQUEST_DATE_TO;
+import static homework.smd.ru.financetracker.screens.walletreport.presentation.WalletReportView.REQUEST_DATE_FROM;
+import static homework.smd.ru.financetracker.screens.walletreport.presentation.WalletReportView.REQUEST_DATE_TO;
 
 public class WalletReportPresenter extends BasePresenter<WalletReportContract.View> {
 
@@ -52,10 +54,45 @@ public class WalletReportPresenter extends BasePresenter<WalletReportContract.Vi
 			.subscribe(operations -> {
 				this.operations.clear();
 				this.operations.addAll(operations);
+
+				showReport(operations);
 			});
 		cd.add(disposable);
 
 		initViews();
+	}
+
+	private void showReport(List<Operation> list) {
+		StringBuilder report = new StringBuilder();
+		double incomes = 0, costs = 0;
+		int incomeCount = 0, costCount = 0;
+		Map<String, Double> categories = new HashMap<>();
+
+		for (Operation operation : list) {
+			double sum = operation.sum;
+
+			if (sum > 0) {
+				incomes += sum;
+				incomeCount++;
+			} else {
+				costs += sum;
+				costCount++;
+
+				String category = operation.category;
+				if (categories.containsKey(category)) {
+					categories.put(category, categories.get(categories) + sum);
+				} else {
+					categories.put(category, sum);
+				}
+			}
+		}
+
+		report.append("Баланс счета: ").append(incomes + costs).append("\n");
+		report.append("Всего операций: ").append(list.size()).append("\n");
+		report.append("Число расходов: ").append(costCount).append("\n");
+		report.append("Число доходов: ").append(incomeCount).append("\n");
+
+		view.showReportText(report.toString().trim());
 	}
 
 	private void initViews() {

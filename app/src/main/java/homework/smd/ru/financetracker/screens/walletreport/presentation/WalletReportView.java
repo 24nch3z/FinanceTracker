@@ -1,4 +1,4 @@
-package homework.smd.ru.financetracker.screens.walletReport.presentation;
+package homework.smd.ru.financetracker.screens.walletreport.presentation;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -40,6 +40,7 @@ public class WalletReportView extends Fragment implements WalletReportContract.V
 
 	@BindView(R.id.text_view_date_from) TextView textViewDateFrom;
 	@BindView(R.id.text_view_date_to) TextView textViewDateTo;
+	@BindView(R.id.report) TextView textViewReport;
 
 	public static WalletReportView newInstance(Object data) {
 		WalletReportView fragment = new WalletReportView();
@@ -89,6 +90,11 @@ public class WalletReportView extends Fragment implements WalletReportContract.V
 	@Override
 	public void showErrorToast(int message) {
 		MyToast.get(getContext()).show(getString(message));
+	}
+
+	@Override
+	public void showReportText(String s) {
+		textViewReport.setText(s);
 	}
 
 	@OnClick(R.id.text_view_date_from)

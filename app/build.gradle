@@ -87,10 +87,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
     implementation "com.google.code.gson:gson:2.8.2"
 
-    // Firebase
-    implementation "com.google.firebase:firebase-core:16.0.1"
-    implementation "com.crashlytics.sdk.android:crashlytics:2.9.4"
-
     // Cicerone
     implementation "ru.terrakok.cicerone:cicerone:3.0.0"
 
