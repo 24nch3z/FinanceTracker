@@ -54,8 +54,6 @@ public class ContainerActivity extends AppCompatActivity {
 		setStatusBarColor();
 		setToolbarTextColor();
 		new PeriodicOperationsUpdater().run();
-
-		// TODO: Toolbar имена задать
 	}
 
 	void setToolbarTextColor() {

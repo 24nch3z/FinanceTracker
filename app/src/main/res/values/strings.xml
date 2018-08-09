@@ -75,6 +75,9 @@
     <string name="template_list_add">Create template</string>
     <string name="template_creator_title_hint">Title</string>
     <string name="template_creator_name_error">You must enter the name of the title</string>
+    <string name="template_creator_insert_success">Template successfully created</string>
+    <string name="template_creator_update_success">Template updated</string>
+    <string name="template_creator_remove_success">Template deleted</string>
 
     <string name="empty_field_error">You must fill in the field</string>
     <string name="templates">Templates</string>

@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -163,8 +164,8 @@ public class TemplateCreatorView extends Fragment implements TemplateCreatorCont
 	}
 
 	@Override
-	public void back(String message) { // TODO: to res
-		MyToast.get(getContext()).show(message);
+	public void back(@StringRes int mes) {
+		MyToast.get(getContext()).show(getString(mes));
 		App.instance.getRouter().backTo(Screens.SCREEN_TEMPLATES);
 	}
 

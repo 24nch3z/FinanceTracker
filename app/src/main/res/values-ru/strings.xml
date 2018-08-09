@@ -71,6 +71,9 @@
     <string name="template_list_add">Создать шаблон</string>
     <string name="template_creator_title_hint">Название</string>
     <string name="template_creator_name_error">Вы должны заполнить название</string>
+    <string name="template_creator_insert_success">Шаблон успешно создан</string>
+    <string name="template_creator_update_success">Шаблон обновлен</string>
+    <string name="template_creator_remove_success">Шаблон удален</string>
 
     <string name="empty_field_error">Необходимо заполнить поле</string>
     <string name="templates">Шаблоны</string>

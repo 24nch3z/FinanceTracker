@@ -27,7 +27,6 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 	public void setModel(TemplateCreatorViewModel viewModel, OperationTemplate template) {
 		this.viewModel = viewModel;
 		if (template != null && this.viewModel.isNew) {
-			MyLog.l("CHECK");
 			this.viewModel.isNew = false;
 			this.viewModel.id = template.id;
 			this.viewModel.sum = template.sum;
@@ -83,14 +82,14 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 			template.title = viewModel.title;
 			template.isIncome = viewModel.isIncome;
 
-			String message = "";
+			int message;
 			if (viewModel.isNew) {
 				interactor.insert(template);
-				message = "Шаблон успешно создан";
+				message = R.string.template_creator_insert_success;
 			} else {
 				template.id = viewModel.id;
 				interactor.update(template);
-				message = "Шаблон обновлен";
+				message = R.string.template_creator_update_success;
 			}
 
 			view.back(message);
@@ -101,7 +100,7 @@ public class TemplateCreatorPresenter extends BasePresenter<TemplateCreatorContr
 		OperationTemplate template = new OperationTemplate();
 		template.id = viewModel.id;
 		interactor.remove(template);
-		view.back("Шаблон удален");
+		view.back(R.string.template_creator_remove_success);
 	}
 
 	private boolean validate() {

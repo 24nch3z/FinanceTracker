@@ -1,5 +1,7 @@
 package homework.smd.ru.financetracker.screens.template.presentation.creator;
 
+import android.support.annotation.StringRes;
+
 import java.util.List;
 
 public interface TemplateCreatorContract {
@@ -16,6 +18,6 @@ public interface TemplateCreatorContract {
 		void showHideOtherCategoryError(boolean flag);
 		void showHideOtherCategory(boolean flag);
 		void showHideRemoveButton(boolean flag);
-		void back(String message);
+		void back(@StringRes int mes);
 	}
 }

@@ -44,7 +44,7 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 
 		private void updateContent(@NonNull Wallet model) {
 			String balance = "";
-			String moneySign = "Р"; // TODO Вернуть
+			String moneySign = "Р";
 
 			if (!model.isVisible()) {
 				balanceVisibility.setImageDrawable(imageInvisible);
