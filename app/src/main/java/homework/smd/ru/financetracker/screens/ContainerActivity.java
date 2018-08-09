@@ -21,7 +21,6 @@ import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
 import homework.smd.ru.financetracker.models.PeriodicOperationsUpdater;
 import homework.smd.ru.financetracker.screens.addoperation.presentation.OperationView;
-import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailViewPager;
 import homework.smd.ru.financetracker.screens.information.presentation.InfoView;
 import homework.smd.ru.financetracker.screens.main.presentation.MainView;
 import homework.smd.ru.financetracker.screens.settings.presentation.SettingsView;
@@ -112,8 +111,6 @@ public class ContainerActivity extends AppCompatActivity {
 			switch (screenKey) {
 				case Screens.SCREEN_MAIN:
 					return MainView.newInstance();
-				case Screens.SCREEN_DETAIL:
-					return DetailViewPager.newInstance(data);
 				case Screens.SCREEN_ADD_OPERATION:
 					return OperationView.newInstance(data);
 				case Screens.SCREEN_SETTINGS:

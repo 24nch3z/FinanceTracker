@@ -4,8 +4,6 @@ import dagger.Module;
 import dagger.Provides;
 import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractor;
 import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractorImpl;
-import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractor;
-import homework.smd.ru.financetracker.screens.detail.domain.DetailInteractorStub;
 import homework.smd.ru.financetracker.screens.main.domain.MainInteractor;
 import homework.smd.ru.financetracker.screens.main.domain.MainInteractorImpl;
 import homework.smd.ru.financetracker.screens.template.domain.TemplateInteractor;
@@ -19,11 +17,6 @@ public class StubsModule {
 	@Provides
 	OperationInteractor provideOperationInteractor() {
 		return new OperationInteractorImpl();
-	}
-
-	@Provides
-	DetailInteractor provideDetailInteractor() {
-		return new DetailInteractorStub();
 	}
 
 	@Provides
