@@ -38,7 +38,6 @@ public class InfoView extends Fragment implements InfoContract.View {
 		final android.view.View view = inflater.inflate(R.layout.fragment_about, container, false);
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
-		contentView.setTextSize(getResources().getDimension(R.dimen.card_money_size));
 		presenter.attachView(this);
 		return view;
 	}

@@ -22,9 +22,11 @@
     <string name="hint_operation_sum">Сумма:</string>
     <string name="hint_operation_category">Введите новую категорию:</string>
 
-    <!--Add Operation-->
+    <!--Add OperationEntity-->
     <string name="plus_sum">Заработал</string>
     <string name="minus_sum">Потратил</string>
+    <string name="period_checkbox">Период</string>
+    <string name="period_title">Количество дней</string>
     <string-array name="default_categories">
         <item>Еда</item>
         <item>Коммуналка</item>
@@ -32,7 +34,7 @@
         <item>Другое</item>
     </string-array>
     <string name="created_op">Операция добавлена</string>
-    <string name="add_op">Добавить расход</string>
+    <string name="add_op">Операция</string>
 
 
 </resources>

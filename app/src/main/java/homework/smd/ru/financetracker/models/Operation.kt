@@ -1,14 +1,28 @@
 package homework.smd.ru.financetracker.models
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.TypeConverters
+import homework.smd.ru.financetracker.database.Converters
 
-@Parcelize
-data class Operation(
-        val sum: Double,
-        val currency: Currency,
-        var category: String?
-) : Parcelable
+@Entity
+@TypeConverters(Converters::class)
+class Operation {
+    @PrimaryKey(autoGenerate = true) var id: Int = 0;
+    var sum: Double = 0.0;
+    var currency: Currency = Currency.USD;
+    var category: String? = "";
+    var expenseId: Int = 1;
+
+    constructor()
+
+    constructor(sum: Double, currency: Currency, category: String?, expenseId: Int) {
+        this.sum = sum
+        this.currency = currency
+        this.category = category
+        this.expenseId = expenseId
+    }
+}
 
 fun Collection<Operation>.total(
         dollarRatio: Float,
@@ -25,5 +39,5 @@ fun Collection<Operation>.total(
 
     if (currency == Currency.USD) amountInRuble /= dollarRatio
 
-    return Operation(amountInRuble, currency, null)
+    return Operation(amountInRuble, currency, null, -1)
 }

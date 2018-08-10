@@ -15,16 +15,11 @@ public interface DetailContract {
 		android.support.v4.view.ViewPager getPager();
 	}
 
-	abstract class ViewTab extends Fragment {
-		public abstract void setAdapter(RecyclerView.Adapter adapter);
-		public abstract OperationRecyclerAdapter getRecycler();
-	}
+	abstract class ViewTab extends Fragment {}
 
 	interface Presenter {
 		void attachView(ViewPager pager);
 		void detachView();
-		void onTabChanged(int position);
-
 		void setOpenTabPosition(int tabPosition);
 	}
 }

@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,21 +25,27 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
+import homework.smd.ru.financetracker.models.Expense;
 
 public class OperationView extends Fragment implements OperationContract.View {
 
 	@Inject OperationContract.Presenter presenter;
 	private Unbinder unbinder;
 
-	@BindView(R.id.button_plus_sum) Button buttonPlus;
 	@BindView(R.id.edit_sum) TextInputEditText editSum;
 	@BindView(R.id.category_spinner) Spinner spinnerCategory;
+	@BindView(R.id.expense_spinner) Spinner spinnerExpense;
 	@BindView(R.id.edit_category) TextInputEditText editCategory;
 	@BindView(R.id.category_input) TextInputLayout inputCategory;
+	@BindView(R.id.radio_group_type) RadioGroup radioGroupType;
+	@BindView(R.id.period_checkbox) CheckBox checkBoxPeriod;
+	@BindView(R.id.period_form) TextInputLayout formPeriod;
+	@BindView(R.id.edittext_period) TextInputEditText editTextPeriod;
 
 	public static OperationView newInstance() {
 		return new OperationView();
@@ -53,6 +61,7 @@ public class OperationView extends Fragment implements OperationContract.View {
 		unbinder = ButterKnife.bind(this, view);
 
 		presenter.attachView(this);
+		showHidePeriodForm(checkBoxPeriod.isChecked());
 		return view;
 	}
 
@@ -77,7 +86,7 @@ public class OperationView extends Fragment implements OperationContract.View {
 	public void setCategories(List<String> categories) {
 		if (getContext() == null) return;
 		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
-			getContext(), android.R.layout.simple_spinner_item, categories);
+			getContext(), android.R.layout.simple_list_item_1, categories);
 		spinnerCategory.setAdapter(arrayAdapter);
 	}
 
@@ -105,12 +114,29 @@ public class OperationView extends Fragment implements OperationContract.View {
 		} else {
 			return (String) category;
 		}
+	}
 
+	@Override
+	public int getCheckedRadioButtonId() {
+		return radioGroupType.getCheckedRadioButtonId();
 	}
 
 	@Override
 	public void setOnCategoriesClickListener(AdapterView.OnItemSelectedListener listener) {
 		spinnerCategory.setOnItemSelectedListener(listener);
+	}
+
+	@Override
+	public void setExpense(List<Expense> expenses) {
+		if (getContext() == null) return;
+		final ExpenseAdapter arrayAdapter = new ExpenseAdapter(
+			getContext(), android.R.layout.simple_list_item_1, expenses);
+		spinnerExpense.setAdapter(arrayAdapter);
+	}
+
+	@Override
+	public Expense getExpense() {
+		return (Expense) spinnerExpense.getSelectedItem();
 	}
 
 	@Override
@@ -125,13 +151,34 @@ public class OperationView extends Fragment implements OperationContract.View {
 		}
 	}
 
-	@OnClick(R.id.button_plus_sum)
-	void onPlusButtonClick() {
-		presenter.createOperation(true);
+	@Override
+	public boolean getIsPeriod() {
+		return checkBoxPeriod.isChecked();
 	}
 
-	@OnClick(R.id.button_minus_sum)
-	void onMinusButtonClick() {
-		presenter.createOperation(false);
+	@Override
+	public int getPeriodDays() {
+		String str = editTextPeriod.getText().toString();
+
+		try {
+			int days = Integer.parseInt(str);
+			return days;
+		} catch (NumberFormatException e) {
+			return 0;
+		}
+	}
+
+	public void showHidePeriodForm(boolean isVisible) {
+		formPeriod.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+	}
+
+	@OnClick(R.id.buttonSave)
+	void onClickSave(View v) {
+		presenter.createOperation();
+	}
+
+	@OnCheckedChanged(R.id.period_checkbox)
+	void onCheckedChangedPeriod(CompoundButton compoundButton, boolean b) {
+		showHidePeriodForm(b);
 	}
 }

@@ -6,9 +6,9 @@ import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import homework.smd.ru.financetracker.models.Balance;
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.CurrencyRate;
+import homework.smd.ru.financetracker.models.Expense;
 import homework.smd.ru.financetracker.models.UtilsKt;
 import homework.smd.ru.financetracker.screens.main.domain.MainInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MainPresenter implements MainContract.Presenter {
 
 	@Nullable private MainContract.View view;
-	@NonNull private final List<Balance> dataset = new ArrayList<>();
+	@NonNull private final List<Expense> dataset = new ArrayList<>();
 	@NonNull private BalanceRecycleAdapter adapter = new BalanceRecycleAdapter(dataset);
 
 	private final MainInteractor interactor;
@@ -45,20 +45,23 @@ public class MainPresenter implements MainContract.Presenter {
 
 	@Override
 	public void attachView(@NonNull MainContract.View view) {
-
 		this.view = view;
 		this.view.setAdapter(adapter);
 
 		Disposable disposable = interactor
-			.getUserBalances()
+			.getUserExpenses()
 			.observeOn(Schedulers.computation())
-			.map(this::processBalance)
 			.observeOn(AndroidSchedulers.mainThread())
-			.subscribe(balance -> {
-				dataset.add(balance);
-				adapter.notifyItemInserted(dataset.size() - 1);
+			.subscribe(expenses -> {
+				dataset.clear();
+				for (Expense expense : expenses) {
+					Expense exp = processBalance(expense);
+					dataset.add(exp);
+				}
+				adapter.notifyDataSetChanged();
 				if (this.view != null) this.view.hideProgress();
 			});
+
 		cd.add(disposable);
 
 		disposable = interactor
@@ -77,8 +80,7 @@ public class MainPresenter implements MainContract.Presenter {
 		cd.clear();
 	}
 
-	private Balance processBalance(@NonNull final Balance model) {
-
+	private Expense processBalance(@NonNull final Expense model) {
 		float sum = model.getSum();
 		String moneySign;
 		if (currency == Currency.USD) {
@@ -102,6 +104,7 @@ public class MainPresenter implements MainContract.Presenter {
 		@Override
 		public void accept(CurrencyRate rate) {
 			if (MainPresenter.this.view == null) return;
+
 			if (MainPresenter.this.currency == rate.getCurrency()) {
 				MainPresenter.this.rate = rate.getRate();
 			}
@@ -119,9 +122,10 @@ public class MainPresenter implements MainContract.Presenter {
 	private class OnChangeVisibility implements BalanceRecycleAdapter.OnContentClick {
 		@Override
 		public void onClick(int position) {
-			final Balance balance = dataset.get(position);
-			balance.changeVisibility();
-			processBalance(balance);
+			final Expense expense = dataset.get(position);
+			expense.isVisible = !expense.isVisible;
+			interactor.updateExpense(expense);
+			processBalance(expense);
 			adapter.notifyItemChanged(position);
 		}
 	}

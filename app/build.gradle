@@ -62,6 +62,8 @@ dependencies {
     testImplementation "junit:junit:4.12"
     androidTestImplementation "com.android.support.test:runner:1.0.2"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:3.0.2"
+    androidTestImplementation "com.android.support.test:rules:1.0.2"
 
     // Butter-Knife
     implementation "com.jakewharton:butterknife:8.8.1"
@@ -87,4 +89,14 @@ dependencies {
     // Firebase
     implementation "com.google.firebase:firebase-core:16.0.1"
     implementation "com.crashlytics.sdk.android:crashlytics:2.9.4"
+
+    // Cicerone
+    implementation "ru.terrakok.cicerone:cicerone:3.0.0"
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
+    // RX + Room
+    implementation "android.arch.persistence.room:rxjava2:1.0.0"
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
-import homework.smd.ru.financetracker.screens.detail.presentation.pager.DetailViewPager;
+import homework.smd.ru.financetracker.screens.Screens;
 
 public class MainView extends Fragment implements MainContract.View {
 
@@ -35,7 +34,6 @@ public class MainView extends Fragment implements MainContract.View {
 	@BindView(R.id.main_progress) ProgressBar progress;
 	@BindView(R.id.currencies_block) ViewGroup currencies;
 	@BindView(R.id.recycler_main_view) RecyclerView recycler;
-
 
 	public MainView() { }
 
@@ -98,18 +96,8 @@ public class MainView extends Fragment implements MainContract.View {
 
 	@Override
 	public void navigationToDetail(int tabPosition) {
-		// TODO попробовать что за чечерони такое
-		final FragmentManager manager = getFragmentManager();
-		final Fragment fragment = DetailViewPager.newInstance(tabPosition);
 		final int titleID = R.string.nav_detail;
-
-		if (manager == null) return;
-
-		manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-		manager
-			.beginTransaction()
-			.replace(R.id.container, fragment)
-			.commit();
+		App.instance.getRouter().newRootScreen(Screens.SCREEN_DETAIL, tabPosition);
 
 		final Activity activity = getActivity();
 		if (activity == null) return;
