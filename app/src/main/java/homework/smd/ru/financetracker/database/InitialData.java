@@ -1,33 +1,42 @@
 package homework.smd.ru.financetracker.database;
 
+import java.util.Date;
+
 import homework.smd.ru.financetracker.models.Currency;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.Operation;
 
 public class InitialData {
 
 	public void run(AppDatabase database) {
-		database.expenseDao().insert(
-			new Expense(1, "Наличка", true, 1000)
+		database.walletDao().insert(
+			new Wallet(1, "Заначка", true, 500)
 		);
-		database.expenseDao().insert(
-			new Expense(2, "Карта сберыча", false, 5000)
+		database.walletDao().insert(
+			new Wallet(2, "Карта Сбербанка", false, 5000)
 		);
-		database.expenseDao().insert(
-			new Expense(3, "Любовница", true, 500000)
+		database.walletDao().insert(
+			new Wallet(3, "Любовница", true, -40455)
 		);
 
+		Date date = new Date();
 		database.operationDao().insert(
-			new Operation(1000, Currency.USD, "Рыбка", 1)
+			new Operation(1000, Currency.RUB, "Зарплата", 1, date)
 		);
 		database.operationDao().insert(
-			new Operation(6000, Currency.USD, "Рекит", 2)
+			new Operation(-500, Currency.RUB, "Водочка", 1, date)
 		);
 		database.operationDao().insert(
-			new Operation(-1000, Currency.USD, "Кино", 2)
+			new Operation(6000, Currency.RUB, "Рэкет", 2, date)
 		);
 		database.operationDao().insert(
-			new Operation(500000, Currency.USD, "Алмазы", 3)
+			new Operation(-1000, Currency.RUB, "Кино", 2, date)
+		);
+		database.operationDao().insert(
+			new Operation(-27999, Currency.RUB, "Шуба", 3, date)
+		);
+		database.operationDao().insert(
+			new Operation(-12456, Currency.RUB, "Ресторан", 3, date)
 		);
 	}
 }

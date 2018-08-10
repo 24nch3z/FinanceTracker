@@ -28,21 +28,12 @@ public class OperationRepositoryDataBase implements OperationRepository {
 			.getOperationsByExpense(expanseId);
 	}
 
-	@SuppressLint("CheckResult")
 	@Override
 	public void addOperation(Operation operation, @Nullable Period period) {
 		long id = db.operationDao().insert(operation);
 
-		// При добавлении новой операции нужно обновить баланс кошелька
-		int expenseId = operation.getExpenseId();
-		db.operationDao().getOperationsByExpense(expenseId)
-			.subscribe(operations -> {
-				float sum = 0;
-				for (Operation o : operations) {
-					sum += o.getSum();
-				}
-				db.expenseDao().updateBalance(expenseId, sum);
-			});
+		int expenseId = operation.expenseId;
+		updateWalletBalance(expenseId);
 
 		// При добавлении новой периодичной операции, нужно создавать ещё запись в таблицу
 		// переодичных записей
@@ -50,5 +41,26 @@ public class OperationRepositoryDataBase implements OperationRepository {
 			period.operationId = id;
 			db.periodDao().insert(period);
 		}
+	}
+
+	@Override
+	public void removeOperation(Operation operation) {
+		db.operationDao().delete(operation);
+
+		int expenseId = operation.expenseId;
+		updateWalletBalance(expenseId);
+	}
+
+	// Обновление баланса кошелька
+	@SuppressLint("CheckResult")
+	private void updateWalletBalance(int expenseId) {
+		db.operationDao().getOperationsByExpense(expenseId)
+			.subscribe(operations -> {
+				float sum = 0;
+				for (Operation o : operations) {
+					sum += o.sum;
+				}
+				db.walletDao().updateBalance(expenseId, sum);
+			});
 	}
 }

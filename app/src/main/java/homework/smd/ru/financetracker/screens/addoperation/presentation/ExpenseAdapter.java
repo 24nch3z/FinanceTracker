@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 
-public class ExpenseAdapter extends ArrayAdapter<Expense> {
+public class ExpenseAdapter extends ArrayAdapter<Wallet> {
 
-	public ExpenseAdapter(@NonNull Context context, int resource, List<Expense> expense) {
-		super(context, resource, expense);
+	public ExpenseAdapter(@NonNull Context context, int resource, List<Wallet> wallet) {
+		super(context, resource, wallet);
 	}
 
 	@NonNull
@@ -35,7 +35,7 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
 
 	private void setTitle(int position, View view) {
 		TextView textView = view.findViewById(android.R.id.text1);
-		Expense expense = getItem(position);
-		textView.setText(expense.getTitle());
+		Wallet wallet = getItem(position);
+		textView.setText(wallet.getTitle());
 	}
 }

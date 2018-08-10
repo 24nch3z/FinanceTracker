@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ФинТрекер</string>
+    <string name="app_name">Трекер финансов</string>
     <string name="app_full_name">Трекер финансов</string>
     <string name="nav_header_desc">Трекер финансов</string>
 
@@ -9,23 +9,33 @@
     <string name="opt_settings">Настройки</string>
     <string name="opt_about">О приложении</string>
 
+    <string name="toolbar_main">Главная</string>
+    <string name="toolbar_settings">Настройки</string>
+    <string name="toolbar_about">О приложении</string>
+    <string name="toolbar_templates">Шаблоны</string>
+    <string name="toolbar_template_creator">Шаблон</string>
+    <string name="toolbar_wallet">Счет</string>
+    <string name="toolbar_operation">Операция</string>
+    <string name="toolbar_wallet_report">Отчет</string>
+
     <string name="content_unavailable">Контент временно недоступен</string>
 
     <!--SettingFragment-->
-    <string name="settings_currency">Валюта:</string>
+    <string name="settings_currency">Валюта</string>
 
     <!--MainView-->
-    <string name="balance">Баланс:</string>
-    <string name="currency">Валюта:</string>
+    <string name="balance">Баланс</string>
+    <string name="currency">Валюта</string>
     <string name="title_main">Главная</string>
     <string name="title_operations">Расходы</string>
-    <string name="hint_operation_sum">Сумма:</string>
-    <string name="hint_operation_category">Введите новую категорию:</string>
+    <string name="hint_operation_sum">Сумма</string>
+    <string name="hint_operation_category">Введите новую категорию</string>
+    <string name="add_new_wallet">Создать кошелек</string>
 
     <!--Add OperationEntity-->
-    <string name="plus_sum">Заработал</string>
-    <string name="minus_sum">Потратил</string>
-    <string name="period_checkbox">Период</string>
+    <string name="plus_sum">Доход</string>
+    <string name="minus_sum">Расход</string>
+    <string name="period_checkbox">Периодическое списание</string>
     <string name="period_title">Количество дней</string>
     <string-array name="default_categories">
         <item>Еда</item>
@@ -35,6 +45,57 @@
     </string-array>
     <string name="created_op">Операция добавлена</string>
     <string name="add_op">Операция</string>
+    <string name="add_operation_category_label">Категория</string>
+    <string name="operation_error_empty_sum">Вы должны заполнить сумму</string>
+    <string name="operation_date_label">Дата совершения операции</string>
+    <string name="dialog_select_date">Выберите дату</string>
+    <string name="select_template">Выбрать шаблон</string>
 
+    <!-- Wallet -->
+    <string name="wallet_change">Изменить кошелек</string>
+    <string name="wallet_create_operation">Добавить операцию</string>
+    <string name="wallet_remove_wallet">Удалить кошелек</string>
+    <string name="wallet_remove_wallet_success_toast">Ваш кошелек был удален</string>
+    <string name="wallet_change_wallet_success_toast">Ваш кошелек был изменен</string>
+    <string name="dialog_operation_remove_title">Удаление операции</string>
+    <string name="dialog_operation_remove_message">Вы действительно хотите удалить эту операцию?</string>
+    <string name="operation_deleted">Операция удалена</string>
+
+    <!-- Wallet dialog creator -->
+    <string name="wallet_removing_title">Удаление кошелька</string>
+    <string name="wallet_removing_message">Вы действительно хотите удалить этот кошелек?</string>
+
+    <!-- Wallet dialog creator -->
+    <string name="wallet_create_dialog_title_create">Создание кошелька</string>
+    <string name="wallet_create_dialog_title_change">Изменение кошелька</string>
+    <string name="wallet_create_dialog_name_hint">Имя кошелька</string>
+    <string name="wallet_create_dialog_name_error">Нужно ввести имя кошелька</string>
+
+    <!-- Шаблоны -->
+    <string name="template_list_add">Создать шаблон</string>
+    <string name="template_creator_title_hint">Название</string>
+    <string name="template_creator_name_error">Вы должны заполнить название</string>
+    <string name="template_creator_insert_success">Шаблон успешно создан</string>
+    <string name="template_creator_update_success">Шаблон обновлен</string>
+    <string name="template_creator_remove_success">Шаблон удален</string>
+
+    <!-- Template report -->
+    <string name="template_report_date_from">Дата начала</string>
+    <string name="template_report_date_to">Дата окончания</string>
+    <string name="template_report_error_to_less_from">Дата окончания не может быть меньше даты начала</string>
+    <string name="template_report_error_from_more_to">Дата начала не может быть больше даты окончания</string>
+    <string name="template_report_no_data">Нет данных для отчета</string>
+    <string name="template_report_text_balance">Баланс счета:</string>
+    <string name="template_report_text_total_count">Всего операций:</string>
+    <string name="template_report_text_cost_count">Число расходов:</string>
+    <string name="template_report_text_income_count">Число доходов:</string>
+    <string name="template_report_text_income">Заработано:</string>
+    <string name="template_report_text_cost">Потрачено:</string>
+
+    <string name="empty_field_error">Необходимо заполнить поле</string>
+    <string name="templates">Шаблоны</string>
+    <string name="save">Сохранить</string>
+    <string name="remove">Удалить</string>
+    <string name="template_picker_dialog_title">Выберите шаблон</string>
 
 </resources>

@@ -1,15 +1,16 @@
 package homework.smd.ru.financetracker.screens.main.presentation;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.datalayer.data.sharedpreferences.Configuration;
+import homework.smd.ru.financetracker.dialogs.WalletCreatorDialog;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.Screens;
 
 public class MainView extends Fragment implements MainContract.View {
@@ -34,6 +37,8 @@ public class MainView extends Fragment implements MainContract.View {
 	@BindView(R.id.main_progress) ProgressBar progress;
 	@BindView(R.id.currencies_block) ViewGroup currencies;
 	@BindView(R.id.recycler_main_view) RecyclerView recycler;
+	@BindView(R.id.button_create_wallet) Button buttonCreateWallet;
+	@BindView(R.id.button_templates) Button buttonTemplates;
 
 	public MainView() { }
 
@@ -48,12 +53,30 @@ public class MainView extends Fragment implements MainContract.View {
 		final View view = inflater.inflate(R.layout.fragment_main, container, false);
 		App.getComponent().inject(this);
 		unbinder = ButterKnife.bind(this, view);
+		initView();
+		presenter.attachView(this);
+		setToolbarText();
+		return view;
+	}
 
+	private void setToolbarText() {
+		((AppCompatActivity) getActivity()).getSupportActionBar()
+			.setTitle(getString(R.string.toolbar_main));
+	}
+
+	private void initView() {
 		recycler.setLayoutManager(new LinearLayoutManager(
 			getContext(), LinearLayoutManager.VERTICAL, false));
 
-		presenter.attachView(this);
-		return view;
+		buttonCreateWallet.setOnClickListener(view -> {
+			FragmentManager manager = getFragmentManager();
+			WalletCreatorDialog dialog = WalletCreatorDialog.newInstance(null);
+			dialog.show(manager, "");
+		});
+
+		buttonTemplates.setOnClickListener(view -> {
+			App.instance.getRouter().navigateTo(Screens.SCREEN_TEMPLATES);
+		});
 	}
 
 	@Override
@@ -95,21 +118,7 @@ public class MainView extends Fragment implements MainContract.View {
 	}
 
 	@Override
-	public void navigationToDetail(int tabPosition) {
-		final int titleID = R.string.nav_detail;
-		App.instance.getRouter().newRootScreen(Screens.SCREEN_DETAIL, tabPosition);
-
-		final Activity activity = getActivity();
-		if (activity == null) return;
-
-		if (activity.getActionBar() != null) {
-			activity.getActionBar().setTitle(titleID);
-		}
-
-		final BottomNavigationView navigation = activity.findViewById(R.id.navigation);
-		if (navigation != null) {
-			navigation.getMenu().getItem(1).setChecked(true);
-		}
-
+	public void navigationToWalletScreen(Wallet wallet) {
+		App.instance.getRouter().navigateTo(Screens.SCREEN_WALLET, wallet);
 	}
 }

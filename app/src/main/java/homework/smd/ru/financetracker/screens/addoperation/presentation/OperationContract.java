@@ -1,45 +1,22 @@
 package homework.smd.ru.financetracker.screens.addoperation.presentation;
 
-import android.support.annotation.Nullable;
-import android.widget.AdapterView;
-
 import java.util.List;
-
-import homework.smd.ru.financetracker.models.Expense;
 
 public interface OperationContract {
 
 	interface View {
-		void hideCategory();
-
-		void showCategory();
-
-		void setCategories(List<String> categories);
-
-		void setOnCategoriesClickListener(AdapterView.OnItemSelectedListener listener);
-
-		void setExpense(List<Expense> expenses);
-
-		Expense getExpense();
-
-		float getSum();
-
-		@Nullable String getCategory();
-
-		int getCheckedRadioButtonId();
-
+		void setSum(String s);
+		void setCategories(List<String> list, int selection);
+		void setCategoryInput(String s);
+		void setCurrencies(List<String> list, int selection);
+		void showHideSumError(boolean flag);
+		void showHideOtherCategoryError(boolean flag);
+		void showHideOtherCategory(boolean flag);
+		void setDate(String s);
+		void setType(boolean isIncome);
 		void back();
-
-		boolean getIsPeriod();
-
-		int getPeriodDays();
-	}
-
-	interface Presenter {
-		void attachView(View view);
-
-		void detachView();
-
-		void createOperation();
+		void showHidePeriodError(boolean flag);
+		void showHidePeriodForm(boolean isVisible);
+		void setPeriodDays(String s);
 	}
 }

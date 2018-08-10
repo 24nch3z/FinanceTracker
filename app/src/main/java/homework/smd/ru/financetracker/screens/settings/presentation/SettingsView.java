@@ -3,31 +3,31 @@ package homework.smd.ru.financetracker.screens.settings.presentation;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.R;
 
 public class SettingsView extends Fragment implements SettingsContract.View {
 
-	private SettingsContract.Presenter presenter;
+	private SettingsPresenter presenter;
 	private Unbinder unbinder;
 
-	@BindView(R.id.currency_switcher) Switch currencySwitcher;
-
-
-	public SettingsView() { }
+	@BindView(R.id.currency_spinner)
+	Spinner spinnerCurrency;
 
 	public static Fragment newSettingInstance() {
 		return new SettingsView();
 	}
-
 
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater,
@@ -38,8 +38,15 @@ public class SettingsView extends Fragment implements SettingsContract.View {
 		unbinder = ButterKnife.bind(this, view);
 
 		presenter = new SettingsPresenter();
-		presenter.attachView(this);
+		presenter.attachView(this, getContext());
+		setToolbarText();
+
 		return view;
+	}
+
+	private void setToolbarText() {
+		((AppCompatActivity) getActivity()).getSupportActionBar()
+			.setTitle(getString(R.string.toolbar_settings));
 	}
 
 	@Override
@@ -49,13 +56,16 @@ public class SettingsView extends Fragment implements SettingsContract.View {
 		super.onDestroyView();
 	}
 
-	@OnCheckedChanged(R.id.currency_switcher)
-	public void onCurrencyChange(boolean isRub) {
-		presenter.onChangeCurrency(isRub);
+	@Override
+	public void initCurrencySpinner(List<String> currencyList, int defaultPosition) {
+		initSpinner(currencyList, defaultPosition, spinnerCurrency);
 	}
 
-	@Override
-	public void changeCurrency(boolean isRub) {
-		currencySwitcher.setChecked(isRub);
+	private void initSpinner(List<String> list, int selection, Spinner spinner) {
+		ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+			android.R.layout.simple_spinner_item, list);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		spinner.setSelection(selection);
 	}
 }

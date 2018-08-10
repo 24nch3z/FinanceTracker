@@ -2,6 +2,8 @@ package homework.smd.ru.financetracker.screens.main.presentation;
 
 import android.support.v7.widget.RecyclerView;
 
+import homework.smd.ru.financetracker.models.Wallet;
+
 
 public interface MainContract {
 	interface View {
@@ -13,7 +15,7 @@ public interface MainContract {
 		void hideCurrencies();
 		void showCurrencies();
 
-		void navigationToDetail(final int tabPosition);
+		void navigationToWalletScreen(final Wallet wallet);
 	}
 
 	interface Presenter {

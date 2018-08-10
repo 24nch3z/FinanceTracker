@@ -8,7 +8,7 @@ import java.util.List;
 
 import homework.smd.ru.financetracker.models.Currency;
 import homework.smd.ru.financetracker.models.CurrencyRate;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.models.UtilsKt;
 import homework.smd.ru.financetracker.screens.main.domain.MainInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MainPresenter implements MainContract.Presenter {
 
 	@Nullable private MainContract.View view;
-	@NonNull private final List<Expense> dataset = new ArrayList<>();
+	@NonNull private final List<Wallet> dataset = new ArrayList<>();
 	@NonNull private BalanceRecycleAdapter adapter = new BalanceRecycleAdapter(dataset);
 
 	private final MainInteractor interactor;
@@ -54,10 +54,7 @@ public class MainPresenter implements MainContract.Presenter {
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(expenses -> {
 				dataset.clear();
-				for (Expense expense : expenses) {
-					Expense exp = processBalance(expense);
-					dataset.add(exp);
-				}
+				dataset.addAll(expenses);
 				adapter.notifyDataSetChanged();
 				if (this.view != null) this.view.hideProgress();
 			});
@@ -78,26 +75,6 @@ public class MainPresenter implements MainContract.Presenter {
 	public void detachView() {
 		this.view = null;
 		cd.clear();
-	}
-
-	private Expense processBalance(@NonNull final Expense model) {
-		float sum = model.getSum();
-		String moneySign;
-		if (currency == Currency.USD) {
-			sum /= rate;
-			moneySign = "$";
-		} else {
-			moneySign = "P";
-		}
-
-		if (model.isVisible()) {
-			// Show balance in correct currency
-			model.setStringSum(UtilsKt.moneyFormat(sum) + " " + moneySign);
-		} else {
-			// Hide balance
-			model.setStringSum("* * * * * *");
-		}
-		return model;
 	}
 
 	private class OnUpdateCurrencyRates implements Consumer<CurrencyRate> {
@@ -121,20 +98,21 @@ public class MainPresenter implements MainContract.Presenter {
 
 	private class OnChangeVisibility implements BalanceRecycleAdapter.OnContentClick {
 		@Override
-		public void onClick(int position) {
-			final Expense expense = dataset.get(position);
-			expense.isVisible = !expense.isVisible;
-			interactor.updateExpense(expense);
-			processBalance(expense);
+		public void onClick(Object data) {
+			int position = (int) data;
+			final Wallet wallet = dataset.get(position);
+			wallet.isVisible = !wallet.isVisible;
+			interactor.updateExpense(wallet);
 			adapter.notifyItemChanged(position);
 		}
 	}
 
 	private class OnHolderClick implements BalanceRecycleAdapter.OnContentClick {
 		@Override
-		public void onClick(int position) {
+		public void onClick(Object data) {
+			Wallet wallet = (Wallet) data;
 			if (view != null) {
-				view.navigationToDetail(position);
+				view.navigationToWalletScreen(wallet);
 			}
 		}
 	}

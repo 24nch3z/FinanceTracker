@@ -14,11 +14,12 @@ import android.widget.TextView;
 import java.util.List;
 
 import homework.smd.ru.financetracker.R;
-import homework.smd.ru.financetracker.models.Expense;
+import homework.smd.ru.financetracker.models.Wallet;
+import homework.smd.ru.financetracker.models.UtilsKt;
 
 public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAdapter.BalanceHolder> {
 
-	@NonNull private final List<Expense> dataset;
+	@NonNull private final List<Wallet> dataset;
 	@Nullable private OnContentClick onImageClickListener;
 	@Nullable private OnContentClick onCardClickListener;
 
@@ -41,39 +42,47 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 			}
 		}
 
-		private void updateContent(@NonNull Expense model) {
-			balanceName.setText(model.getTitle());
-			balanceCount.setText(model.getStringSum());
+		private void updateContent(@NonNull Wallet model) {
+			String balance = "";
+			String moneySign = "Р";
+
 			if (!model.isVisible()) {
 				balanceVisibility.setImageDrawable(imageInvisible);
+				balance = "* * * * * *";
 			} else {
 				balanceVisibility.setImageDrawable(imageVisible);
+				balance = UtilsKt.moneyFormat(model.sum) + " " + moneySign;
 			}
+
+			balanceName.setText(model.getTitle());
+			balanceCount.setText(balance);
 		}
 	}
 
-	BalanceRecycleAdapter(@NonNull List<Expense> dataset) {
+	BalanceRecycleAdapter(@NonNull List<Wallet> dataset) {
 		this.dataset = dataset;
 	}
 
 	@NonNull
 	@Override
 	public BalanceHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-		// Inflate card
 		final CardView cardView = (CardView) LayoutInflater.from(parent.getContext())
-			.inflate(R.layout.holder_balance, parent, false);
-		// Wrap card in holder
+			.inflate(R.layout.holder_wallet, parent, false);
 		final BalanceHolder holder = new BalanceHolder(cardView);
+
+		// TODO: передаю пока только айдишник
 		holder.itemView.setOnClickListener(view -> {
 			if (onCardClickListener != null) {
-				onCardClickListener.onClick(holder.getAdapterPosition());
+				onCardClickListener.onClick(dataset.get(holder.getAdapterPosition()));
 			}
 		});
+
 		holder.balanceVisibility.setOnClickListener(view -> {
 			if (onImageClickListener != null) {
 				onImageClickListener.onClick(holder.getAdapterPosition());
 			}
 		});
+
 		return holder;
 	}
 
@@ -97,6 +106,6 @@ public class BalanceRecycleAdapter extends RecyclerView.Adapter<BalanceRecycleAd
 	}
 
 	interface OnContentClick {
-		void onClick(final int position);
+		void onClick(final Object data);
 	}
 }
