@@ -145,6 +145,8 @@ public class WalletReportView extends Fragment implements WalletReportContract.V
 
 	@Override
 	public void setDataForTextReport(float incomes, float costs, int incomeCount, int costCount) {
+		if (getContext() == null) return;
+
 		StringBuilder report = new StringBuilder();
 
 		report.append(getString(R.string.template_report_text_balance)).append(" ")

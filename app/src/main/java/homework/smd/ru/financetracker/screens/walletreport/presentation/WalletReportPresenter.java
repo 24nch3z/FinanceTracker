@@ -19,6 +19,7 @@ import homework.smd.ru.financetracker.models.CategoryChart;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.walletreport.domain.WalletReportInteractor;
+import homework.smd.ru.financetracker.utils.MyLog;
 import homework.smd.ru.financetracker.utils.Utils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -58,12 +59,26 @@ public class WalletReportPresenter extends BasePresenter<WalletReportContract.Vi
 			.subscribe(operations -> {
 				this.operations.clear();
 				this.operations.addAll(operations);
-
-				showReport(operations);
+				report();
 			});
 		cd.add(disposable);
 
 		initViews();
+	}
+
+	private void report() {
+		List<Operation> list = new ArrayList<>();
+		long dateFrom = viewModel.dateFrom.getTime();
+		long dateTo = viewModel.dateTo.getTime();
+
+		for (Operation operation : operations) {
+			long curDate = operation.operationDate.getTime();
+			if (dateFrom <= curDate && dateTo >= curDate) {
+				list.add(operation);
+			}
+		}
+
+		showReport(list);
 	}
 
 	private void showReport(List<Operation> list) {
@@ -72,7 +87,6 @@ public class WalletReportPresenter extends BasePresenter<WalletReportContract.Vi
 			return;
 		}
 
-		StringBuilder report = new StringBuilder();
 		float incomes = 0, costs = 0;
 		int incomeCount = 0, costCount = 0;
 		Map<String, Float> categories = new HashMap<>();
@@ -89,7 +103,7 @@ public class WalletReportPresenter extends BasePresenter<WalletReportContract.Vi
 
 				String category = operation.category;
 				if (categories.containsKey(category)) {
-					categories.put(category, categories.get(categories) + sum);
+					categories.put(category, categories.get(category) + sum);
 				} else {
 					categories.put(category, sum);
 				}
@@ -192,5 +206,7 @@ public class WalletReportPresenter extends BasePresenter<WalletReportContract.Vi
 				setDateTo(dateTo);
 				break;
 		}
+
+		report();
 	}
 }
