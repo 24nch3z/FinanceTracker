@@ -85,6 +85,13 @@
     <string name="template_report_date_to">To</string>
     <string name="template_report_error_to_less_from">End date can not be less than start date</string>
     <string name="template_report_error_from_more_to">Start date can not be longer than end date</string>
+    <string name="template_report_no_data">No data for report</string>
+    <string name="template_report_text_balance">Balance:</string>
+    <string name="template_report_text_total_count">Всего операций:</string>
+    <string name="template_report_text_cost_count">Total Operations:</string>
+    <string name="template_report_text_income_count">Number of incomes:</string>
+    <string name="template_report_text_income">Earned:</string>
+    <string name="template_report_text_cost">Spent:</string>
 
     <string name="empty_field_error">You must fill in the field</string>
     <string name="templates">Templates</string>

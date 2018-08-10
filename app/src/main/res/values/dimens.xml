@@ -18,10 +18,9 @@
     <dimen name="bot_nav_bar_height">60dp</dimen>
 
     <dimen name="wallet_title_size">24sp</dimen>
+    <dimen name="wallet_button_size">32dp</dimen>
 
     <dimen name="template_list_decorator_margin">16dp</dimen>
 
-    <dimen name="wallet_button_size">32dp</dimen>
-
-    <dimen name="wallet_report_report_size">20sp</dimen>
+    <dimen name="wallet_report_report_size">18sp</dimen>
 </resources>

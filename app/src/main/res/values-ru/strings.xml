@@ -81,6 +81,13 @@
     <string name="template_report_date_to">Дата окончания</string>
     <string name="template_report_error_to_less_from">Дата окончания не может быть меньше даты начала</string>
     <string name="template_report_error_from_more_to">Дата начала не может быть больше даты окончания</string>
+    <string name="template_report_no_data">Нет данных для отчета</string>
+    <string name="template_report_text_balance">Баланс счета:</string>
+    <string name="template_report_text_total_count">Всего операций:</string>
+    <string name="template_report_text_cost_count">Число расходов:</string>
+    <string name="template_report_text_income_count">Число доходов:</string>
+    <string name="template_report_text_income">Заработано:</string>
+    <string name="template_report_text_cost">Потрачено:</string>
 
     <string name="empty_field_error">Необходимо заполнить поле</string>
     <string name="templates">Шаблоны</string>

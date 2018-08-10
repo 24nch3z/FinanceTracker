@@ -4,14 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import homework.smd.ru.financetracker.BasePresenter;
 import homework.smd.ru.financetracker.R;
 import homework.smd.ru.financetracker.dialogs.DatePickerDialog;
+import homework.smd.ru.financetracker.models.CategoryChart;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.walletreport.domain.WalletReportInteractor;
@@ -63,13 +67,18 @@ public class WalletReportPresenter extends BasePresenter<WalletReportContract.Vi
 	}
 
 	private void showReport(List<Operation> list) {
+		if (list == null || list.size() == 0) {
+			view.setNoDataForReport();
+			return;
+		}
+
 		StringBuilder report = new StringBuilder();
-		double incomes = 0, costs = 0;
+		float incomes = 0, costs = 0;
 		int incomeCount = 0, costCount = 0;
-		Map<String, Double> categories = new HashMap<>();
+		Map<String, Float> categories = new HashMap<>();
 
 		for (Operation operation : list) {
-			double sum = operation.sum;
+			float sum = (float) operation.sum;
 
 			if (sum > 0) {
 				incomes += sum;
@@ -87,17 +96,52 @@ public class WalletReportPresenter extends BasePresenter<WalletReportContract.Vi
 			}
 		}
 
-		report.append("Баланс счета: ").append(incomes + costs).append("\n");
-		report.append("Всего операций: ").append(list.size()).append("\n");
-		report.append("Число расходов: ").append(costCount).append("\n");
-		report.append("Число доходов: ").append(incomeCount).append("\n");
+		view.setDataForTextReport(incomes, costs, incomeCount, costCount);
 
-		view.showReportText(report.toString().trim());
+		List<CategoryChart> chartData = getCategoryChartList(categories, costs);
+		if (chartData != null && chartData.size() > 0) {
+			view.setDataForChart(getCategoryChartList(categories, costs));
+			view.showHideChart(true);
+		} else {
+			view.showHideChart(false);
+		}
+	}
+
+	private List<CategoryChart> getCategoryChartList(Map<String, Float> categories, float total) {
+		List<CategoryChart> list = new ArrayList<>();
+
+		Set<Map.Entry<String, Float>> entry = categories.entrySet();
+		Iterator<Map.Entry<String, Float>> iterator = entry.iterator();
+		while (iterator.hasNext()) {
+			Map.Entry<String, Float> next = iterator.next();
+			list.add(new CategoryChart(next.getValue() / total, next.getKey()));
+		}
+
+		if (list.size() < 5) {
+			return list;
+		}
+
+		Collections.sort(list, (t1, t2) -> {
+			if (t1.percent > t2.percent) return -1;
+			else if (t1.percent < t2.percent) return 1;
+			return 0;
+		});
+
+		List<CategoryChart> output = new ArrayList<>();
+		for (int i = 0; i < 3; i++) {
+			output.add(list.get(i));
+		}
+		float sum = 0;
+		for (int i = 3; i < list.size(); i++) sum += list.get(i).percent;
+		output.add(new CategoryChart(sum, "Другое"));
+
+		return output;
 	}
 
 	private void initViews() {
 		showDateFrom();
 		showDateTo();
+		view.showHideChart(false);
 	}
 
 	private void showDateFrom() {
