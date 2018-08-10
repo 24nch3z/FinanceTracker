@@ -1,3 +1,3 @@
 # FinanceTracker
 
-Скачать .apk можно по [ссылке](http://138.68.173.73:5555/files/FinanceTracker.apk)
+Скачать .apk можно по [ссылке](https://github.com/24nch3z/FinanceTracker/blob/dev/app/release/app-release.apk)
