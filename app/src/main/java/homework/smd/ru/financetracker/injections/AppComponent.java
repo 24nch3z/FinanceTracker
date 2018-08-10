@@ -25,7 +25,6 @@ public interface AppComponent {
 	void inject(ContainerActivity activity);
 	void inject(MainView view);
 	void inject(OperationView view);
-	void inject(InfoView view);
 	void inject(WalletView view);
 	void inject(TemplateListView view);
 	void inject(TemplateCreatorView view);

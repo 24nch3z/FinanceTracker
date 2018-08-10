@@ -23,4 +23,6 @@
     <dimen name="template_list_decorator_margin">16dp</dimen>
 
     <dimen name="wallet_report_report_size">18sp</dimen>
+
+    <dimen name="about_logo_size">350dp</dimen>
 </resources>

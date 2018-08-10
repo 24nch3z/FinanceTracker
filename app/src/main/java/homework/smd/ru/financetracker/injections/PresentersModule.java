@@ -1,13 +1,9 @@
 package homework.smd.ru.financetracker.injections;
 
-import android.content.Context;
-
 import dagger.Module;
 import dagger.Provides;
 import homework.smd.ru.financetracker.screens.addoperation.domain.OperationInteractor;
 import homework.smd.ru.financetracker.screens.addoperation.presentation.OperationPresenter;
-import homework.smd.ru.financetracker.screens.information.presentation.InfoContract;
-import homework.smd.ru.financetracker.screens.information.presentation.InfoPresenter;
 import homework.smd.ru.financetracker.screens.main.domain.MainInteractor;
 import homework.smd.ru.financetracker.screens.main.presentation.MainContract;
 import homework.smd.ru.financetracker.screens.main.presentation.MainPresenter;
@@ -21,11 +17,6 @@ import homework.smd.ru.financetracker.screens.walletreport.presentation.WalletRe
 
 @Module
 class PresentersModule {
-
-	@Provides
-	InfoContract.Presenter provideInfoPresenter(Context context) {
-		return new InfoPresenter(context);
-	}
 
 	@Provides
 	OperationPresenter provideOperationPresenter(OperationInteractor interactor) {

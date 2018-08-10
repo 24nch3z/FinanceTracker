@@ -19,7 +19,6 @@ import homework.smd.ru.financetracker.models.CategoryChart;
 import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.walletreport.domain.WalletReportInteractor;
-import homework.smd.ru.financetracker.utils.MyLog;
 import homework.smd.ru.financetracker.utils.Utils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
