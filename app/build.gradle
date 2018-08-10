@@ -17,6 +17,10 @@ android {
         multiDexEnabled true
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
     signingConfigs {
         release {
             keyAlias "${System.env.'ANDROID_KEY_ALIAS'}"
@@ -29,8 +33,6 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources true
-            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 

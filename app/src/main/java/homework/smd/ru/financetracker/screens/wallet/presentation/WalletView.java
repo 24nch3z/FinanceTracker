@@ -24,22 +24,28 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import homework.smd.ru.financetracker.App;
 import homework.smd.ru.financetracker.R;
+import homework.smd.ru.financetracker.dialogs.SimpleDialog;
 import homework.smd.ru.financetracker.dialogs.WalletCreatorDialog;
 import homework.smd.ru.financetracker.dialogs.WalletRemovingDialog;
+import homework.smd.ru.financetracker.models.Operation;
 import homework.smd.ru.financetracker.models.Wallet;
 import homework.smd.ru.financetracker.screens.Screens;
+import homework.smd.ru.financetracker.utils.MyLog;
 import homework.smd.ru.financetracker.utils.MyToast;
 
-public class WalletView extends Fragment implements WalletContract.View {
+public class WalletView extends Fragment implements WalletContract.View, CallbackOnClick {
 
 	private final static int SPAN_COUNT = 2;
 	private final static String ARG_WALLET = "ARG_WALLET";
 
 	private final static String CHANGE_DIALOG = "CHANGE_DIALOG";
 	private final static String REMOVE_DIALOG = "REMOVE_DIALOG";
+	private final static String REMOVE_OPERATION_DIALOG = "REMOVE_OPERATION_DIALOG";
+	private final static String DATA_OPERATION = "DATA_OPERATION";
 
 	private static final int REQUEST_NEW_WALLET_NAME = 1;
 	private static final int REQUEST_IS_REMOVING = 2;
+	private static final int REQUEST_IS_REMOVING_OPERATION = 3;
 
 	private Wallet wallet;
 	private Unbinder unbinder;
@@ -136,6 +142,7 @@ public class WalletView extends Fragment implements WalletContract.View {
 				wallet.setTitle(name);
 				textViewTitle.setText(wallet.getTitle());
 				break;
+
 			case REQUEST_IS_REMOVING:
 				boolean isRemoving = data.getBooleanExtra(WalletRemovingDialog.IS_REMOVING, false);
 				if (isRemoving) {
@@ -143,11 +150,34 @@ public class WalletView extends Fragment implements WalletContract.View {
 					App.instance.getRouter().backTo(Screens.SCREEN_MAIN);
 				}
 				break;
+
+			case REQUEST_IS_REMOVING_OPERATION:
+				boolean flag = data.getBooleanExtra(SimpleDialog.EXTRA_ANSWER, false);
+				if (flag) {
+					Bundle bundle = data.getBundleExtra(SimpleDialog.EXTRA_DATA);
+					Operation operation = (Operation) bundle.getSerializable(DATA_OPERATION);
+					presenter.removeOperation(operation);
+					MyToast.get(getContext()).show(getString(R.string.operation_deleted));
+				}
+				break;
 		}
 	}
 
 	@Override
 	public void setAdapter(OperationRecyclerAdapter adapter) {
+		adapter.setCallbackOnClick(this);
 		recycler.setAdapter(adapter);
+	}
+
+	@Override
+	public void onClickOperation(Operation operation) {
+		Bundle data = new Bundle();
+		data.putSerializable(DATA_OPERATION, operation);
+
+		FragmentManager manager = getFragmentManager();
+		SimpleDialog dialog = SimpleDialog.newInstance(R.string.dialog_operation_remove_title,
+			R.string.dialog_operation_remove_message, data);
+		dialog.setTargetFragment(WalletView.this, REQUEST_IS_REMOVING_OPERATION);
+		dialog.show(manager, REMOVE_OPERATION_DIALOG);
 	}
 }

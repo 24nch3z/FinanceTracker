@@ -46,4 +46,8 @@ public class WalletPresenter extends BasePresenter<WalletContract.View> {
 			});
 		cd.add(disposable);
 	}
+
+	public void removeOperation(Operation operation) {
+		interactor.removeOperation(operation);
+	}
 }

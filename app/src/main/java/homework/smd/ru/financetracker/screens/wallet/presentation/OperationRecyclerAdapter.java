@@ -19,18 +19,21 @@ import homework.smd.ru.financetracker.models.UtilsKt;
 public class OperationRecyclerAdapter extends
 	RecyclerView.Adapter<OperationRecyclerAdapter.OperationHolder> {
 
-	@NonNull
-	private List<Operation> dataset;
+	@NonNull private List<Operation> dataset;
+	private CallbackOnClick callbackOnClick;
 
-	static class OperationHolder extends RecyclerView.ViewHolder {
+	static class OperationHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 		@IdRes static int red = 0;
 		@IdRes static int green = 0;
 		@NonNull private final TextView operationName;
 		@NonNull private final TextView operationSum;
+		private Operation operation;
+		private CallbackOnClick callbackOnClick;
 
 		OperationHolder(@NonNull View itemView) {
 			super(itemView);
+			itemView.setOnClickListener(this);
 			operationName = itemView.findViewById(R.id.operation_name);
 			operationSum = itemView.findViewById(R.id.operation_sum);
 			if (red == 0 || green == 0) {
@@ -39,7 +42,10 @@ public class OperationRecyclerAdapter extends
 			}
 		}
 
-		private void updateContent(@NonNull Operation operation) {
+		private void updateContent(@NonNull Operation operation, CallbackOnClick callbackOnClick) {
+			this.operation = operation;
+			this.callbackOnClick = callbackOnClick;
+
 			if (operation.sum < 0) {
 				operationSum.setTextColor(red);
 			} else {
@@ -48,10 +54,19 @@ public class OperationRecyclerAdapter extends
 			operationSum.setText(UtilsKt.moneyFormat(operation.sum));
 			operationName.setText(operation.category);
 		}
+
+		@Override
+		public void onClick(View view) {
+			this.callbackOnClick.onClickOperation(operation);
+		}
 	}
 
 	public OperationRecyclerAdapter() {
 		this.dataset = Collections.emptyList();
+	}
+
+	public void setCallbackOnClick(CallbackOnClick callbackOnClick) {
+		this.callbackOnClick = callbackOnClick;
 	}
 
 	@NonNull
@@ -64,7 +79,7 @@ public class OperationRecyclerAdapter extends
 
 	@Override
 	public void onBindViewHolder(@NonNull OperationHolder holder, int position) {
-		holder.updateContent(dataset.get(position));
+		holder.updateContent(dataset.get(position), callbackOnClick);
 	}
 
 	@Override

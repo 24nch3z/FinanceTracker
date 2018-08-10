@@ -15,4 +15,6 @@ public interface OperationRepository {
 	Flowable<List<Operation>> getOperations(int expanseId);
 
 	void addOperation(Operation operation, @Nullable Period period);
+
+	void removeOperation(Operation operation);
 }

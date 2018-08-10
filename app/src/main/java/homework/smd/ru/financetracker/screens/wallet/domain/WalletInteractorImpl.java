@@ -16,4 +16,9 @@ public class WalletInteractorImpl implements WalletInteractor {
 		return operationRepository
 			.getOperations(expenseId);
 	}
+
+	@Override
+	public void removeOperation(Operation operation) {
+		operationRepository.removeOperation(operation);
+	}
 }

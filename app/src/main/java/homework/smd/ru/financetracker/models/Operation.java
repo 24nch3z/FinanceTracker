@@ -5,6 +5,7 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import homework.smd.ru.financetracker.database.Converters;
@@ -20,7 +21,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 		childColumns = "expenseId",
 		onDelete = CASCADE)
 )
-public class Operation {
+public class Operation implements Serializable {
 
 	@PrimaryKey(autoGenerate = true)
 	public int id;

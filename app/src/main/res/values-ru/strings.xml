@@ -57,6 +57,9 @@
     <string name="wallet_remove_wallet">Удалить кошелек</string>
     <string name="wallet_remove_wallet_success_toast">Ваш кошелек был удален</string>
     <string name="wallet_change_wallet_success_toast">Ваш кошелек был изменен</string>
+    <string name="dialog_operation_remove_title">Удаление операции</string>
+    <string name="dialog_operation_remove_message">Вы действительно хотите удалить эту операцию?</string>
+    <string name="operation_deleted">Операция удалена</string>
 
     <!-- Wallet dialog creator -->
     <string name="wallet_removing_title">Удаление кошелька</string>
